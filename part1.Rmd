@@ -528,5 +528,5 @@ and the data itself is at
 ## Save everything we've done so far
 
 ```{r save-image}
-save.image("day1.RData")
+save.image("part1.RData")
 ```
