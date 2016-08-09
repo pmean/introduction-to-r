@@ -7,11 +7,27 @@ output: html_document
 
 # Day 1 lectures and exercises
 
-The following is for my own benefit. You do not need to run this.
+The following is for my own benefit. You do not need to run this. Jump
+to the line: "A brief technical note" and start reading there.
 
-```{r clean-slate}
+```{r preliminaries}
 rm(list=ls())
+doc <- NULL
+doc$run.date <- date()
+doc$version <- R.version.string
+doc$author <- "Steve Simon (UMKC)"
+doc$maintainer <- "Steve Simon (UMKC)"
+doc$assistants <- "Mary Gerkovich and Karen Williams"
 ```
+
+This program was run on `r doc$date` using `r doc$version`.
+The original author is `r doc$author`. `r doc$maintainer`
+is currently maintaining and enhancing this program
+with the assistance of `r doc$assistants`.
+
+This program illustrates how to import and manipulate simple data sets
+in R and how to produce some simple descriptive statistics. Included
+in this program are some exercises for you to do on your own.
 
 ## A brief technical note.
 
@@ -27,20 +43,25 @@ having to retype them.
 
 ## A brief pair of definitions
 
-A categorical variable is a variable that can only take on a 
+A **categorical variable** is a variable that can only take on a 
 small number of values. Each value is usually associated with
 a particular category.
 
-Examples of categorical variables are sex (Male or Female),
-race/ethnicity (Caucasion, African American, Hispanic, Asian,
-Native American, multiracial, or other), Cancer stage (I, II, III,
-or IV), birth delivery type (Vaginal, C-section). 
+Examples of categorical variables are
 
-A continuous variable is a variable that can take on a large number
+* sex (Male or Female),
+* race/ethnicity (Caucasian, African American, Hispanic, etc.),
+* cancer stage (I, II, III, or IV),
+* birth delivery type (Vaginal, C-section). 
+
+A **continuous variable** is a variable that can take on a large number
 of possible vales, potentially any value in some interval.
 
-Examples of continuous variables are Birth weight in grams,
-getational age, fasting LDL level.
+Examples of continuous variables are
+
+* Birth weight in grams,
+* getational age,
+* fasting LDL level.
 
 There are some variables that are on the boundary between categorical
 and continuous, but it is not worth quibbling about here. 
