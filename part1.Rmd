@@ -7,8 +7,7 @@ output: html_document
 
 # Day 1 lectures and exercises
 
-The following is for my own benefit. You do not need to run this. Jump
-to the line: "A brief technical note" and start reading there.
+The following is for my own benefit. You do not need to run this. Jump to the line: "A brief technical note" and start reading there.
 
 ```{r preliminaries}
 rm(list=ls())
@@ -20,32 +19,19 @@ doc <- list(
   assistants="Mary Gerkovich and Karen Williams")
 ```
 
-This program was run on `r doc$date` using `r doc$version`.
-The original author is `r doc$author`. `r doc$maintainer`
-is currently maintaining and enhancing this program
-with the assistance of `r doc$assistants`.
+This program was run on `r doc$date` using `r doc$version`. The original author is `r doc$author`. `r doc$maintainer` is currently maintaining and enhancing this program with the assistance of `r doc$assistants`.
 
-This program illustrates how to import and manipulate simple data sets
-in R and how to produce some simple descriptive statistics. Included
-in this program are some exercises for you to do on your own.
+This program illustrates how to import and manipulate simple data sets in R and how to produce some simple descriptive statistics. Included in this program are some exercises for you to do on your own.
 
 ## A brief technical note.
 
-This file has a mixture of R commands and commentary. Lines surrounding
-the R commands start with three backquotes. The line at the top will also
-have curly braces a lower case "r" and brief descriptive names of the
-code segment (e.g., read). The backquotes and curly braces allow me
-to produce a nicely formatted html file using "R markdown" language.
+This file has a mixture of R commands and commentary. Lines surrounding the R commands start with three backquotes. The line at the top will also have curly braces a lower case "r" and brief descriptive names of the code segment (e.g., read). The backquotes and curly braces allow me to produce a nicely formatted html file using "R markdown" language.
 
-You can safely ignore the backquotes and curly braces. Use cut-and-paste
-from a text editor like notepad to run the appropriate commands without
-having to retype them.
+You can safely ignore the backquotes and curly braces. Use cut-and-paste from a text editor like notepad to run the appropriate commands without having to retype them.
 
 ## A brief pair of definitions
 
-A **categorical variable** is a variable that can only take on a 
-small number of values. Each value is usually associated with
-a particular category.
+A **categorical variable** is a variable that can only take on asmall number of values. Each value is usually associated with a particular category.
 
 Examples of categorical variables are
 
@@ -54,8 +40,7 @@ Examples of categorical variables are
 * cancer stage (I, II, III, or IV),
 * birth delivery type (Vaginal, C-section). 
 
-A **continuous variable** is a variable that can take on a large number
-of possible vales, potentially any value in some interval.
+A **continuous variable** is a variable that can take on a large number of possible vales, potentially any value in some interval.
 
 Examples of continuous variables are
 
@@ -63,13 +48,9 @@ Examples of continuous variables are
 * getational age,
 * fasting LDL level.
 
-There are some variables that are on the boundary between categorical
-and continuous, but it is not worth quibbling about here. 
+There are some variables that are on the boundary between categorical and continuous, but it is not worth quibbling about here. 
 
-The point to remember is that the types of graphs that you use
-and the types of statistics that you compute are dependent
-on many things, but first and foremost on whether the variables are
-categorical, continuous, or a mixture.
+The point to remember is that the types of graphs that you use and the types of statistics that you compute are dependent on many things, but first and foremost on whether the variables are categorical, continuous, or a mixture.
 
 Today, you will see examples involving mostly continuous variables.
 
@@ -88,52 +69,26 @@ fd <- read.table(file=fn)
 ### End cut-and-paste on the line above
 ```
 
-The object, fd, is a data frame. Data frames are rectangular grids
-of data. Each column in the data frame has the same length. The data
-within a column has to have the same type (numeric, character, and dates
-are examples of data types and we will discuss each of these in detail 
-throughout the class). The different columns can have different data
-types.
+The object, fd, is a data frame. Data frames are rectangular grids of data. Each column in the data frame has the same length. The data within a column has to have the same type (numeric, character, and dates are examples of data types and we will discuss each of these in detail throughout the class). The different columns can have different data types.
 
-There are times when the rectangular grid of a data frame is too 
-restrictive for your data, and R has other ways of storing this data
-(most notably, lists), but you will find that for most data analyses,
-a data frame will work just fine.
+There are times when the rectangular grid of a data frame is too restrictive for your data, and R has other ways of storing this data (most notably, lists), but you will find that for most data analyses, a data frame will work just fine.
 
-The head function shows the first few rows of the data set and the tail
-function shows the last few rows of the data set.
+The head function shows the first few rows of the data set and the tail function shows the last few rows of the data set.
 
 ```{r head-tail}
 head(fd)
 tail(fd)
 ```
 
-Always get in the habit of checking out the very bottom of your data frame.
-It's a common location for glitches.
+Always get in the habit of checking out the very bottom of your data frame. It's a common location for glitches.
 
 ## Variable names
 
-This data set did not have a header, a line at the very top of the file
-that lists variable names. R uses the default names V1, V2, etc. As a 
-general rule, you should use brief (but descriptive) names for every
-variable in your data set. The names should be around 8 characters
-long. Longer variable names make your typing tedious and much shorter
-variable names makes your code terse and cryptic.
+This data set did not have a header, a line at the very top of the file that lists variable names. R uses the default names V1, V2, etc. As a general rule, you should use brief (but descriptive) names for every variable in your data set. The names should be around 8 characters long. Longer variable names make your typing tedious and much shorter variable names makes your code terse and cryptic.
 
-You should avoid special symbols in your variable names especially symbols
-that are likely to cause confusion (the dash symbol, for example, which is
-also the symbol for subtraction). You should also avoid blanks. These rules
-are pretty much universal across most statistical software packages. If you 
-violate these rules, you will find out that, at a minimum, you will always
-have to surround your variable name by quotes to avoid problems.
+You should avoid special symbols in your variable names especially symbols that are likely to cause confusion (the dash symbol, for example, which is also the symbol for subtraction). You should also avoid blanks. These rules are pretty much universal across most statistical software packages. If you violate these rules, you will find out that, at a minimum, you will always have to surround your variable name by quotes to avoid problems.
 
-There are times when you'd like to have a blank in your variable name and
-you can use two special symbols that you can use in R (and most other
-statistical pacakges), the underscore symbol (above the minus key on most
-keyboards) and the dot (period). These symbols create some artificial
-spacing that mimics the blanks. Another approach is "CamelCase" which is
-the mixture of upper and lower case within a variable name
-with each uppercase designating the beginning of a new "word".
+There are times when you'd like to have a blank in your variable name and you can use two special symbols that you can use in R (and most other statistical pacakges), the underscore symbol (above the minus key on most keyboards) and the dot (period). These symbols create some artificial spacing that mimics the blanks. Another approach is "CamelCase" which is the mixture of upper and lower case within a variable name with each uppercase designating the beginning of a new "word".
 
 The names function will display the variable names in your data set.
 
@@ -144,74 +99,53 @@ names(fd)
 You also can use the names function to create a different set of variable names.
 
 ```{r names-2}
-names(fd) <- c("case","fat.b","fat.s","dens","age","wt","ht","bmi","ffw",
-                    "neck","chest","abdomen","hip","thigh","knee","ankle",
-                    "biceps","forearm","wrist")
+names(fd) <- c("case","fat.b","fat.s","dens","age","wt","ht","bmi","ffw","neck","chest","abdomen","hip","thigh","knee","ankle","biceps","forearm","wrist")
 ```
 
-I'm a bit more terse with these variable names than I normally would be just
-to reduce the amount of typing you have to do.
+I'm a bit more terse with these variable names than I normally would be just to reduce the amount of typing you have to do.
 
-Now, when you display part or all of your data frame, the new names will 
-help you navigate successfully through it.
+Now, when you display part or all of your data frame, the new names will help you navigate successfully through it.
 
 ```{r names-3}
 head(fd)
 ```
 
-Most statistical packages allow you to provide a longer description
-for each variable in your dataset (a variable label, for example,
-in SPSS). The longer descriptions have almost no restrictions on
-blanks or special symbols and are useful for documenting the units of
-measurement for your variable, among other things. R does not have a
-formal equivalent to the SPSS variable label.
+Most statistical packages allow you to provide a longer description for each variable in your dataset (a variable label, for example, in SPSS). The longer descriptions have almost no restrictions on blanks or special symbols and are useful for documenting the units of measurement for your variable, among other things. R does not have a formal equivalent to the SPSS variable label.
 
-We'll talk about additional documentation requirements for categorical
-data on the second day of this class.
+We'll talk about additional documentation requirements for categorical data on the second day of this class.
 
 ## Displaying parts of your data set and missing value codes.
 
-To list a single column of your data frame, you can use the $ symbol
-or you can use a matrix style of notation.
+To list a single column of your data frame, you can use the $ symbol or you can use a matrix style of notation.
 
 ```{r single-column}
 fd$ht
 fd[,"ht"]
 ```
 
-There is an unusual data value, which you might not notice right away, but
-one of the heights is 29.5 inches.This is not totally out of the realm of possibility. See, for example,
+There is an unusual data value, which you might not notice right away, but one of the heights is 29.5 inches.This is not totally out of the realm of possibility. See, for example, 
 
 --> http://en.wikipedia.org/wiki/List_of_shortest_people
 
-Normally, you would use a graphical or statistical summary to identify
-unusual data values. I'm pointing out the unusual value here so we
-can talk early about missing value codes.
+Normally, you would use a graphical or statistical summary to identify unusual data values. I'm pointing out the unusual value here so we can talk early about missing value codes.
 
-You can use the which function to identify the row with this unusual
-value for further investigation. Note the use of the double equals sign
-and how you display a single row of a data frame.
+You can use the which function to identify the row with this unusual value for further investigation. Note the use of the double equals sign and how you display a single row of a data frame.
 
 ```{r which}
 which(fd$ht==29.5)
 fd[42,]
 ```
 
-The other values look quite normal. You have to make a careful choice here.
-One possibility is to do nothing. If you leave the abnormal height in your
-data set, it may distort some of your graphs and skew some of your
-statistics. Still, it is often better than some of the alternatives.
+The other values look quite normal. You have to make a careful choice here. One possibility is to do nothing. If you leave the abnormal height in your data set, it may distort some of your graphs and skew some of your statistics. Still, it is often better than some of the alternatives.
 
-A second choice is to remove the entire row from the data frame.
-The -42 means everything EXCEPT row 42.
+A second choice is to remove the entire row from the data frame. The -42 means everything EXCEPT row 42.
 
 ```{r remove}
 fd1 <- fd[-42,]
 fd1$ht
 ```
 
-A third possibility is to designate the abnormal value as missing. In R, 
-a missing value is represented by NA.
+A third possibility is to designate the abnormal value as missing. In R, a missing value is represented by NA.
 
 ```{r missing}
 fd2 <- fd
@@ -219,41 +153,21 @@ fd2[42,"ht"] <- NA
 fd2$ht
 ```
 
-There is no one method that is preferred in this setting. If you
-encounter an unusual value, you should discuss it with your
-research team, investigate the original data sources, if possible,
-and review any procedures for handling unusual data values that
-might be specified in your research protocol.
+There is no one method that is preferred in this setting. If you encounter an unusual value, you should discuss it with your research team, investigate the original data sources, if possible, and review any procedures for handling unusual data values that might be specified in your research protocol.
 
-Your data set may arrive with missing values in it already. Data
-might be designated as missing for a variety of reasons (lab
-result lost, value below the limit of detection, patient refused
-to answer this question) and how you handle missing values is
-way beyond the scope of this class. Just remember to tread
-cautiously around missing values as they are a minefield.
+Your data set may arrive with missing values in it already. Data might be designated as missing for a variety of reasons (lab result lost, value below the limit of detection, patient refused to answer this question) and how you handle missing values is way beyond the scope of this class. Just remember to tread cautiously around missing values as they are a minefield.
 
-Notice that I store the revised data sets with the row removed
-and with the 29.5 replaced by a missing value in different data
-frames. This is good programming practice. If you ever
-have to make a destructive change to your data set (a change
-that wipes out one or more values or a change that is difficult
-to undo), it is good form to store the new results in a fresh
-spot. That way, if you get cold feet, you can easily backtrack.
+Notice that I store the revised data sets with the row removed and with the 29.5 replaced by a missing value in different data frames. This is good programming practice. If you ever have to make a destructive change to your data set (a change that wipes out one or more values or a change that is difficult to undo), it is good form to store the new results in a fresh spot. That way, if you get cold feet, you can easily backtrack.
 
-We'll use the data set with the 29.5 changed to a missing value
-for all of the remaining analyses of this data set.
+We'll use the data set with the 29.5 changed to a missing value for all of the remaining analyses of this data set.
 
 ## On your own
 
-Display the data for the wt variable. Scan it quickly to see if there
-are any obvious errors.
+Display the data for the wt variable. Scan it quickly to see if there are any obvious errors.
 
 ## Univariate statistics
 
-When you first encounter any data set, you should run some
-simple univariate statistics and graphics on any column of data
-that you plan to use in any of your analyses. In this data set,
-all the variables are continuous, and the summary function works well.
+When you first encounter any data set, you should run some simple univariate statistics and graphics on any column of data that you plan to use in any of your analyses. In this data set, all the variables are continuous, and the summary function works well.
 
 ```{r summary}
 summary(fd2$fat.b)
@@ -264,73 +178,45 @@ summary(fd2$ht)
 
 Calculate a summary for bmi.
 
-What happends if you ask for a summary of the entire data frame? 
-(summary(fd2)).
+What happends if you ask for a summary of the entire data frame? (summary(fd2)).
 
 ## Missing values
 
-Notice that the summary function for the ht variable notes that one
-of the values is missing. You should watch these missing values
-obsessively. This can get a bit tricky. 
+Notice that the summary function for the ht variable notes that one of the values is missing. You should watch these missing values obsessively. This can get a bit tricky. 
 
 ```{r tracking-missing-1}
 which(fd2$ht==NA)
 ```
 
-Logic involving missing values is tricky. If you checking for equality
-and one of the things in the comparison is missing, then the result is
-neither TRUE, not FALSE, but rather missing.
+Logic involving missing values is tricky. If you checking for equality and one of the things in the comparison is missing, then the result is neither TRUE, not FALSE, but rather missing.
 
-Fair enough, but R takes it a bit further, and if both sides when
-you are checking for equality are missing, then they might both
-be 5 is they weren't missing or maybe one might be 5 and the
-other one 10. So it might be TRUE or it might be FALSE, so we're
-better off calling the logical result as missing.
+Fair enough, but R takes it a bit further, and if both sides when you are checking for equality are missing, then they might both be 5 is they weren't missing or maybe one might be 5 and the other one 10. So it might be TRUE or it might be FALSE, so we're better off calling the logical result as missing.
 
-This is called a three valued logic system and it has advantages
-and disadvantages. I won't get into any technical details, except
-to say that you should never make assumptions. Check what you do
-when you are working with missing values to make sure that the
-three valued logic system doesn't produce results that you
-didn't expect.
+This is called a three valued logic system and it has advantages and disadvantages. I won't get into any technical details, except to say that you should never make assumptions. Check what you do when you are working with missing values to make sure that the three valued logic system doesn't produce results that you didn't expect.
 
-The short term solution to the above problem is to use a special
-function, is.na.
+The short term solution to the above problem is to use a special function, is.na.
 
 ```{r tracking-missing-2}
 which(is.na(fd2$ht))
 ```
 
-The summary function will trap and remove missing values, but most
-other functions in R will, by default, report a result as missing
-if any values going into that function are missing. The philosophy
-in R, I suppose, is that you need to actively select an approach for
-handling missing values rather than relying on a lazy default. Also,
-a  missing value is less likely to evade your notice when you have
-to actively specify an approach for handling the missing values.
+The summary function will trap and remove missing values, but most other functions in R will, by default, report a result as missing if any values going into that function are missing. The philosophy in R, I suppose, is that you need to actively select an approach for handling missing values rather than relying on a lazy default. Also, a  missing value is less likely to evade your notice when you have to actively specify an approach for handling the missing values.
 
 ```{r mean-sd-1}
 mean(fd2$ht)
 sd(fd2$ht)
 ```
 
-Read the help file for these functions (enter ?mean or ?sd at the
-command prompt).
+Read the help file for these functions (enter ?mean or ?sd at the command prompt).
 
-Look carefully and note that the na.rm option allows
-you to compute the statistic after missing values are removed.
+Look carefully and note that the na.rm option allows you to compute the statistic after missing values are removed.
 
 ```{r mean-sd-2}
 mean(fd2$ht,na.rm=TRUE)
 sd(fd2$ht,na.rm=TRUE)
 ```
 
-For univariate functions, there are only two realistic ways to handle
-missing values, but for bivariate and multivariate function, there are
-a multitude of approaches, such as pairwise deletion, listwise deletion,
-last observation carried forward, single imputation, and multiple
-imputation. There is a lot of controversy over various methods for
-handling missing values.
+For univariate functions, there are only two realistic ways to handle missing values, but for bivariate and multivariate function, there are a multitude of approaches, such as pairwise deletion, listwise deletion, last observation carried forward, single imputation, and multiple imputation. There is a lot of controversy over various methods for handling missing values.
 
 ## Histograms
 
@@ -340,12 +226,7 @@ A histogram is also useful for displaying a continuous variable graphically.
 hist(fd2$bmi)
 ```
 
-Look at the help function for the hist function. The breaks argument
-allows you to control where the bars appear and how many bars you
-have. So, for example, the default scaling for the ht variable
-is 2 inches per bar, but you can make the bars narrower (one inch
-per bar), start at 60 inches (5 feet), and go all the way up to
-84 inches (7 feet).
+Look at the help function for the hist function. The breaks argument allows you to control where the bars appear and how many bars you have. So, for example, the default scaling for the ht variable is 2 inches per bar, but you can make the bars narrower (one inch per bar), start at 60 inches (5 feet), and go all the way up to 84 inches (7 feet).
 
 Always start with the default option, but don't settle for it.
 
@@ -353,16 +234,13 @@ Always start with the default option, but don't settle for it.
 hist(fd2$ht)
 ```
 
-The main, xlab, and ylab argument control some of the
-documentation displayed on the graph.
+The main, xlab, and ylab argument control some of the documentation displayed on the graph.
 
 ```{r histogram-3}
 hist(fd2$ht,breaks=60:84,main=" ",xlab="Height in inches")
 ```
 
-Finally, you can control the labelling of the axes by specifying
-axes=FALSE (to avoid the default axes, and then using the axis
-command to put the tick marks and labels where you want them).
+Finally, you can control the labelling of the axes by specifying axes=FALSE (to avoid the default axes, and then using the axis command to put the tick marks and labels where you want them).
 
 ```{r histogram-4}
 hist(fd2$ht,breaks=c(60,66,72,78,84),main=" ",xlab="Height",axes=FALSE)
@@ -374,38 +252,19 @@ axis(side=2,at=50*(0:4))
 
 ## On your own
 
-Draw a histogram for a different variable. Change the breakpoints from
-the default choice to one you think might be better.
+Draw a histogram for a different variable. Change the breakpoints from the default choice to one you think might be better.
 
 ## Saving pieces of your output using cut and paste
 
-You can cut and paste from R to any other program that supports
-cut and paste. Highlight the output from one of the summary functions
-and copy it to the clipboard using the menu (EDIT | COPY) or the
-keyboard shortcut Ctrl-C. Then paste it into Word, then Excel, then
-Powerpoint.
+You can cut and paste from R to any other program that supports cut and paste. Highlight the output from one of the summary functions and copy it to the clipboard using the menu (EDIT | COPY) or the keyboard shortcut Ctrl-C. Then paste it into Word, then Excel, then Powerpoint.
 
-Click on the menu in the graph window to copy your current graph into
-the clipboard. Paste the graph into Word, Excel, and Powerpoint.
+Click on the menu in the graph window to copy your current graph into the clipboard. Paste the graph into Word, Excel, and Powerpoint.
 
 ## Correlations
 
-The correlation coefficient is a single number between -1 and +1
-that quantifies the strength and direction of a relationship
-between two continuous variables. As a rough rule of thumb,
-a correlation larger than +0.7 indicates a strong positive
-association and a correlation smaller than -0.7 indicates
-a strong negative association. A correlation between +0.3
-and +0.7 (-0.3 and -0.7) indicates a weak positive (negative)
-association. A correlation between -0.3 and +0.3 indicates
-little or no association.
+The correlation coefficient is a single number between -1 and +1 that quantifies the strength and direction of a relationship between two continuous variables. As a rough rule of thumb, a correlation larger than +0.7 indicates a strong positive association and a correlation smaller than -0.7 indicates a strong negative association. A correlation between +0.3 and +0.7 (-0.3 and -0.7) indicates a weak positive (negative) association. A correlation between -0.3 and +0.3 indicates little or no association.
 
-Don't take these rules too literally. You're not trying to make
-definitive statements about your data set. You are just trying to
-get comfortable with some general patterns that occur in your data
-set. A complex and definitive statistical analysis will almost
-certainly not agree with at least some of the preliminary
-correlations noted here.
+Don't take these rules too literally. You're not trying to make definitive statements about your data set. You are just trying to get comfortable with some general patterns that occur in your data set. A complex and definitive statistical analysis will almost certainly not agree with at least some of the preliminary correlations noted here.
 
 ```{r corr-1}
 cor(fd2$fat.b,fd2$age)
@@ -413,13 +272,7 @@ cor(fd2$fat.b,fd2$age)
 
 ## Correlation matrices
 
-You can get a matrix of correlations for every possible pair of
-variables. This command becomes a bit more complicated if there
-are some categorical variables in your data set, as you need to
-exclude these prior to calculating the correlation matrix. Since
-you are just trying to get a general feel for your data, a bit of
-rounding will help you. Also, you should remove the case number
-before calculating the correlation matrix.
+You can get a matrix of correlations for every possible pair of variables. This command becomes a bit more complicated if there are some categorical variables in your data set, as you need to exclude these prior to calculating the correlation matrix. Since you are just trying to get a general feel for your data, a bit of rounding will help you. Also, you should remove the case number before calculating the correlation matrix.
 
 ```{r corr-2}
 round(100*cor(fd2[,-1]))
@@ -436,18 +289,14 @@ round(100*cor(fd2[,leg.measures],fd2[,arm.measures]))
 
 ## Scatterplots
 
-The best graphical way to display a relationship between two
-continuous variables is a scatterplot.
+The best graphical way to display a relationship between two continuous variables is a scatterplot.
 
 ```{r scatterplot-1}
 plot(fd2$abdomen,fd2$fat.b)
 plot(fd2$ht,fd2$abdomen)
 ```
 
-There are lots of options available to customize your graph. Here
-are just a few. The xlab and ylab arguments in the plot function
-control what is displayed on the horizontal (x) and vertical (y)
-axes. The pch argument control what is used as the plotting character.
+There are lots of options available to customize your graph. Here are just a few. The xlab and ylab arguments in the plot function control what is displayed on the horizontal (x) and vertical (y) axes. The pch argument control what is used as the plotting character.
 
 ```{r scatterplot-2}
 plot(fd2$abdomen/2.54,fd2$fat.b,
@@ -542,8 +391,11 @@ commentary, and turn it in.
 ## If there is time.
 
 If there is time, a third data set is described at
+
 --> http://www.amstat.org/publications/jse/datasets/body.txt
+
 and the data itself is at
+
 --> http://www.amstat.org/publications/jse/datasets/body.dat.txt
 
 ## Save everything we've done so far
