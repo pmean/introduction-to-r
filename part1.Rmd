@@ -12,12 +12,12 @@ to the line: "A brief technical note" and start reading there.
 
 ```{r preliminaries}
 rm(list=ls())
-doc <- NULL
-doc$run.date <- date()
-doc$version <- R.version.string
-doc$author <- "Steve Simon (UMKC)"
-doc$maintainer <- "Steve Simon (UMKC)"
-doc$assistants <- "Mary Gerkovich and Karen Williams"
+doc <- list(
+  run.date=date(),
+  version=R.version.string,
+  author="Steve Simon (UMKC)",
+  doc$maintainer="Steve Simon (UMKC)",
+  assistants="Mary Gerkovich and Karen Williams")
 ```
 
 This program was run on `r doc$date` using `r doc$version`.
