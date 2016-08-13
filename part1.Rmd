@@ -279,9 +279,8 @@ You can get pieces of the correlation matrix by supplying pieces of the data fra
 ```{r corr-3}
 leg.measures <- c("hip","thigh","knee","ankle")
 arm.measures <- c("biceps","forearm","wrist")
-round(100*cor(fd2[,leg.measures],fd2[,arm.measures]))
+round(cor(fd2[,leg.measures],fd2[,arm.measures]),2)
 ```
-
 
 # Part 1k. Scatterplots
 
@@ -320,15 +319,14 @@ abline(trend.line)
 Here's a smooth curve.
 
 ```{r trend-2}
-smooth.curve <- lowess(fd2$age,fd2$bmi)
-plot(fd2$age,fd2$bmi)
+smooth.curve <- lowess(fd2$age,fd2$fat.b)
+plot(fd2$age,fd2$fat.b)
 lines(smooth.curve)
 ```
 
 ## Try all of these things on a totally different data set.
 
-There is a second data set on sleep in mammals. You can find
-a brief description of this data set at
+There is a second data set on sleep in mammals. You can find a brief description of this data set at
 
 --> http://www.statsci.org/data/general/sleep.html
 
