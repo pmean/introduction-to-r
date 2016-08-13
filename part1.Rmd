@@ -15,7 +15,7 @@ doc <- list(
   run.date=date(),
   version=R.version.string,
   author="Steve Simon (UMKC)",
-  doc$maintainer="Steve Simon (UMKC)",
+  maintainer="Steve Simon (UMKC)",
   assistants="Mary Gerkovich and Karen Williams")
 ```
 
@@ -31,7 +31,7 @@ You can safely ignore the backquotes and curly braces. Use cut-and-paste from a 
 
 ## A brief pair of definitions
 
-A **categorical variable** is a variable that can only take on asmall number of values. Each value is usually associated with a particular category.
+A **categorical variable** is a variable that can only take on a small number of values. Each value is usually associated with a particular category.
 
 Examples of categorical variables are
 
@@ -45,7 +45,7 @@ A **continuous variable** is a variable that can take on a large number of possi
 Examples of continuous variables are
 
 * Birth weight in grams,
-* getational age,
+* gestational age,
 * fasting LDL level.
 
 There are some variables that are on the boundary between categorical and continuous, but it is not worth quibbling about here. 
@@ -178,7 +178,7 @@ summary(fd2$ht)
 
 Calculate a summary for bmi.
 
-What happends if you ask for a summary of the entire data frame? (summary(fd2)).
+What happens if you ask for a summary of the entire data frame? (summary(fd2)).
 
 ## Missing values
 
@@ -340,17 +340,13 @@ and you can download the actual data at
 
 --> http://www.statsci.org/data/general/sleep.txt
 
-Notice that the last three variables are ordinal, but for the purposes
-of this class, we will treat them the same as the other variables.
+Notice that the last three variables are ordinal, but for the purposes of this class, we will treat them the same as the other variables.
 
 ## Read the file into R
 
-Notice that this file has variable names at the very top. Look at
-the help file for read.table and see what option you might choose
-here. Display the first few rows and the last few rows.
+Notice that this file has variable names at the very top. Look at the help file for read.table and see what option you might choose here. Display the first few rows and the last few rows.
 
-As noted in each of the R commands shown below, I will remove the 
-answers before I distribute this file to the students.
+As noted in each of the R commands shown below, I will remove the answers before I distribute this file to the students.
 
 ```{r read-sleep}
 fn <- "http://www.statsci.org/data/general/sleep.txt"
