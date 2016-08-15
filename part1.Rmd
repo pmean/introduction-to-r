@@ -7,9 +7,9 @@ output: html_document
 
 This program illustrates how to import and manipulate simple data sets in R and how to produce some simple descriptive statistics. Included in this program are some exercises for you to do on your own.
 
-# Part 1a: A brief technical note.
+# Part 1a: Read data.
 
-This file has a mixture of R commands and commentary. Lines surrounding the R commands start with three backquotes. The line at the top will also have curly braces a lower case "r" and brief descriptive names of the code segment (e.g., read). The backquotes and curly braces allow me to produce a nicely formatted html file using "R markdown" language.
+This file has a mixture of R commands and commentary. Lines surrounding the R commands start with three backquotes. The line at the top will also have curlybraces a lower case "r" and brief descriptive names of the code segment (e.g., read). The backquotes and curly braces allow me to produce a nicely formatted html file using "R markdown" language.
 
 You can safely ignore the backquotes and curly braces. Use cut-and-paste from a text editor like notepad to run the appropriate commands without having to retype them.
 
@@ -19,8 +19,6 @@ print(x)
 print(mean(x))
 print(sd(x))
 ```
-
-# Part 1b. A brief pair of definitions
 
 A **categorical variable** is a variable that can only take on a small number of values. Each value is usually associated with a particular category.
 
@@ -44,8 +42,6 @@ There are some variables that are on the boundary between categorical and contin
 The point to remember is that the types of graphs that you use and the types of statistics that you compute are dependent on many things, but first and foremost on whether the variables are categorical, continuous, or a mixture.
 
 Today, you will see examples involving mostly continuous variables.
-
-# Part 1c. Read in the percentage of body fat data set and add variable names.
 
 The first data set we will work with shows data various body measurements. A brief description of this file is available at
 
@@ -98,7 +94,7 @@ Most statistical packages allow you to provide a longer description for each var
 
 We'll talk about additional documentation requirements for categorical data on the second day of this class.
 
-# Part 1d. Displaying parts of your data set and missing value codes.
+# Part 1b. Pieces of your data.
 
 To list just part of a data frame, you can use a matrix style of notation.
 
@@ -117,7 +113,7 @@ fd$ht # all rows for "ht" column
 fd$ht[1:50] # first fifty rows for "ht" column
 ```
 
-# Part 1e. Identifying outlier.
+# Part 1c. Identifying outliers.
 
 There is an unusual data value, which you might not notice right away, but one of the heights is 29.5 inches.This is not totally out of the realm of possibility. See, for example, 
 
@@ -161,7 +157,7 @@ We'll use the data set with the 29.5 changed to a missing value for all of the r
 
 Display the data for the wt variable. Scan it quickly to see if there are any obvious errors.
 
-# Part 1f. Univariate statistics
+# Part 1d. Univariate statistics
 
 When you first encounter any data set, you should run some simple univariate statistics and graphics on any column of data that you plan to use in any of your analyses. In this data set, all the variables are continuous, and the summary function works well.
 
@@ -176,7 +172,7 @@ Calculate a summary for bmi.
 
 What happens if you ask for a summary of the entire data frame? (summary(fd2)).
 
-# Part 1g. Missing values
+# Part 1e. Missing values
 
 Notice that the summary function for the ht variable notes that one of the values is missing. You should watch these missing values obsessively. This can get a bit tricky. 
 
@@ -214,7 +210,7 @@ sd(fd2$ht,na.rm=TRUE)
 
 For univariate functions, there are only two realistic ways to handle missing values, but for bivariate and multivariate function, there are a multitude of approaches, such as pairwise deletion, listwise deletion, last observation carried forward, single imputation, and multiple imputation. There is a lot of controversy over various methods for handling missing values.
 
-# Part 1h. Histograms
+# Part 1f. Histograms
 
 A histogram is also useful for displaying a continuous variable graphically.
 
@@ -250,13 +246,13 @@ axis(side=2,at=50*(0:4))
 
 Draw a histogram for a different variable. Change the breakpoints from the default choice to one you think might be better.
 
-# part 1i. Saving pieces of your output using cut and paste
+# Part 1g. Saving pieces of your output using cut and paste
 
 You can cut and paste from R to any other program that supports cut and paste. Highlight the output from one of the summary functions and copy it to the clipboard using the menu (EDIT | COPY) or the keyboard shortcut Ctrl-C. Then paste it into Word, then Excel, then Powerpoint.
 
 Click on the menu in the graph window to copy your current graph into the clipboard. Paste the graph into Word, Excel, and Powerpoint.
 
-# Part 1j. Correlations
+# Part 1h. Correlations
 
 The correlation coefficient is a single number between -1 and +1 that quantifies the strength and direction of a relationship between two continuous variables. As a rough rule of thumb, a correlation larger than +0.7 indicates a strong positive association and a correlation smaller than -0.7 indicates a strong negative association. A correlation between +0.3 and +0.7 (-0.3 and -0.7) indicates a weak positive (negative) association. A correlation between -0.3 and +0.3 indicates little or no association.
 
@@ -282,7 +278,7 @@ arm.measures <- c("biceps","forearm","wrist")
 round(cor(fd2[,leg.measures],fd2[,arm.measures]),2)
 ```
 
-# Part 1k. Scatterplots
+# Part 1i. Scatterplots
 
 The best graphical way to display a relationship between two continuous variables is a scatterplot.
 
@@ -351,32 +347,21 @@ tail(sl)
 
 ## On your own
 
-1. Notice that there is a huge range in body weight. Display
-the information for the smallest and the largest mammals.
+1. Notice that there is a huge range in body weight. Display the information for the smallest and the largest mammals.
 
 2. Which variables have missing data?
 
 3. Calculate the mean and standard deviation for TotalSleep.
 
-4. Draw a histogram for the BodyWt variable. Note that this
-variable is highly skewed. Re-draw the histogram on the 
-log scale. Hint: log(sl$BodyWt,base=10). For exta credit,
-relabel the axes with values at 0.001,0.01, etc.
+4. Draw a histogram for the BodyWt variable. Note that this variable is highly skewed. Re-draw the histogram on the log scale. Hint: log(sl$BodyWt,base=10). For exta credit, relabel the axes with values at 0.001,0.01, etc.
 
-5. Calculate the ratio of BrainWt to BodyWt and express it
-as a percentage. Be sure to convert grams to kilograms (or
-vice versa) before computing the ratio. What animal has the
-smallest/largest ratio?
+5. Calculate the ratio of BrainWt to BodyWt and express it as a percentage. Be sure to convert grams to kilograms (or vice versa) before computing the ratio. What animal has the smallest/largest ratio?
 
-6. Do bigger animals sleep longer or live longer? Show your
-results using a correlation coefficient.
+6. Do bigger animals sleep longer or live longer? Show your results using a correlation coefficient.
 
-7. Do animals who have high degrees of Predation, Exposure,
-or Danger sleep less? Show your results using a plot and
-a trendline.
+7. Do animals who have high degrees of Predation, Exposure, or Danger sleep less? Show your results using a plot and a trendline.
 
-8. Place all the key results into a Word document, add a bit of 
-commentary, and turn it in.
+8. Place all the key results into a Word document, add a bit of commentary, and turn it in by email. Use the subject line: "Introduction to R, Part 1 Exercises"
 
 ## If there is time.
 
