@@ -1,0 +1,57 @@
+---
+title: "Introduction to R, part 1f"
+author: "Steve Simon"
+date: "Monday, August 10, 2016"
+output: html_document
+---
+
+This program is part of a series of R programs for the Introduction to R class. This program shows you how to draw histograms.
+
+```{r r-version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+If you need to, you can clean house and then re-load the data that you created earlier.
+
+```{r load-data}
+ls()
+rm(list=ls())
+load("part1.RData")
+ls()
+```
+
+
+# Part 1f. Histograms
+
+A histogram is also useful for displaying a continuous variable graphically.
+
+```{r histogram-1}
+hist(fd2$bmi)
+```
+
+Look at the help function for the hist function. The breaks argument allows you to control where the bars appear and how many bars you have. So, for example, the default scaling for the ht variable is 2 inches per bar, but you can make the bars narrower (one inch per bar), start at 60 inches (5 feet), and go all the way up to 84 inches (7 feet).
+
+Always start with the default option, but don't settle for it.
+
+```{r histogram-2}
+hist(fd2$ht)
+```
+
+The main, xlab, and ylab argument control some of the documentation displayed on the graph.
+
+```{r histogram-3}
+hist(fd2$ht,breaks=60:84,main=" ",xlab="Height in inches")
+```
+
+Finally, you can control the labelling of the axes by specifying axes=FALSE (to avoid the default axes, and then using the axis command to put the tick marks and labels where you want them).
+
+```{r histogram-4}
+hist(fd2$ht,breaks=c(60,66,72,78,84),main=" ",xlab="Height",axes=FALSE)
+lb <- c("5ft to 5ft 6in","5ft 7in to 6ft",
+        "6ft to 6ft 6in","6ft 7in to 7ft")
+axis(side=1,at=c(63,69,75,81),labels=lb)
+axis(side=2,at=50*(0:4))
+```
+
+You haven't created any new data frames, so there is no need to save anything here. 

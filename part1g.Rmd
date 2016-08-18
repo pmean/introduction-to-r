@@ -1,0 +1,76 @@
+---
+title: "Introduction to R, part 1g"
+author: "Steve Simon"
+date: "Monday, August 10, 2016"
+output: html_document
+---
+
+This program is part of a series of R programs for the Introduction to R class. This program shows you how to save output from R, including graphs.
+
+```{r r-version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+If you need to, you can clean house and then re-load the data that you created earlier.
+
+```{r load-data}
+ls()
+rm(list=ls())
+load("part1.RData")
+ls()
+```
+
+Suppose you create a large amount of text output in R. You can do this by running the following commands
+
+```{r lots-of-output}
+str(fd2)
+summary(fd2)
+```
+
+There are many ways that you can do this. The simplest is to highlight the output, copy it to the clipboard and then paste it into another program.
+
+You can also direct R output to a text file with the sink function.
+
+```{r sink-example}
+sink("summary.txt")
+summary(fd2)
+sink()
+```
+
+It's important when you're done to turn the sink function off with a call to the sink function with no arguments.
+
+Pasting into Excel is tricky, because you fit individual tabular data elements into individual cells. Sometimes you can do better by saving the output from a function like summary to an object and then exporting that object to a csv file.
+
+```{r write-to-csv}
+overall_summary <- summary(fd2)
+str(overall_summary)
+write.csv(overall_summary, file="summary.csv")
+```
+
+Whether exporing to a csv file works or not will depend a lot on the structure of the output. Summary produces an object of type 'table' (see the help file for table if you're curious what) and this object exports very nicely to Excel. Other objects may not export as well. In general, the output from a function needs to have a rectangular shape for this method to work.
+
+Powerpoint is also tricky because you have to cut-and-paste in bite-sized pieces.
+
+There are several ways to export graphs. First, let's draw a graph.
+
+```{r draw-a-graph}
+histogram(fd2$ht)
+```
+
+You can click on the graphics window to export the graph. You can also explicitly export a graph using the bmp, jpeg, pdf, png, or tiff functions.
+
+```{r export-bmp}
+bmp(filename="histogram.bmp")
+histogram(fd2$ht)
+dev.off()
+```
+
+It is VERY important to turn off the exporting function before you try to use the file. Also, you need to experiment with various sizes through the width and height arguments to these functions.
+
+We created a new object (overall_summary), so you might want to save things here before proceeding to the next section.
+
+```{r save-everything}
+save.image("part1.Rmd")
+```
+
