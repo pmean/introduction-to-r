@@ -1,11 +1,11 @@
 ---
-title: "Introduction to R, part 1a"
+title: "Introduction to R, part 1d"
 author: "Steve Simon"
 date: "Monday, August 10, 2016"
 output: html_document
 ---
 
-This program is part of a series of R programs for the Introduction to R class. This program shows you how to read a text file.
+This program is part of a series of R programs for the Introduction to R class. This program shows you how to calculate some simple summary statistics.
 
 ```{r r-version-and-current-date}
 R.version.string
@@ -19,165 +19,7 @@ ls()
 rm(list=ls())
 load("part1.RData")
 ls()
-str(fd)
 ```
-
-## A brief comment about R Markdown.
-
-This file is written in R Markdown, a mixture of R commands and commentary. Lines surrounding the R commands start with three backquotes. The line at the top will also have curlybraces a lower case "r" and brief descriptive names of the code segment (e.g., read). The backquotes and curly braces allow me to produce a nicely formatted html file that intersperses the R commands, the R output, and the commentary.
-
-You can safely ignore the backquotes and curly braces. Use cut-and-paste from a text editor like notepad to run the appropriate commands without having to retype them. Please cut-and-paste the four lines below into the R console.
-
-```{r simple-example}
-x <- 1:9
-x
-summary(x)
-```
-
-You are not responsible for R Markdown in this class, but I wanted to show you one of the features of R Markdown. When you create objects in R, you can print those objects, as shown above, or you can incorporate those objects in your commentary. Here's an example.
-
-Our data set has values `r x`. The mean is `r mean(x)` and the standard deviation is `r sd(x)`
-
-## Some definitions
-
-A **categorical variable** is a variable that can only take on a small number of values. Each value is usually associated with a particular category.
-
-Examples of categorical variables are
-
-* sex (Male or Female),
-* race/ethnicity (Caucasian, African American, Hispanic, etc.),
-* cancer stage (I, II, III, or IV),
-* birth delivery type (Vaginal, C-section). 
-
-A **continuous variable** is a variable that can take on a large number of possible vales, potentially any value in some interval.
-
-Examples of continuous variables are
-
-* Birth weight in grams,
-* gestational age,
-* fasting LDL level.
-
-There are some variables that are on the boundary between categorical and continuous, but it is not worth quibbling about here. 
-
-The point to remember is that the types of graphs that you use and the types of statistics that you compute are dependent on many things, but first and foremost on whether the variables are categorical, continuous, or a mixture.
-
-Today, you will see examples involving mostly continuous variables.
-
-The first data set we will work with shows data various body measurements. A brief description of this file is available at
-
---> http://www.amstat.org/publications/jse/datasets/fat.txt
-
-You need to read in the file using the read.table function.
-
-```{r read}
-fn <- "http://www.amstat.org/publications/jse/datasets/fat.dat.txt"
-fd <- read.table(file=fn)
-head(fd)
-tail(fd)
-```
-
-The object, fd, is a data frame. Data frames are rectangular grids of data. Each column in the data frame has the same length. The data within a column has to have the same type (numeric, character, and dates are examples of data types and we will discuss each of these in detail throughout the class). The different columns can have different data types.
-
-There are times when the rectangular grid of a data frame is too restrictive for your data, and R has other ways of storing this data (most notably, lists), but you will find that for most data analyses, a data frame will work just fine.
-
-The head function shows the first few rows of the data set and the tail function shows the last few rows of the data set.
-
-Always get in the habit of checking out the very bottom of your data frame. It's a common location for glitches.
-
-This data set did not have a header, a line at the very top of the file that lists variable names. R uses the default names V1, V2, etc. As a general rule, you should use brief (but descriptive) names for every variable in your data set. The names should be around 8 characters long. Longer variable names make your typing tedious and much shorter variable names makes your code terse and cryptic.
-
-You should avoid special symbols in your variable names especially symbols that are likely to cause confusion (the dash symbol, for example, which is also the symbol for subtraction). You should also avoid blanks. These rules are pretty much universal across most statistical software packages. If you violate these rules, you will find out that, at a minimum, you will always have to surround your variable name by quotes to avoid problems.
-
-There are times when you'd like to have a blank in your variable name and you can use two special symbols that you can use in R (and most other statistical pacakges), the underscore symbol (above the minus key on most keyboards) and the dot (period). These symbols create some artificial spacing that mimics the blanks. Another approach is "CamelCase" which is the mixture of upper and lower case within a variable name with each uppercase designating the beginning of a new "word".
-
-The names function will display the variable names in your data set.
-
-```{r names-1}
-names(fd)
-```
-
-You also can use the names function to create a different set of variable names.
-
-```{r names-2}
-names(fd) <- c("case","fat.b","fat.s","dens","age","wt","ht","bmi","ffw","neck","chest","abdomen","hip","thigh","knee","ankle","biceps","forearm","wrist")
-```
-
-I'm a bit more terse with these variable names than I normally would be just to reduce the amount of typing you have to do.
-
-Now, when you display part or all of your data frame, the new names will help you navigate successfully through it.
-
-```{r names-3}
-head(fd)
-```
-
-Most statistical packages allow you to provide a longer description for each variable in your dataset (a variable label, for example, in SPSS). The longer descriptions have almost no restrictions on blanks or special symbols and are useful for documenting the units of measurement for your variable, among other things. R does not have a formal equivalent to the SPSS variable label.
-
-We'll talk about additional documentation requirements for categorical data on the second day of this class.
-
-# Part 1b. Pieces of your data.
-
-To list just part of a data frame, you can use a matrix style of notation.
-
-```{r single-column}
-fd[1, 1] # first row, first column
-fd[1, ] # all columns for first row
-fd[, 1] # all rows for first column
-fd[1, "ht"] # first row, "ht" column
-fd[1:50, "ht"] # first fifty rows, "ht" column
-```
-
-There is a short cut for displaying a particular column that uses the $ sign.
-
-```{r dollar-sign}
-fd$ht # all rows for "ht" column
-fd$ht[1:50] # first fifty rows for "ht" column
-```
-
-# Part 1c. Identifying outliers.
-
-There is an unusual data value, which you might not notice right away, but one of the heights is 29.5 inches.This is not totally out of the realm of possibility. See, for example, 
-
---> http://en.wikipedia.org/wiki/List_of_shortest_people
-
-Normally, you would use a graphical or statistical summary to identify unusual data values. I'm pointing out the unusual value here so we can talk early about missing value codes.
-
-You can use the which function to identify the row with this unusual value for further investigation. Note the use of the double equals sign and how you display a single row of a data frame.
-
-```{r which}
-which(fd$ht==29.5)
-fd[42,]
-```
-
-The other values look quite normal. You have to make a careful choice here. One possibility is to do nothing. If you leave the abnormal height in your data set, it may distort some of your graphs and skew some of your statistics. Still, it is often better than some of the alternatives.
-
-A second choice is to remove the entire row from the data frame. The -42 means everything EXCEPT row 42.
-
-```{r remove}
-fd1 <- fd[-42,]
-fd1$ht
-```
-
-A third possibility is to designate the abnormal value as missing. In R, a missing value is represented by NA.
-
-```{r missing}
-fd2 <- fd
-fd2[42,"ht"] <- NA
-fd2$ht
-```
-
-There is no one method that is preferred in this setting. If you encounter an unusual value, you should discuss it with your research team, investigate the original data sources, if possible, and review any procedures for handling unusual data values that might be specified in your research protocol.
-
-Your data set may arrive with missing values in it already. Data might be designated as missing for a variety of reasons (lab result lost, value below the limit of detection, patient refused to answer this question) and how you handle missing values is way beyond the scope of this class. Just remember to tread cautiously around missing values as they are a minefield.
-
-Notice that I store the revised data sets with the row removed and with the 29.5 replaced by a missing value in different data frames. This is good programming practice. If you ever have to make a destructive change to your data set (a change that wipes out one or more values or a change that is difficult to undo), it is good form to store the new results in a fresh spot. That way, if you get cold feet, you can easily backtrack.
-
-We'll use the data set with the 29.5 changed to a missing value for all of the remaining analyses of this data set.
-
-## On your own
-
-Display the data for the wt variable. Scan it quickly to see if there are any obvious errors.
-
-# Part 1d. Univariate statistics
 
 When you first encounter any data set, you should run some simple univariate statistics and graphics on any column of data that you plan to use in any of your analyses. In this data set, all the variables are continuous, and the summary function works well.
 
