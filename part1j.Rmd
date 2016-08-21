@@ -1,0 +1,218 @@
+---
+title: "Introduction to R, part 1j"
+author: "Steve Simon"
+date: "Monday, August 10, 2016"
+output: html_document
+---
+
+This program is part of a series of R programs for the Introduction to R class. This program shows you how to import a wider range of file type.
+
+```{r r-version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+If you need to, you can clean house, but there is no need to re-load the data that you created earlier.
+
+```{r load-data}
+ls()
+rm(list=ls())
+```
+
+# Addendum to Day 1 lectures and exercises
+
+The material for DAy 1 did not include enough information about
+getting data into and out of R. Here are a few extra examples.
+
+## Read in comma separated values
+
+The read.csv function will read a text file with commas
+separating individual data points. This is a commonly 
+used format and frequently has the extension .csv.
+
+In notepad or another text editor, type in the following
+values.
+
+1,4
+
+2,8
+
+3,12
+
+4,16
+
+and save the file using the name simple.csv. Note the 
+directory that you are saving it in.
+
+Here's a time saving hint: run the getwd function without
+any arguments (getwd()) to see where the current working
+directory. This is the place that R is currently looking
+for files if you don't provide a path. If you store the
+file simple.csv in the current working directory,
+then you don't have to type in the path name as well
+as the filename.
+
+You can use the setwd command to change the current
+working directory. Be sure to use forward slashes (/)
+in your pathname rather than backslashes (\).
+
+```{r read-csv}
+fn <- "simple.csv"
+d1 <- read.csv(file=fn)
+d1
+```
+
+Oops! That didn't work the way I wanted it to. Look at 
+the help file for read.csv. What option would you use 
+to avoid losing the first line of data?
+
+## On your own
+
+Add the line x,y to the top of your csv file and read it
+in using the header=TRUE option.
+
+Note: depending on how you typed your data, you may or
+may not get an error message like "Warning in 
+readLines(file, n = thisblock): incomplete final line found"
+
+This happens when R does not find a carriage return at the end
+of the last line of data. This is easily fixed by opening
+the text file and going to the very end with CTRL-END.
+
+if you land at the end of the very last line, you don't have
+a final carriage return. If you land on a blank line below
+the last line of text, then you are fine.
+
+## Using the more general function, read.table
+
+Review the options for the read.table command.
+
+Type in the same data, but using the tilde (~)
+as a separator (e.g., 1~4). Save the file as
+tilde.txt.
+
+Here is how you would use read.table to read
+this file.
+
+```{r read-table}
+fn <- "tilde.txt"
+d2 <- read.table(file=fn,header=TRUE,sep="~")
+```
+## Reading in space delimited files.
+
+Open up notepad and type in the following lines.
+
+1  4
+
+2  8
+
+3 12
+
+4 16
+
+Be sure to line up the numbers properly by inserting two
+blanks between 1 and 4 and two blanks between 2 and 8, but
+only one blank between 3 and 12 and between 4 and 16.
+
+Save the file as space.txt.
+
+If you tried to read in the file with sep=" ", you would
+get an error. Try this to see what the error looks like.
+
+
+You can either always edit the file and replace any double
+blanks with single blanks, but if you look carefully at the
+help file, you will see that the argument sep="" (which is
+the default) will use white space (one or more blanks, tabs,
+carriage returns, or newlines). This works pretty well but
+not always. We will see a file where you have to fix things
+before you can import it properly.
+
+```{r read-space}
+fn <- "space.txt"
+# Try read.table(fn,sep=" ") first.
+d3 <- read.table(fn,sep="")
+```
+
+Note that the default for read.table is header=FALSE, as 
+opposed to the default of HEADER=TRUE for read.csv.
+
+## Reading fixed width format files
+
+Sometimes you will get a file with no delimiters to save
+space. This requires that each variable takes up a fixed
+number of columns and that information is often specified
+in a separate file.
+
+Create a fixed width file in notepad with the following 
+lines.
+
+1 4
+
+2 8
+
+312
+
+416
+
+and store it as fixed.txt.
+
+```{r fixed}
+fn <- "fixed.txt"
+d4 <- read.fwf(fn,c(1,2))
+d4
+```
+
+You should also consider the read.fortran function. Check
+out the help file.
+
+## Writing text files
+
+If you want to write a text file, you can use either the 
+write.csv or write.table functions. Look up the help files
+on these functions. We'll create a small data frame and 
+store it in a comma delimited and tab delimited format.
+
+```{r write-text}
+d5 <- data.frame(x=c(13,12,11),y=c(2,4,6))
+fn <- "output1.csv"
+write.csv(d4,fn)
+fn <- "output2.txt"
+write.table(d5,fn)
+```
+
+Open these files in notepad to see what they look like.
+
+## On your own
+
+To avoid the extra line at the top and the column
+names "1","2","3" use the options header=FALSE
+and col.names=TRUE. Try this and see what the two
+files look like now.
+
+## Writing binary files
+
+By default, R saves everything that you create
+on exiting from the program and stores it in
+a file with no name and with an extension of 
+RData (in other words, .RData). This file is
+automatically loaded the next time you start
+R from the same subdirectory.
+
+If you want to save a data frame in binary format,
+use the function save(). Binary formats are much
+faster but are pretty much useful only within R
+itself.
+
+In other words, don't send a binary file to
+someone who does not have R. Binary files
+are useful when you are moving data from 
+one R user to another, or data from one
+computer to another, or sometimes when
+you are moving dat from one folder to
+another.
+
+We will not be using any of these files again, so there is no need to save anything.
+
+
+
