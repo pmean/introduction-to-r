@@ -74,3 +74,12 @@ We created a new object (overall_summary), so you might want to save things here
 save.image("part1.Rmd")
 ```
 
+Before you go, please answer the following quiz question.
+
+1. What function in R creates a graphic file in BMP format?
+
+Please also take this opportunity to ask any questions you might have.
+
+Send the answers to the quiz by email with the subject line
+
+Introduction to R, (your name), quiz 1g. 

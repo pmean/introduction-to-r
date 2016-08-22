@@ -51,3 +51,12 @@ We created a few new objects, so you might want to save things here before proce
 save.image("part1.Rmd")
 ```
 
+Before you go, please answer the following quiz question.
+
+1. What function in R is used to calculate a correlation?
+
+Please also take this opportunity to ask any questions you might have.
+
+Send the answers to the quiz by email with the subject line
+
+Introduction to R, (your name), quiz 1h. 
