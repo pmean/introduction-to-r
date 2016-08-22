@@ -70,7 +70,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>rm(list=ls())
 load(&quot;part1.RData&quot;)
 ls()</code></pre>
-<pre><code>## [1] &quot;fd&quot;  &quot;fd1&quot; &quot;fd2&quot; &quot;fn&quot;  &quot;lb&quot;</code></pre>
+<pre><code>## [1] &quot;fd&quot;              &quot;fd1&quot;             &quot;fd2&quot;             &quot;fn&quot;             
+## [5] &quot;lb&quot;              &quot;overall_summary&quot;</code></pre>
 <p>The correlation coefficient is a single number between -1 and +1 that quantifies the strength and direction of a relationship between two continuous variables. As a rough rule of thumb, a correlation larger than +0.7 indicates a strong positive association and a correlation smaller than -0.7 indicates a strong negative association. A correlation between +0.3 and +0.7 (-0.3 and -0.7) indicates a weak positive (negative) association. A correlation between -0.3 and +0.3 indicates little or no association.</p>
 <p>Don’t take these rules too literally. You’re not trying to make definitive statements about your data set. You are just trying to get comfortable with some general patterns that occur in your data set. A complex and definitive statistical analysis will almost certainly not agree with at least some of the preliminary correlations noted here.</p>
 <pre class="r"><code>cor(fd2$fat.b,fd2$age)</code></pre>
@@ -127,7 +128,7 @@ round(cor(fd2[,leg.measures],fd2[,arm.measures]),2)</code></pre>
 ## knee    0.68    0.56  0.66
 ## ankle   0.48    0.42  0.57</code></pre>
 <p>We created a few new objects, so you might want to save things here before proceeding to the next section.</p>
-<pre class="r"><code>save.image(&quot;part1.Rmd&quot;)</code></pre>
+<pre class="r"><code>save.image(&quot;part1.RData&quot;)</code></pre>
 <p>Before you go, please answer the following quiz question.</p>
 <ol style="list-style-type: decimal">
 <li>What function in R is used to calculate a correlation?</li>

@@ -71,7 +71,7 @@ It is VERY important to turn off the exporting function before you try to use th
 We created a new object (overall_summary), so you might want to save things here before proceeding to the next section.
 
 ```{r save-everything}
-save.image("part1.Rmd")
+save.image("part1.RData")
 ```
 
 Before you go, please answer the following quiz question.

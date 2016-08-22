@@ -72,6 +72,7 @@ Here is how you would use read.table to read this file.
 fn <- "tilde.txt"
 d2 <- read.table(file=fn,header=TRUE,sep="~")
 ```
+
 ## Reading in space delimited files.
 
 Open up notepad and type in the following lines.
@@ -139,7 +140,7 @@ write.table(d5,fn)
 
 Open these files in notepad to see what they look like.
 
-## On your own
+## On your own (do this, but you do not need to turn it anything to me)
 
 To avoid the extra line at the top and the column names "1","2","3" use the options header=FALSE and col.names=TRUE. Try this and see what the two files look like now.
 
@@ -153,6 +154,6 @@ In other words, don't send a binary file to someone who does not have R. Binary 
 
 We will not be using any of these files again, so there is no need to save anything.
 
-There is no quize for part 1j.
+There is no quiz for part 1j.
 
 
