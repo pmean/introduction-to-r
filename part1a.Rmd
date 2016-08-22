@@ -5,7 +5,7 @@ date: "Monday, August 10, 2016"
 output: html_document
 ---
 
-This program is part of a series of R programs for the Introduction to R class. This program shows you how to read a text file.
+This program is part of a series of R programs for the Introduction to R class. This program shows you how to read a simple text file.
 
 ```{r version-and-current-date}
 R.version.string
@@ -48,7 +48,7 @@ Examples of categorical variables are
 * cancer stage (I, II, III, or IV),
 * birth delivery type (Vaginal, C-section). 
 
-A **continuous variable** is a variable that can take on a large number of possible vales, potentially any value in some interval.
+A **continuous variable** is a variable that can take on a large number of possible values, potentially any value in some interval.
 
 Examples of continuous variables are
 
@@ -113,9 +113,9 @@ head(fd)
 
 Most statistical packages allow you to provide a longer description for each variable in your dataset (a variable label, for example, in SPSS). The longer descriptions have almost no restrictions on blanks or special symbols and are useful for documenting the units of measurement for your variable, among other things. R does not have a formal equivalent to the SPSS variable label.
 
-We'll talk about additional documentation requirements for categorical data on the second day of this class.
+We'll talk about additional documentation requirements for categorical data in part 2 of this class.
 
-I'm going to take a short break and you can also. Before you take your break, save your work. The save.image function stores a binary 
+I'm going to take a short break and you can also. Before you take your break, save your work. The save.image function stores a binary version of all your objects.
 
 ```{r save-everything}
 save.image(file="part1.RData")
