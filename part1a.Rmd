@@ -123,9 +123,7 @@ save.image(file="part1.RData")
 
 Before you go, answer the following quiz questions.
 
-1. In R, what function do you use to look at the last few lines of a data frame?
-
-Please also take this opportunity to ask any questions you might have.
+http://www.pmean.com/15/images/quiz1a.html
 
 Send the answers to the quiz by email with the subject line
 
