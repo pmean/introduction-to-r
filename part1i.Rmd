@@ -21,7 +21,7 @@ load("part1.RData")
 ls()
 ```
 
-he best graphical way to display a relationship between two continuous variables is a scatterplot.
+The best graphical way to display a relationship between two continuous variables is a scatterplot.
 
 ```{r scatterplot-1}
 plot(fd2$abdomen,fd2$fat.b)
@@ -35,10 +35,10 @@ plot(fd2$abdomen/2.54,fd2$fat.b,
      xlab="Abdomen circumference in inches",
      ylab="Percentage of body fat using Brozek's equation",
      pch="+")
+title("Figure 1. My brilliant graph.")
 ```
 
-Notice that you can do the units conversion "on the fly". This doesn't
-work on all functions.
+Notice that you can do the units conversion "on the fly". This doesn't work on all functions.
 
 ## Adding trend lines
 

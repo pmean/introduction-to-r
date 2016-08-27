@@ -34,6 +34,8 @@ cor(fd2$fat.b,fd2$age)
 You can get a matrix of correlations for every possible pair of variables. This command becomes a bit more complicated if there are some categorical variables in your data set, as you need to exclude these prior to calculating the correlation matrix. Since you are just trying to get a general feel for your data, a bit of rounding will help you. Also, you should remove the case number before calculating the correlation matrix.
 
 ```{r corr-2}
+cor(fd2[ ,-1])
+round(cor(fd2[,-1]),2)
 round(100*cor(fd2[,-1]))
 ```
 
@@ -42,7 +44,7 @@ You can get pieces of the correlation matrix by supplying pieces of the data fra
 ```{r corr-3}
 leg.measures <- c("hip","thigh","knee","ankle")
 arm.measures <- c("biceps","forearm","wrist")
-round(cor(fd2[,leg.measures],fd2[,arm.measures]),2)
+round(100*cor(fd2[,leg.measures],fd2[,arm.measures]))
 ```
 
 We created a few new objects, so you might want to save things here before proceeding to the next section.
