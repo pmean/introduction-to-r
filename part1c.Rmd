@@ -78,9 +78,7 @@ save.image("part1.RData")
 
 Before you go, please answer the following quiz question.
 
-1. In R, what function do you use to load previously saved data?
-
-Please also take this opportunity to ask any questions you might have.
+http://www.pmean.com/15/images/quiz1c.html
 
 Send the answers to the quiz by email with the subject line
 

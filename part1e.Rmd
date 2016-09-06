@@ -65,7 +65,7 @@ save.image("part1.RData")
 
 Before you go, please answer the following quiz question.
 
-1. If you have a missing value, what happens by default when you try to calculate a mean?
+http://www.pmean.com/15/images/quiz1e.html
 
 Please also take this opportunity to ask any questions you might have.
 

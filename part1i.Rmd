@@ -86,23 +86,7 @@ head(sl)
 tail(sl)
 ```
 
-## Your homework assignment for Part 1.
-
-1. Notice that there is a huge range in body weight. Display the information for the smallest and the largest mammals.
-
-2. Which variables have missing data?
-
-3. Calculate the mean and standard deviation for TotalSleep.
-
-4. Draw a histogram for the BodyWt variable. Note that this variable is highly skewed. Re-draw the histogram on the log scale. Hint: log(sl$BodyWt,base=10). For exta credit, relabel the axes with values at 0.001,0.01, etc.
-
-5. Calculate the ratio of BrainWt to BodyWt and express it as a percentage. Be sure to convert grams to kilograms (or vice versa) before computing the ratio. What animal has the smallest/largest ratio?
-
-6. Do bigger animals sleep longer or live longer? Show your results using a correlation coefficient.
-
-7. Do animals who have high degrees of Predation, Exposure, or Danger sleep less? Show your results using a plot and a trendline.
-
-8. Place all the key results into a Word document, add a bit of commentary, and turn it in by email. Use the subject line: "Introduction to R, Part 1 Homework"
+Your homework assignment for Part 1 is available at http://www.pmean.com/15/images/homework.html.
 
 ## If there is time.
 
