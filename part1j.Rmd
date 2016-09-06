@@ -133,7 +133,7 @@ If you want to write a text file, you can use either the write.csv or write.tabl
 ```{r write-text}
 d5 <- data.frame(x=c(13,12,11),y=c(2,4,6))
 fn <- "output1.csv"
-write.csv(d4,fn)
+write.csv(d5,fn)
 fn <- "output2.txt"
 write.table(d5,fn)
 ```
@@ -142,7 +142,7 @@ Open these files in notepad to see what they look like.
 
 ## On your own (do this, but you do not need to turn it anything to me)
 
-To avoid the extra line at the top and the column names "1","2","3" use the options header=FALSE and col.names=TRUE. Try this and see what the two files look like now.
+To avoid the extra line at the top and the row names "1","2","3" use the options header=FALSE and col.names=FALSE. Try this and see what the two files look like now.
 
 ## Writing binary files
 
