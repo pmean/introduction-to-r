@@ -1,0 +1,93 @@
+---
+title: "Introduction to R, part 1k"
+author: "Steve Simon"
+date: "Monday, August 10, 2016"
+output: html_document
+---
+
+This program is part of a series of R programs for the Introduction to R class. This program shows you a sample format for your homework.
+
+1. Read in the data on various body measurements. A description is at
+--> http://www.amstat.org/publications/jse/datasets/fat.txt
+and the file can be found at 
+--> http://www.amstat.org/publications/jse/datasets/fat.dat.txt
+Display the first few rows and the last few rows of the data.
+
+2. List all of the bmi values.
+
+3. List the last row of the data set only.
+
+4. Calculate a summary for bmi.
+
+5. Draw a histogram for bmi and interpret it.
+
+6. Show the association between age and bmi using a correlation.
+
+Here's how you would do this using R Markdown and an html format.
+
+Answer to 1.
+
+Here are the R commands to read in the file.
+
+```{r q1}
+fn <- "http://www.amstat.org/publications/jse/datasets/fat.dat.txt"
+fd <- read.table(file=fn)
+```
+
+Here are the first few rows of the data set.
+
+```{r q1a}
+head(fd)
+```
+Here are the last few rows of the data set.
+
+```{r q1b}
+tail(fd)
+```
+
+Answer to 2. 
+
+Here are all the bmi values.
+
+```{r q2}
+names(fd) <- c("case","fat.b","fat.s","dens","age","wt","ht","bmi","ffw","neck","chest","abdomen","hip","thigh","knee","ankle","biceps","forearm","wrist")
+fd$bmi
+```
+
+Answer to 3.
+
+Here is the last row of the data.
+
+```{r q3}
+fd[252, ]
+```
+
+Answer to 4. 
+
+Here is a summary for bmi.
+
+```{r q4}
+summary(fd$bmi)
+```
+
+[[NOTE: INTERPRETATION IS IMPORTANT, BOTH HERE AND FOR THE NEXT TWO QUESTIONS. You don't have to describe every single number, just pick two or three to talk about.]] Rounding to two significant figures, the mean is 25, the range is 18 to 49.
+
+Answer to 5. 
+
+Here is a histogram for bmi.
+
+```{r q5}
+hist(fd$bmi)
+```
+
+The distribution is slightly skewed with a possible outlier between 45 and 50.
+
+Answer to 6.
+
+Here is a correlation between bmi and age.
+
+```{r q6}
+cor(fd$bmi, fd$age)
+```
+
+The correlation is 0.12. There is little or no association between bmi and age.

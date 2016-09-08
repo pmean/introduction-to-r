@@ -12,7 +12,7 @@ R.version.string
 Sys.Date()
 ```
 
-To take up where you left off, you may need to load the data that you saved earlier. If you have not interrupted your work, you may not need to do this, but it costs nothing other than a few electrons and a few seconds to run this. The ls function shows what objects you currently have available and the str function shows information about a particular object. You probably haven't forgetten what you stored in your data frame, but sometimes, you drop a projects for days or even weeks and when you return, you need a bit of a refresher.
+To take up where you left off, you may need to load the data that you saved earlier. If you have not interrupted your work, you may not need to do this, but it costs nothing other than a few electrons and a few seconds to r un this. The ls function shows what objects you currently have available and the str function shows information about a particular object. You probably haven't forgetten what you stored in your data frame, but sometimes, you drop a projects for days or even weeks and when you return, you need a bit of a refresher.
 
 ```{r load-data}
 ls()
