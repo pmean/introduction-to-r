@@ -1,0 +1,107 @@
+---
+title: "Smoothing with ggplot2"
+author: "Steve Simon"
+date: "July 26, 2017"
+output: html_document
+---
+
+I noticed several of the students having trouble with adding a smooth curve to a scatterplot, and it really isn't their fault. I have been using R forclose to fiften years, which is mostly good, but it is bad because I tend to use approaches that worked with early versions of R rather than more recent approaches. I guess the term for this is that I'm "old school". But this old can learn a few new tricks, so let me explain why the old school approach to adding a smooth curve is sub-optimal and how the new approach using the ggplot2 library is better.
+
+First, you need to download the ggplot2 package.
+
+```{r download-ggplot2, eval=FALSE}
+# You only need to do this once, then put eval=FALSE in the line above from that point onward.
+install.packages("ggplot2")
+```
+
+There are two functions built into R for scatterplot smoothing. The first is lowess and the second is loess. Both use a locally weighted average and you control the degree of smoothness by varying the size of the window. A wide window does a lot of smoothing and a narrow window does much less smoothing.
+
+The programs work okay, but are suboptimal for several reasons.
+
+1. They will sometimes choke on data sets with lots of ties among the independent variables.
+
+2. They will sometimes choke on data sets with missing values.
+
+3. They do not have a data= argument in variable list, forcing you to type the data frame name twice.
+
+4. They do not plot well if your data is not sorted properly. Here's a quick example of some of the problems you might see.
+
+```{r reload-your-data}
+load("part1.RData")
+```
+
+The sleep in mammals data set offers a nice example of why lowess and loess are suboptimal.
+
+```{r lowess-plot}
+plot(log(sl$BodyWt), sl$TotalSleep)
+lowess_fit <- lowess(x=log(sl$BodyWt), y=sl$TotalSleep)
+lines(lowess_fit)
+```
+
+Pretty ugly. The breaks in the lines are caused by missing values, and a time-saving feature where the smoothing curve uses interpolation instead of smoothing on consecutive data points that are close to one another.You can fix this by removing the missing values.
+
+```{r lowess-plot-fix1}
+sl1 <- sl[is.finite(sl$TotalSleep), ]
+plot(log(sl1$BodyWt), sl1$TotalSleep)
+lowess_fit <- lowess(x=log(sl1$BodyWt), y=sl1$TotalSleep)
+lines(lowess_fit)
+```
+
+The loess function also has some issues.
+
+```{r loess-plot}
+plot(log(sl$BodyWt), sl$TotalSleep)
+loess_fit <- loess(sl$TotalSleep~log(sl$BodyWt))
+lines(loess_fit)
+```
+
+There are two problems here. The first is that the object created by loess differs from the object created by lowess in that the vector y inside the loess object is the original Y values, not the smoothed values. So sending the loess object to the lines function is like playing connect-the-dots.
+
+You need to use the predict function, but even this has issues.
+
+```{r loess-plot-fix1}
+plot(log(sl$BodyWt), sl$TotalSleep)
+loess_fit <- loess(sl$TotalSleep~log(sl$BodyWt))
+lines(loess_fit$x, predict(loess_fit))
+```
+
+What's happening here is that the loess object lists the X values in the original order of the data set. Here are arrows showing the first six steps in drawing the smooth curve.
+
+```{r loess-plot-fix2}
+par(mfrow=c(2,3))
+for (j in 2:7) {
+  plot(log(sl$BodyWt), sl$TotalSleep)
+  loess_fit <- loess(sl$TotalSleep~log(sl$BodyWt))
+  lines(loess_fit$x[1:j], predict(loess_fit)[1:j])
+  arrows(loess_fit$x[j-1], predict(loess_fit)[j-1], 
+         loess_fit$x[j],   predict(loess_fit)[j], 
+         length=0.1, col="red", lwd=3)
+}
+```
+
+You can sort the data before or after the loess function, but doing it beforehand is simpler.
+
+```{r loess-plot-fix3}
+# The log function is monotone increasing so it doesn't
+# change the order  from the original values of BodyWt.
+o <- order(sl$BodyWt)
+sl2 <- sl[o, ]
+plot(log(sl2$BodyWt), sl2$TotalSleep)
+loess_fit <- loess(sl2$TotalSleep~log(sl2$BodyWt))
+lines(loess_fit$x, predict(loess_fit))
+```
+
+There is a better approach to drawing a smooth curve using a new library, ggplot2. The syntax for ggplot2 seems a bit odd at first, but it has the advantage of using a consistent approach to drawing graphs.
+
+```{r ggplot2}
+library(ggplot2)
+ggplot(data=sl, aes(x=log(BodyWt), y=TotalSleep)) + geom_point() + geom_smooth()
+```
+
+Notice that the missing values are handled gracefully (with a warning even!) and that the order of the data is not an issue. The ggplot function sets up the general framework for the graph and then you add layers of information with the geom_point and geom_smooth functions. I dislike the confidence bands that are drawn by default, and you can turn these off with the se=FALSE argument in geom_smooth.
+
+I am thinking about revising the material in this class for the next iteration, and one of the biggest changes will be presenting all the graphs using the ggplot2 library.
+
+If you want to learn more about ggplot2, a nice starting point is
+
+https://rpubs.com/hadley/ggplot-intro
