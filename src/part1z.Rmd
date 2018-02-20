@@ -27,7 +27,7 @@ The programs work okay, but are suboptimal for several reasons.
 4. They do not plot well if your data is not sorted properly. Here's a quick example of some of the problems you might see.
 
 ```{r reload-your-data}
-load("part1.RData")
+load("~/introduction-to-r-part1/bin/part1.RData")
 ```
 
 The sleep in mammals data set offers a nice example of why lowess and loess are suboptimal.

@@ -43,7 +43,7 @@ Here's a time saving hint: run the getwd function without any arguments (getwd()
 You can use the setwd command to change the current working directory. Be sure to use forward slashes (/) in your pathname rather than backslashes (\).
 
 ```{r read-csv}
-fn <- "simple.csv"
+fn <- "~/introduction-to-r-part1/dat/simple.csv"
 d1 <- read.csv(file=fn)
 d1
 ```
@@ -132,9 +132,9 @@ If you want to write a text file, you can use either the write.csv or write.tabl
 
 ```{r write-text}
 d5 <- data.frame(x=c(13,12,11),y=c(2,4,6))
-fn <- "output1.csv"
+fn <- "~/introduction-to-r-part1/results/output1.csv"
 write.csv(d5,fn)
-fn <- "output2.txt"
+fn <- "~/introduction-to-r-part1/results/output2.txt"
 write.table(d5,fn)
 ```
 
@@ -150,7 +150,7 @@ By default, R saves everything that you create on exiting from the program and s
 
 If you want to save a data frame in binary format, use the function save(). Binary formats are much faster but are pretty much useful only within R itself.
 
-In other words, don't send a binary file to someone who does not have R. Binary files are useful when you are moving data from one R user to another, or data from one computer to another, or sometimes when you are moving dat from one folder to another.
+In other words, don't send a binary file to someone who does not have R. Binary files are useful when you are moving data from one R user to another, or data from one computer to another, or sometimes when you are moving data from one folder to another.
 
 We will not be using any of these files again, so there is no need to save anything.
 

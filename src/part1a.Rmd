@@ -118,7 +118,7 @@ We'll talk about additional documentation requirements for categorical data in p
 I'm going to take a short break and you can also. Before you take your break, save your work. The save.image function stores a binary version of all your objects.
 
 ```{r save-everything}
-save.image(file="part1.RData")
+save.image(file="~/introduction-to-r-part1/bin/part1.RData")
 ```
 
 Before you go, answer the following quiz questions.

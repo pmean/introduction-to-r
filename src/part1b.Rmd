@@ -17,7 +17,7 @@ To take up where you left off, you may need to load the data that you saved earl
 ```{r load-data}
 ls()
 rm(list=ls())
-load("part1.RData")
+load("~/introduction-to-r-part1/bin/part1.RData")
 ls()
 str(fd)
 ```
@@ -50,7 +50,7 @@ Display the first ten rows and the first five columns of your data.
 Are you ready for another break? You did not change anything, so there's no need to save anything. But it doesn't hurt to get in the habit of saving regularly.
 
 ```{r save-image}
-save.image("part1.RData")
+save.image("~/introduction-to-r-part1/bin/part1.RData")
 ```
 
 Before you go, please answer the following quiz question.

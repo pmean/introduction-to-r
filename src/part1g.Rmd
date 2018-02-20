@@ -17,7 +17,7 @@ If you need to, you can clean house and then re-load the data that you created e
 ```{r load-data}
 ls()
 rm(list=ls())
-load("part1.RData")
+load("~/introduction-to-r-part1/bin/part1.RData")
 ls()
 ```
 
@@ -33,7 +33,7 @@ There are many ways that you can do this. The simplest is to highlight the outpu
 You can also direct R output to a text file with the sink function.
 
 ```{r sink-example}
-sink("summary.txt")
+sink("~/introduction-to-r-part1/results/summary.txt")
 summary(fd2)
 sink()
 ```
@@ -45,7 +45,8 @@ Pasting into Excel is tricky, because you fit individual tabular data elements i
 ```{r write-to-csv}
 overall_summary <- summary(fd2)
 str(overall_summary)
-write.csv(overall_summary, file="summary.csv")
+fn <- "~/introduction-to-r-part1/results/summary.csv"
+write.csv(overall_summary, file=fn)
 ```
 
 Whether exporing to a csv file works or not will depend a lot on the structure of the output. Summary produces an object of type 'table' (see the help file for table if you're curious what) and this object exports very nicely to Excel. Other objects may not export as well. In general, the output from a function needs to have a rectangular shape for this method to work.
@@ -61,7 +62,7 @@ hist(fd2$ht)
 You can click on the graphics window to export the graph. You can also explicitly export a graph using the bmp, jpeg, pdf, png, or tiff functions.
 
 ```{r export-bmp}
-bmp(filename="histogram.bmp")
+bmp(filename="~/introduction-to-r-part1/results/histogram.bmp")
 hist(fd2$ht)
 dev.off()
 ```
@@ -71,7 +72,7 @@ It is VERY important to turn off the exporting function before you try to use th
 We created a new object (overall_summary), so you might want to save things here before proceeding to the next section.
 
 ```{r save-everything}
-save.image("part1.RData")
+save.image("~/introduction-to-r-part1/bin/part1.RData")
 ```
 
 Before you go, please answer the following quiz question.

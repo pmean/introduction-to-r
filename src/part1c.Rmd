@@ -17,7 +17,7 @@ If you need to, you can clean house and then re-load the data that you created i
 ```{r load-data}
 ls()
 rm(list=ls())
-load("part1.RData")
+load("~/introduction-to-r-part1/bin/part1.RData")
 ls()
 str(fd)
 ```
@@ -73,7 +73,7 @@ Display the data for the wt variable and use the summary function. Are there any
 We've created two new data frames, fd1 and fd2, so let's save them before continuing.
 
 ```{r save-image}
-save.image("part1.RData")
+save.image("~/introduction-to-r-part1/bin/part1.RData")
 ```
 
 Before you go, please answer the following quiz question.

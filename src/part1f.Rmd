@@ -17,7 +17,7 @@ If you need to, you can clean house and then re-load the data that you created e
 ```{r load-data}
 ls()
 rm(list=ls())
-load("part1.RData")
+load("~/introduction-to-r-part1/bin/part1.RData")
 ls()
 ```
 
@@ -54,7 +54,7 @@ axis(side=2,at=50*(0:4))
 You haven't created any new data frames, but save eveything anyway.
 
 ```{r save-image}
-save.image("part1.RData")
+save.image("~/introduction-to-r-part1/bin/part1.RData")
 ```
 
 Before you go, please answer the following quiz question.
