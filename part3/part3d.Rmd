@@ -1,0 +1,124 @@
+---
+title: "Introduction to R, part 3d"
+author: "Steve Simon"
+date: "Saturday, August 13, 2016"
+output: html_document
+---
+
+This program is part of a series of R programs for the Introduction to R class. This program shows you how to calculated group means and standard deviations.
+
+```{r r-version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+Erase any stray data and load the data from part 3c.
+
+```{r read-part-3c-data}
+rm(list=ls())
+load(file="part3c.RData")
+```
+
+You should also calculate the means for each continuous variable within each level of the categorical variable.
+
+Note: you don't really need the na.rm=TRUE argument here, but you might in other examples.
+
+```{r pu.by.fev}
+# fev mean by smoke.factor
+by(pu$fev,pu$smoke.factor,mean,na.rm=TRUE)
+# fev standard deviation by smoke.factor
+by(pu$fev,pu$smoke.factor,sd,na.rm=TRUE)
+```
+
+The output is not labelled all that clearly, but you can use the paste function to make things look nicer.
+
+```{r pu.paste.fev}
+grp.means <- by(pu$fev,pu$smoke.factor,mean)
+grp.stdev <- by(pu$fev,pu$smoke.factor,sd)
+colon <- ": "
+plus.minus <- "+/-"
+paste(names(grp.means),colon,round(grp.means,1),
+      plus.minus,round(grp.stdev,1),sep="")
+```
+
+Let's calculate mean ages for smokers and nonsmokers. Notice that smokers are 4 years older on average than nonsmokers.
+
+```{r pu.paste.age}
+grp.means <- by(pu$age,pu$smoke.factor,mean)
+grp.stdev <- by(pu$age,pu$smoke.factor,sd)
+colon <- ": "
+plus.minus <- "+/-"
+paste(names(grp.means),colon,round(grp.means,1),
+      plus.minus,round(grp.stdev,1),sep="")
+```
+
+## On your own
+
+Compute the mean and standard deviation for fev by sex.
+
+## Read in the housing data set
+
+You should find the data file on housing prices in Albuquerque at
+
+--> http://lib.stat.cmu.edu/DASL/Datafiles/homedat.html
+
+You should cut-and-paste the actual data to notepad and save it with the name housing.txt. You need to read in the file using the read.table function.
+
+For technical reasons, you want the as.is=TRUE argument. Otherwise AGE and TAX are converted to factors which causes all sorts of grief.
+
+```{r read.housing}
+al <- read.table(file="housing.txt",header=TRUE,as.is=TRUE)
+head(al)
+tail(al)
+```
+
+```{r univariate}
+summary(al)
+```
+
+There is a problem with AGE. The person who entered the data intended for an asterisk to represent a missing value. But R interpreted the asterisk as a string and converted all the numeric ages to strings also. That's why R summarizes age using counts rather than means. Use the as.numeric function to fix this.
+
+A side effect, which is desired in this case, is that anything that cannot be converted from a string to a number (like an asterisk) is instead converted to a missing value.
+
+```{r convert.age}
+al$age.years <- as.numeric(al$AGE)
+summary(al$age.years)
+```
+
+There is a mix of categorical and continuous variables. Recall that you use a scatterplot to examine the relationship between two continuous variables, a crosstabls and an odds ratio to examine the relationship between two categorical variables, and a boxplot to examine the relationship between a categorical variable and a continuous variable.
+
+## On your own
+
+1. Convert the asterisks in the TAX variable to missing. How many missing values are there for AGE and for TAX?
+
+2. Create factors for NE, CUST, and COR. Draw bar charts for each of these factors.
+
+3. Find the largest house (biggest SQFT) in the data set. Is the largest house also the most expensive house?
+
+4. Calculate frequency counts for FEATS. Are there any houses with the no features? Are there any houses with every possible feature?
+
+5. Evaluate the relationship between PRICE and SQFT using a scatterplot. Include a smooth curve. Do larger houses tend to cost more?
+
+6. Evaluate the relationship between CUST and PRICE using a boxplot. Calculate the mean price and standard deviation by CUST.
+
+7. What is the difference in average prices between northeast houses and other houses? What is the difference in average taxes?
+
+8. Are custombuilt houses more likely to appear on corner lots? Calculate the percentages and compute a relative risk.
+
+9. Place all the key results into a Word document, add a bit of commentary, and turn it in.
+
+## A third data set
+
+If there is time, we can explore a third data set, diamond prices. The data is at 
+
+--> http://www.amstat.org/publications/jse/v9n2/4cdata.txt
+
+and a description is at 
+
+--> http://www.amstat.org/publications/jse/v9n2/4c.txt
+
+## Save all my work
+
+```{r save-image}
+save.image("part3d.RData")
+```

@@ -1,0 +1,57 @@
+---
+title: "Introduction to R, part 4a"
+author: "Steve Simon"
+date: "Sunday, August 14, 2016"
+output: html_document
+---
+
+This program is part of a series of R programs for the Introduction to R class. This program shows you two alternate formats for storing longitudinal data.
+
+```{r r-version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+Please note: there is no R code in this file, and you could argue that we shouldn't be using R Markdown if there's no R code to be found. I am still using R Markdown because I want some consistency in my files.
+
+# Part 4a. Defining alternate storage formats
+
+I'm going to use the term "longitudinal" data to designate data sets where a patient is measured at multiple different time points. This encompasses certain other data sets, such as from a crossover, pre-test/post-test, repeated measures, and split plot.
+
+Don't worry about the technical distinctions among these terms. The important thing to know for now is that longitudinal data represents one of the biggest challenges in data management and we will spend most of this section discussing these challenges.
+
+Longitudinal data usually come in one of two specific formats. The first is the short and fat format and the second is the tall and thin format. Open these two webpages in Internet explorer to see the difference. 
+
+--> http://www.statsci.org/data/oz/ctsibrm.txt
+
+--> http://www.statsci.org/data/oz/ctsibuni.txt
+
+A description of the context for these files is at
+
+--> http://www.statsci.org/data/oz/ctsib.html
+
+The short and fat format has one row per patient and each successive patient encounter is strung out horizontally.
+
+The tall and thin format has one row per patient encounter and therefore multiple rows per patient.
+
+Both formats have advantages and disadvantages, and you need to know how to create a longitudinal file in either format and how to transform from one format to another.
+
+Short and fat advantages:
+
+1. easy to compute change scores
+2. easy to examine correlations over time
+3. easy to insure consistency of demographic data
+
+Short and fat disadvantages:
+
+1. hard to read because of the excessive need to scroll left and right
+
+Tall and thin advantages:
+
+1. easy to plot longitudinal trends
+2. less need for missing value codes
+3. easy to read because most scrolling is up and down
+
+Tall and thin disadvantages
+
+1. hard to maintain consistency of demographic variables

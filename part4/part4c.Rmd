@@ -1,0 +1,115 @@
+---
+title: "Introduction to R, part 4c"
+author: "Steve Simon"
+date: "Sunday, August 14, 2016"
+output: html_document
+---
+
+This program is part of a series of R programs for the Introduction to R class. This program shows you how to use the reshape2 package to convert a longitudinal data set from the short and fat format to the tall and thin format.
+
+```{r r-version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+Erase any stray data and load the data from part 4b.
+
+```{r read-part-4-data}
+rm(list=ls())
+load(file="part4.RData")
+```
+
+The tidyr library allows you to switch from short and fat to tall and thin using the gather function.
+
+```{r faster-1}
+library("tidyr")
+teb <- gather(te, day, count.living, -dish, -dose)
+head(teb)
+tail(teb)
+```
+
+It takes a bit of investigation, but the warning messages refer to the day3 and day9 values which are character strings. You can fix this by droping those columns.
+
+```{r faster-2}
+tec <- gather(te[,c(-5,-11)], day, count.living, -dish, -dose)
+head(tec)
+tail(tec)
+```
+
+We're not done quite yet. The day of the week is hidden in the variable
+called "variable" and we need to keep only the fourth (and maybe fifth)
+characters.
+
+```{r substr-1}
+substr(tec$day,4,5)
+```
+
+Almost. We need to convert from character to numeric.
+
+```{r substr-2}
+tec$day <- as.numeric(substr(tec$day,4,5))
+head(tec)
+tail(tec)
+```
+
+Now to plot the data.
+
+```{r plot-termites}
+plot(tec$day,tec$count.living)
+```
+
+Let's connect the data for individual subjects.
+
+```{r line-termites}
+plot(tec$day,tec$count.living)
+for (i in 1:8) {
+  sb <- tec$dish==i&tec$dose==5
+  lines(tec$day[sb],tec$count.living[sb],col="darkred")
+  sb <- tec$dish==i&tec$dose==10
+  lines(tec$day[sb],tec$count.living[sb],col="darkgreen")
+}
+```
+
+If you look at the graph, there are a couple of green lines, which
+represent dose=10, but which have many more alive at day 15 than even
+the dose=5 values. If you look at the original data set, these are
+rows 9 and 10, corresponding to the first two dishes in the dose=10
+group. This may be okay, but you should check with the people who 
+collected the data, if you can.
+
+## A data set on depression after an earthquake (short and fat format)
+
+This data set is described in 
+--> http://www.statsci.org/data/general/lomaprie.html
+
+
+```{r read-earthquake}
+fn <- "http://www.statsci.org/data/general/lomaprie.txt"
+qu <- read.table(fn,header=TRUE)
+qu
+```
+
+## On your own
+
+Convert this to a tall and thin format. Draw boxplots.
+
+Suggestion: create an id variable with values 1:25 before you convert the format. It is not needed for the boxplots, but if you do anything more complex with this data, you need to know which data in the tall and thin format comes from the first rows of the original data set, from the second row, etc.
+
+## A data set on energy consumption (short and fat format)
+
+Here's another interesting data set that you can work with. It comes in a short and fat format.
+
+--> http://www.statsci.org/data/general/energy.html
+
+```{r read-energy}
+fi <- "http://www.statsci.org/data/general/energy.txt"
+en <- read.table(fi,header=TRUE)
+head(en)
+tail(en)
+```
+
+## Save all my work
+
+```{r save-image}
+save.image("part4.RData")
+```

@@ -1,0 +1,55 @@
+---
+title: "Introduction to R, part 2d"
+author: "Steve Simon"
+date: "Saturday, August 13, 2016"
+output: html_document
+---
+
+This program is part of a series of R programs for the Introduction to R class. This program shows you how to draw a bar chart.
+
+```{r r-version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+Let's erase any stray data and load the data from part 2c.
+
+```{r read-part-2c-data}
+ls()
+rm(list=ls())
+load(file="part2.RData")
+ls()
+```
+
+I'm not a big fan of bar plots, but they sometimes have their uses. You can get a barplot for the frequency count
+
+```{r barplot}
+barplot(table(ti$PClass))
+```
+
+or for the percentage (note the use of the ylab argument here).
+
+```{r barplot2}
+barplot(100*prop.table(table(ti$PClass)),ylab="Percent")
+```
+
+You can make things even nicer by pasting a percent sign on the vertical axis tick marks.
+
+```{r barplot3}
+barplot(100*prop.table(table(ti$PClass)),axes=FALSE)
+axis(side=2,at=10*(0:5),labels=paste(10*(0:5),"%",sep=""))
+```
+
+## On your own (you do not need to turn this in)
+
+Add label "Passenger class" to the x-axis of this bar plot.
+
+## Save all my work
+
+```{r save-image}
+save.image("part2.RData")
+```
+
+Please take the time to answer the quiz found at
+
+http://www.pmean.com/15/images/quiz2d.html

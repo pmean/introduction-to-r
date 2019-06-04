@@ -1,0 +1,83 @@
+---
+title: "Introduction to R, part 2e"
+author: "Steve Simon"
+date: "Saturday, August 13, 2016"
+output: html_document
+---
+
+This program is part of a series of R programs for the Introduction to R class. This program shows you how to create two dimensional crosstabulations.
+
+```{r r-version-and-current-date}
+R.version.string
+Sys.Date()
+```
+Let's erase any stray data and load the data from part 2d.
+
+```{r read-part-2d-data}
+ls()
+rm(list=ls())
+load(file="part2.RData")
+ls()
+```
+
+When you are looking at the relationship between two categorical variables, you need to start with a crosstabulation. You use the table function in R with two arguments to create a crosstabulation.
+
+```{r crosstabs}
+table(ti$PClass,ti$surv.factor)
+```
+
+The first variable is the rows and the second variable is the columns.
+
+As a general rule of thumb, if one variable tends to have a lot of  categories, I tend to put that in the rows. This allows you to scan the many categories with an up/down scroll rather than a left/right scroll. There are other rules of thumb for which variable to choose for your rows and which to choose for your columns in a crosstabulation.
+
+Again, notice that R is rather minimalist in its approach. You do not see any row or column totals. You can get these with the addmargins function.
+
+```{r add.margins}
+ct <- table(ti$PClass,ti$surv.factor)
+addmargins(ct,1)
+addmargins(ct,2)
+addmargins(ct)
+```
+
+## Table percentages.
+
+Percentages in a crosstabulation are actually quite tricky. You can compute a percentage across the entire table (which would be called a cell percent in SPSS and SAS). It helps to round these results.
+
+```{r cell}
+prop.table(ct)
+round(100*prop.table(ct))
+```
+
+These percentages add to 100% across all of the table. In contrast, row percentages add up to 100% within each row.
+
+```{r row}
+round(100*prop.table(ct,margin=1))
+```
+
+This is a rather cryptic command and it shows one area for R where getting simple statistics is a lot harder than in SAS or SPSS.
+
+Column percentages add up to 100% within each column.
+
+```{r column}
+round(100*prop.table(ct,margin=2))
+```
+
+It is not always clear whether you should use row, column, or cell percents. You can find some general advice at
+
+--> http://www.pmean.com/02/percentage.html
+
+but to be honest, the best approach is to try several approaches and see what works best. I have found that I usually like row percentages in a crosstabulation with your outcome variables as the columns.
+
+## On your own
+
+Compute a table showing the relationship between sex and survival. The Titanic sunk during a time when people really did believe in the phrase "women and children first". Find a table of percentages that shows the degree to which women were more likely to survive than men.
+
+## Save all my work
+
+```{r save-image}
+save.image("part2.RData")
+```
+
+Please take the time to answer the quiz found at
+
+http://www.pmean.com/15/images/quiz2e.html

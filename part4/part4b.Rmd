@@ -1,0 +1,122 @@
+---
+title: "Introduction to R, part 4b"
+author: "Steve Simon"
+date: "Sunday, August 14, 2016"
+output: html_document
+---
+
+This program is part of a series of R programs for the Introduction to R class. This program shows you how to convert a short and fat longitudinal data set to a tall and thin format.
+
+```{r r-version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+Erase any stray data.
+
+```{r clean-house}
+rm(list=ls())
+```
+
+Here is a data set on termite survival. It is probably a bit of a stretch to call this longitudinal data, but it still is useful for illustrating how to convert longitudinal data.
+
+The data is embedded in the description of the file. So you need to strip away the description from the data. It helps to import the data as entire lines, and you do this by specifying a separator character that is not
+found anywhere in the file.
+
+```{r read-termites-1}
+fi <- "http://lib.stat.cmu.edu/DASL/Datafiles/Termites.html"
+te.tst <- read.table(file=fi,sep="~")
+te.tst[1:40,]
+tail(te.tst)
+```
+
+If you look at the first 40 lines, it is obvious that the data starts
+somewhere around line 35. and that every previous line (and the very
+last line) start with an html tag. The comment argument allows us to
+skip any line starting with an html tag. 
+
+Also note the prevalence of "\t" values. These show that the data
+itself is a tab-delimited file.
+
+This is one of those cute R tricks that I tend to like, but if you
+prefer, you could just cut-and-paste just the lines that you
+want from the webpage and store the results in a text editor like
+notepad.
+
+```{r read-termites-2}
+te <- read.table(file=fi, header=TRUE, comment="<")
+head(te)
+tail(te)
+summary(te)
+```
+
+We need to re-organize this data before we can plot it.
+
+```{r tedious-reshape}
+sb01 <- te[,c("dish","dose","day1")]
+names(sb01)[3] <- "count.living"
+sb01$day <- 1
+sb01
+
+sb02 <- te[,c("dish","dose","day2")]
+names(sb02)[3] <- "count.living"
+sb02$day <- 2
+sb02
+
+sb04 <- te[,c("dish","dose","day4")]
+names(sb04)[3] <- "count.living"
+sb04$day <- 4
+
+sb05 <- te[,c("dish","dose","day5")]
+names(sb05)[3] <- "count.living"
+sb05$day <- 5
+
+sb06 <- te[,c("dish","dose","day6")]
+names(sb06)[3] <- "count.living"
+sb06$day <- 6
+
+sb07 <- te[,c("dish","dose","day7")]
+names(sb07)[3] <- "count.living"
+sb07$day <- 7
+
+sb08 <- te[,c("dish","dose","day8")]
+names(sb08)[3] <- "count.living"
+sb08$day <- 8
+
+sb10 <- te[,c("dish","dose","day10")]
+names(sb10)[3] <- "count.living"
+sb10$day <- 10
+
+sb11 <- te[,c("dish","dose","day11")]
+names(sb11)[3] <- "count.living"
+sb11$day <- 11
+
+sb12 <- te[,c("dish","dose","day12")]
+names(sb12)[3] <- "count.living"
+sb12$day <- 12
+
+sb13 <- te[,c("dish","dose","day13")]
+names(sb13)[3] <- "count.living"
+sb13$day <- 13
+
+sb14 <- te[,c("dish","dose","day14")]
+names(sb14)[3] <- "count.living"
+sb14$day <- 14
+
+sb15 <- te[,c("dish","dose","day15")]
+names(sb15)[3] <- "count.living"
+sb15$day <- 15
+
+tea <- rbind(sb01, sb02, sb04, sb05, sb06, sb07, sb08,
+             sb10, sb11, sb12, sb13, sb14, sb15)
+head(tea)
+tail(tea)
+```
+
+That's a bit tedious, and a clever R programmer could find a way to use looping structures like "for" to shorten the code. But there is a specialized library, tidyr, that makes things even easier.
+
+## Save all my work
+
+```{r save-image}
+save.image("part4.RData")
+```

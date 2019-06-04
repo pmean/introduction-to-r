@@ -1,0 +1,43 @@
+---
+title: "Introduction to R, part 3c"
+author: "Steve Simon"
+date: "Saturday, August 13, 2016"
+output: html_document
+---
+
+This program is part of a series of R programs for the Introduction to R class. This program shows you how to draw boxplots.
+
+```{r r-version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+Erase any stray data and load the data from part 3b.
+
+```{r read-part-3b-data}
+rm(list=ls())
+load(file="part3b.RData")
+```
+
+When you want to look at a relationship between a categorical variable and a continuous variable, you should use a boxplot.
+
+```{r pu.boxplots-fev}
+boxplot(fev~smoke.factor,data=pu)
+```
+
+This is very odd. You can get a hint as to why smokers might have higher fev values than non-smokers by looking at how age and smoking status are related.
+
+```{r pu.boxplots-age}
+boxplot(age~smoke.factor,data=pu)
+```
+
+
+## On your own
+
+Look at the relationship between sex and fev.
+
+## Save all my work
+
+```{r save-image}
+save.image("part3c.RData")
+```

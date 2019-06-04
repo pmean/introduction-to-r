@@ -1,0 +1,62 @@
+---
+title: "Introduction to R, part 2c"
+author: "Steve Simon"
+date: "Saturday, August 13, 2016"
+output: html_document
+---
+
+This program is part of a series of R programs for the Introduction to R class. This program shows you how to document categorical variables using the factor functon.
+
+```{r r-version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+Let's erase any stray data and load the data from part 2b.
+
+```{r read-part2-data}
+ls()
+rm(list=ls())
+load(file="part2.RData")
+ls()
+```
+
+Last time, we learned about the summary function, which produced the minimum, maximum, quartiles, mean, and missing value counts. Summary will actually look at the argument being passed to it and try to produce different summary statistics based on what the argument looks like. This, in technical terms, is an object-oriented feature of the R programming language (the use of classes and methods, to be more specific).
+
+If the argument sent to summary is a character vector rather than a numeric vector, it will use frequency counts. So notice the difference between 
+
+```{r summary}
+summary(ti$PClass)
+```
+
+and
+
+```{r summary2}
+summary(ti$Age)
+```
+
+Sometimes this is very nice but sometimes it is not so nice.
+
+```{r summary3}
+summary(ti$Sex)
+summary(ti$Survived)
+```
+
+When you have a categorical variable that uses number codes, you need to either handle this as a special case, or you need to create a factor variable.
+
+```{r summary4}
+ti$surv.factor <- factor(ti$Survived,levels=0:1,labels=c("No","Yes"))
+summary(ti$surv.factor)
+```
+
+The factor function is similar to the variable label in SPSS and the format statement in SAS. It assigns category names (No and Yes) to numeric codes (0 and 1). It also has other features that are helpful in linear and logistic regression models, such as the ability to specify contrasts.
+
+## Save all my work
+
+```{r save-image}
+save.image("part2.RData")
+```
+
+Please take the time to answer the quiz found at
+
+http://www.pmean.com/15/images/quiz2c.html

@@ -1,0 +1,116 @@
+---
+title: "Introduction to R, part 2g"
+author: "Steve Simon"
+date: "Saturday, August 13, 2016"
+output: html_document
+---
+
+This program is part of a series of R programs for the Introduction to R class. This program shows you how to calculate odds ratios and relative risks.
+
+```{r r-version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+Let's erase any stray data and load the data from part 2f.
+
+```{r read-part2-data}
+ls()
+rm(list=ls())
+load(file="part2.RData")
+ls()
+```
+
+The odds ratio and the relative risk are two measures that summarize the relationship between two categorical variables. They are most easily computed for binary variables, but there are extensions for variables with more than two categories.
+
+The computation of odds ratios or relative risks and their associated confidence intervals requires the use of a special library. There are several that work well, but I am partial to "epitools".
+
+```{r epitools}
+# install.packages("epitools",repos="http://rweb.quant.ku.edu/cran/")
+library("epitools")
+```
+
+The oddsratio function computes the odds ratio and its 95% confidence interval.
+
+```{r oddsratio}
+oddsratio(ti$Sex,ti$Survived)
+```
+
+Notice that this output is quite verbose. You can still choose to print only the parts that you want, though.
+
+
+```{r oodsratio-extract}
+oddsratio(ti$Sex,ti$Survived)$measure
+oddsratio(ti$Sex,ti$Survived)$measure[2,1]
+```
+
+Note that the odds of dying are 2 to 1 against for women and 5 to 1 in favor for men. This corresponds to an odds ratio of 1/10 (if you put men in the denominator) or 10 (if you put women in the denominator).
+
+The oddsratio function has a nice feature that allows you to reverse the order of the rows and columns, and thus control what goes in your denominator.
+
+```{r oddsratio-rev}
+oddsratio(ti$Sex,ti$Survived,rev="rows")
+```
+
+The relative risk and its associated confidence intervals are also available in the epitools library, though it uses a different term (risk ratio).
+
+```{r riskratio}
+riskratio(ti$Sex,ti$Survived)
+```
+
+This is actually the wrong risk ratio. The probability of dying is 83% (about 5/6) among the men and 33% (exactly 1/3) among the women. The ratio of these two probabilities is 2.5 (if you put women in the denominator) or 0.4 (if you put men in the denominator). What epitools gives you by default is the relative risk for the second column of your table. For ti$Survived, you are computing the relative risk of living. You can fix this two different ways.
+
+
+```{r riskratio-died}
+ti$died <- 1-ti$Survived
+riskratio(ti$Sex,ti$died)
+riskratio(ti$Sex,ti$Survived,rev="columns")
+```
+
+## On your own
+
+Examine the relationship between passenger class and survival using both odds ratios and relative risks. Try these functions both with and without the rev="rows" argument.
+
+## Left to do: analyze a second data set.
+
+The Gardasil vaccine requires three shots in order to be effective. A study conducted at Johns Hopkins looked at how often patients failed to get all three shots. They wanted to see if insurance status, age, and other factors could predict who was at greatest risk for failing to get all three shots.
+
+The data set is available as an Excel spreadsheet at
+
+--> http://www.amstat.org/publications/jse/v19n1/gardasil.xls
+
+and a description of the file is available at
+
+--> http://www.amstat.org/publications/jse/v19n1/gardasil.txt
+
+Note to myself. I have not run through the analysis of this data set, yet, but it should have many of the same features as the Titanic data set, as almost all of the variables are categorical.
+
+```{r read-gardasil}
+fn <- "gardasil.csv"
+ga <- read.csv(fn)
+```
+
+## Homework assignment #2.
+
+Answer the questions found at
+
+http://www.pmean.com/15/images/
+
+Place all the key results into a Word document, PowerPoint presentation, as a PDF file or as an HTML file. Turn it in by email. Use the subject line: "Introduction to R, (your name), Part 2 Homework"
+
+## A third data set
+
+If there is time, here is a third data set
+
+```{r diet}
+fn <- "http://lib.stat.cmu.edu/DASL/Datafiles/Fiber.html"
+diet <- read.table(fn, skip=26, comment.char="<", header=TRUE)
+```
+
+## Save all my work
+
+```{r save-image}
+save.image("part2.RData")
+```
+
+There is no quz for Part 2g. Start on you homework assignment instead, please.

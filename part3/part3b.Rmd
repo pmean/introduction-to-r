@@ -1,0 +1,62 @@
+---
+title: "Introduction to R, part 3b"
+author: "Steve Simon"
+date: "Saturday, August 13, 2016"
+output: html_document
+---
+
+This program is part of a series of R programs for the Introduction to R class. This program reviews scatterplots, correlations, and crosstabulations.
+
+```{r r-version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+Erase any stray data and load the data from part 3a.
+
+```{r read-part-3a-data}
+rm(list=ls())
+load(file="part3a.RData")
+```
+
+## Summary for the pu variables
+
+There is a mix of categorical and continuous variables in this data set, but the summary function should work for all of them.
+
+```{r summary.pu}
+summary(pu)
+```
+
+## On your own
+
+Calculate correlations among age, ht, and fev.
+
+## Scatterplot
+
+Recall that you use a scatterplot to examine the relationship between two continuous variables.
+
+```{r pu.scatterplot}
+plot(pu$ht,pu$fev)
+smooth.curve <- lowess(pu$ht,pu$fev)
+lines(smooth.curve)
+```
+
+## On your own
+
+Draw a scatterplot for age and fev. Add a linear regression trend line to this graph.
+
+## crosstabs
+
+Also recall that you use a crosstabulation to examine the relationship between two categorical variables.
+
+```{r pu.crosstabs}
+table(pu$sex.factor,pu$smoke.factor)
+prop.table(table(pu$sex,pu$smoke.factor),margin=1)
+round(100*prop.table(table(pu$sex.factor,pu$smoke.factor),margin=1))
+```
+
+## Save all my work
+
+```{r save-image}
+save.image("part3b.RData")
+```
