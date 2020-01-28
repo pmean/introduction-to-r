@@ -1,0 +1,24 @@
+---
+title: "Small program"
+author: "Steve Simon"
+date: "Created 2019-01-28"
+output: html_document
+---
+
+This is a small program written in Rmarkdown to help you get started if you've never written an R program before.
+
+```{r version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+This program will read in data from an RData file after removing anything left over from previous programs. It will then list all the objects that you just read in, and provide information about one of those objects.
+
+```{r read-rdata-file}
+rm(list=ls()) # Use this with caution!
+load("../dat/two-small-dataframes.RData")
+ls()
+str(fd)
+```
+
+This is a very simple program, but iIf you can get this program to run, you will probably have smooth sailing for the rest of the class.

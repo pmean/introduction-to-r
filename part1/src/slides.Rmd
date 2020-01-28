@@ -5,13 +5,166 @@ date: "Created 2020-01-27"
 output: powerpoint_presentation
 ---
 
-## Documentation
+## Special note
 
-I normally do not spend enough time documenting my programs. This is a bad habit that I will try to fix. I do not want to set a bad example for someone just learning how to program in R. So here is some minimal documentation.
++ This PowerPoint slide show was created using R.
+  + Not complicated 
+  + Buy beyond scope of this class
++ Source
+  + https://github.com/pmean/introduction-to-r/tree/master/part1/src
++ A second resource
+  + http://blog.pmean.com/powerpoint-with-r-markdown/
+  
+<div class="notes">
+
+If you are viewing this PowerPoint presentation, I need to point out that it was developed using R. The process is not very complicated, but it is beyond the scope of this class. 
+
+If you are curious, you can look at the code that I used to develop this
+PowerPoint presentation. Or you can watch a short video on how this works.
+
+But don't feel obligated to look at it. You will not be responsible for any of this in an introductory class.
+
+It may seem a bit weird to have an R program that creates a PowerPoint presentation that talks about a different R program, but it works well for me.
+
+</div>
+
+## Installing R (https://cran.r-project.org/)
+
+![Screenshot of webpage for installation of R](../images/cran-main-page.png)
+
+<div class="notes">
+
+Here is the main page for CRAN. CRAN stands for the Comprehensive R Archive Network. This is where you can download a Linux, Mac, or Windows version of R. Ignore the source code. That is only needed for very advanced applications.
+
+</div>
+
+## Installing RStudio (https://rstudio.com/)
+
+![Screenshot of main page for RStudio](../images/rstudio-main-page.png)
+
+<div class="notes">
+
+
+</div>
+
+## Installing R and R Studio
+
++ R is required
++ RStudio is strongly recommended
++ Do not delay in getting this software installed
++ Find me if you have ANY problems
+
+<div class="notes">
+
+It should be very easy to install R and RStudio on your computer, but don't wait. Sometimes installations can get hung up and you won't be able to make any progress in this class without first getting the software installed.
+
+If you have any problems at all with installation, see me right away.
+
+</div>
+
+## Recommended directory structure (1/2)
+
+![Screenshot of the directory structure I use](../images/directory-structure.png)
+
+<div class="notes">
+
+Here is the directory structure that I use. You do not have to follow this structure, but it is recommended, not by me, but by the expert programmers at a group known as Software Carpentry. I'll elaborate in greater detail about this later, but wanted to mention it now. If you are relatively new to programming, you want to start off using good programming practices. A standardized directory structure helps a lot with this especially if you are working with others.
+
+</div>
+
+## "A place for everything, everything in its place"
+
++ dat
+  + raw data files
+  + intermediate data files
++ doc
+  + documentation
++ images
+  + graphs
++ results
+  + program output
++ src
+  + program code
+  
+<div class="notes">
+
+The quote at the top of the slide is an organizational principle espoused by Benjamin Franklin. If you've seen my office, you'll know that I am probably the last person to lecture you on organization. But I have found that a standardized directory structure has made my life a lot easier.
+
+The dat folder contains any raw data files. It's also where I put intermediate files, files that I create and save for later re-use. Some people put intermediate files in the results folder, and that's a fine alternative. Just be sure to be consistent about it.
+
+The doc folder contains any documentation associated with the work. The IRB approved protocol, if I have one, will go here. If I am working with someone and they send me a paper that helps describe the type of data analysis they want, I put it in this folder. I also print key emails from the other team members to pdf format and store them here as well.
+
+If my programs produce any graphs, I will store them in the images folder. I use screenshots of various web pages a lot in my work and I put those here as well.
+
+I usually store program output in the results folder, but not always, for reasons I don't want to get into.
+
+The program code goes in the src folder.
+
+</div>
+
+## Anatomy of a small R program (1/5)
+
++ Rmarkdown code
+
+```{r echo=FALSE, comment=""}
+suppressMessages(suppressWarnings(library(stringr)))
+tx <- readLines("small_program.Rmd", warn=FALSE)
+header_lines <- str_which(tx, "---")
+backtick_lines <- str_which(tx, "``")
+beg_line <- header_lines[1]
+end_line <- header_lines[2]
+cat(paste0(tx[beg_line:end_line], collapse="\n"))
+```
+
+<div class="notes">
+
+Here is the typical header for an Rmarkdown program.
+
+</div>
+
+## Anatomy of a small program (2/5)
+
++ Rmarkdown code
+
+```{r echo=FALSE, comment=""}
+beg_line <- end_line+1
+end_line <- backtick_lines[1]-1
+cat(paste0(tx[beg_line:end_line], collapse="\n"))
+```
+
+## Anatomy of a small program (3/5)
+
++ Rmarkdown code
+
+```{r echo=FALSE, comment=""}
+beg_line <- end_line+1
+end_line <- backtick_lines[2]
+cat(paste0(tx[beg_line:end_line], collapse="\n"))
+```
+
+## Anatomy of a small program (4/5)
+
++ Rmarkdown code
+
+```{r echo=FALSE, comment=""}
+beg_line <- end_line+1
+end_line <- backtick_lines[3]-1
+cat(paste0(tx[beg_line:end_line], collapse="\n"))
+```
+
+## Anatomy of a small program (4/5)
+
++ Rmarkdown code
+
+```{r echo=FALSE, comment=""}
+beg_line <- end_line+1
+end_line <- backtick_lines[4]
+cat(paste0(tx[beg_line:end_line], collapse="\n"))
+```
 
 ## More documentation
 
-You are viewing a Powerpoint presentation created using R Markdown. The author (me!) and the creation date are listed on the title slide. You can find this program on [my github site](https://github.com/pmean/introduction-to-r/tree/master/part1/src) and it is free for you (or anyone) to use or modify as you like with no restrictions. If you use this on your own web page or in a publication, a brief acknowledgement is appreciated, but it is not required.
+You are viewing a Powerpoint presentation created using R Markdown. The author (me!) and the creation date are listed on the title slide. You can find this program on [my github site]() and it is free for you (or anyone) to use or modify as you like with no restrictions. If you use this on your own web page or in a publication, a brief acknowledgement is appreciated, but it is not required.
 
 This program is part of a series of R programs for the Introduction to R class. This program shows you how to read a simple text file.
 
