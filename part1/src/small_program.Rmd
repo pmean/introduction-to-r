@@ -21,4 +21,4 @@ ls()
 str(fd)
 ```
 
-This is a very simple program, but iIf you can get this program to run, you will probably have smooth sailing for the rest of the class.
+This is a very simple program, but if you can get this program to run, you will probably have smooth sailing for the rest of the class.

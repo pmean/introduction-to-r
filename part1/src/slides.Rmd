@@ -9,7 +9,7 @@ output: powerpoint_presentation
 
 + This PowerPoint slide show was created using R.
   + Not complicated 
-  + Buy beyond scope of this class
+  + But beyond scope of this class
 + Source
   + https://github.com/pmean/introduction-to-r/tree/master/part1/src
 + A second resource
@@ -62,7 +62,7 @@ If you have any problems at all with installation, see me right away.
 
 </div>
 
-## Recommended directory structure (1/2)
+## Recommended directory structure
 
 ![Screenshot of the directory structure I use](../images/directory-structure.png)
 
@@ -75,8 +75,7 @@ Here is the directory structure that I use. You do not have to follow this struc
 ## "A place for everything, everything in its place"
 
 + dat
-  + raw data files
-  + intermediate data files
+  + raw/intermediate data files
 + doc
   + documentation
 + images
@@ -102,7 +101,17 @@ The program code goes in the src folder.
 
 </div>
 
-## Anatomy of a small R program (1/6)
+## Anatomy of a small R program, overview
+
+![Full listing of small_program.Rmd](../images/small_program.png)
+
+<div class="notes">
+
+This is a full listing of a small program written in Rmarkdown. The font is too small to read. Don't worry, I just wanted you to see the full picture. I'll look at small pieces of this program using a readable font size.
+
+</div>
+
+## Anatomy of a small R program, header
 
 + Rmarkdown code
 
@@ -124,7 +133,7 @@ Here is the typical header for an Rmarkdown program.
 
 </div>
 
-## Anatomy of a small program (2/6)
+## Anatomy of a small program, free text comments
 
 + Rmarkdown code
 
@@ -134,7 +143,7 @@ end_line <- backtick_lines[1]-1
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
-## Anatomy of a small program (3/6)
+## Anatomy of a small program, code chunk
 
 + Rmarkdown code
 
@@ -144,7 +153,7 @@ end_line <- backtick_lines[2]
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
-## Anatomy of a small program (4/6)
+## Anatomy of a small program, second set of free text comments
 
 + Rmarkdown code
 
@@ -154,7 +163,7 @@ end_line <- backtick_lines[3]-1
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
-## Anatomy of a small program (5/6)
+## Anatomy of a small program, second code chunk
 
 + Rmarkdown code
 
@@ -164,7 +173,7 @@ end_line <- backtick_lines[4]
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
-## Anatomy of a small program (6/6)
+## Anatomy of a small program, third set of free text comments
 
 + Rmarkdown code
 
@@ -177,5 +186,101 @@ cat(paste0(tx[beg_line:end_line], collapse="\n"))
 <div class="notes">
 
 After the second chunk of R code, I add a couple of extra comments.
+
+</div>
+
+## Anatomy of a small program, review
+
+![Full listing of small_program.Rmd with annotations](../images/small_program_annotated.png)
+
+<div class="notes">
+
+Here is the full program again. You can see that it starts with a header, and alternates between free text and R code.
+
+</div>
+
+## Program output, overview
+
+![Screenshot of entire output](../images/output-overview.png)
+
+<div class="notes">
+
+Here is the full output. The fonts are too small to read, so let's zoom in again on individual pieces.
+
+</div>
+
+## Program output, header
+
+![Screenshot of output header](../images/output-header.png)
+
+<div class="notes">
+
+This is the header. It displays the title, author, and date from the code header.
+
+</div>
+
+## Program output, free text
+
+![Screenshot of output free text](../images/output-free-text-1.png)
+
+<div class="notes">
+
+This is first set of free text. Rmarkdown will reflow the text, if needed, to fit inside the margins.
+
+</div>
+
+## Program output, code chunk
+
+![Screenshot of output code chunk](../images/output-code-chunk-1.png)
+
+<div class="notes">
+
+This is the first code chunk. By default, Rmarkdown will display the individual commands in a gray box, followed by the output in a white box.
+
+</div>
+
+## Program output, more free text
+
+![Screenshot of output free text](../images/output-free-text-2.png)
+
+<div class="notes">
+
+This is second set of free text.
+
+</div>
+
+## Program output, second code chunk
+
+![Screenshot of output code chunk](../images/output-code-chunk-2.png)
+
+<div class="notes">
+
+This is the second code chunk. It displays the title, author, and date from the code header.
+
+</div>
+
+## Program output, last set of free text
+
+![Screenshot of output free text](../images/output-free-text-3.png)
+
+<div class="notes">
+
+This is last set of free text.
+
+</div>
+
+## Review
+
++ In this video, you saw
+  + Installation pages for R, RStudio
+  + Anatomy of a small program
+  + Output from the small program
++ Review Canvas for the work assigned to this module
+
+<div class="notes">
+
+This is a very basic start. You saw the web pages where you install R and RStudio from. Then you saw the pieces of a small program written in Rmarkdown, as well as the output.
+
+Take a look at Canvas, please, to see the work that you need to do for this module.
 
 </div>
