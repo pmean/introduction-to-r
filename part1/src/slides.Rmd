@@ -102,7 +102,7 @@ The program code goes in the src folder.
 
 </div>
 
-## Anatomy of a small R program (1/5)
+## Anatomy of a small R program (1/6)
 
 + Rmarkdown code
 
@@ -111,8 +111,10 @@ suppressMessages(suppressWarnings(library(stringr)))
 tx <- readLines("small_program.Rmd", warn=FALSE)
 header_lines <- str_which(tx, "---")
 backtick_lines <- str_which(tx, "``")
+eof_line <- length(tx)
 beg_line <- header_lines[1]
 end_line <- header_lines[2]
+
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
@@ -122,7 +124,7 @@ Here is the typical header for an Rmarkdown program.
 
 </div>
 
-## Anatomy of a small program (2/5)
+## Anatomy of a small program (2/6)
 
 + Rmarkdown code
 
@@ -132,7 +134,7 @@ end_line <- backtick_lines[1]-1
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
-## Anatomy of a small program (3/5)
+## Anatomy of a small program (3/6)
 
 + Rmarkdown code
 
@@ -142,7 +144,7 @@ end_line <- backtick_lines[2]
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
-## Anatomy of a small program (4/5)
+## Anatomy of a small program (4/6)
 
 + Rmarkdown code
 
@@ -152,7 +154,7 @@ end_line <- backtick_lines[3]-1
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
-## Anatomy of a small program (4/5)
+## Anatomy of a small program (5/6)
 
 + Rmarkdown code
 
@@ -162,138 +164,18 @@ end_line <- backtick_lines[4]
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
-## More documentation
+## Anatomy of a small program (6/6)
 
-You are viewing a Powerpoint presentation created using R Markdown. The author (me!) and the creation date are listed on the title slide. You can find this program on [my github site]() and it is free for you (or anyone) to use or modify as you like with no restrictions. If you use this on your own web page or in a publication, a brief acknowledgement is appreciated, but it is not required.
++ Rmarkdown code
 
-This program is part of a series of R programs for the Introduction to R class. This program shows you how to read a simple text file.
-
-## Additional documentation
-
-```{r version-and-current-date}
-R.version.string
-Sys.Date()
+```{r echo=FALSE, comment=""}
+beg_line <- end_line+1
+end_line <- eof_line
+cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
 <div class="notes">
 
-When I care enough to include documentation in my program, I use the two commands listed above to remind myself what version of R I am using and the date when the program was run.
+After the second chunk of R code, I add a couple of extra comments.
 
 </div>
-
-## A brief comment about R Markdown.
-
-This file is written in R Markdown, a mixture of R commands and commentary. Lines surrounding the R commands start with three backquotes. The line at the top will also have curlybraces a lower case "r" and brief descriptive names of the code segment (e.g., read). The backquotes and curly braces allow me to produce a nicely formatted html file that intersperses the R commands, the R output, and the commentary.
-
-You can safely ignore the backquotes and curly braces. Use cut-and-paste from a text editor like notepad to run the appropriate commands without having to retype them. Please cut-and-paste the thre lines below into the R console.
-
-```{r simple-example}
-x <- 1:9
-x
-summary(x)
-```
-
-You are not responsible for R Markdown in this class, but I wanted to show you one of the features of R Markdown. When you create objects in R, you can print those objects, as shown above, or you can incorporate those objects in your commentary. Here's an example.
-
-Our data set has values `r x`. The mean is `r mean(x)` and the standard deviation is `r sd(x)`
-
-## Cleaning house
-
-When I start up a new program, I usually take the time to remove any objects that might be left over from a previous program. It isn't really necessary, but sometimes it can help avoid some problems. You can take a look at what objects are currently available in memory with the ls function and you can remove some or all of these objects with the rm function.
-
-```{r clean-house}
-ls()
-rm(list=ls()) # This list=ls() option removes everything
-```
-
-## Some definitions
-
-A **categorical variable** is a variable that can only take on a small number of values. Each value is usually associated with a particular category.
-
-Examples of categorical variables are
-
-* sex (Male or Female),
-* race/ethnicity (Caucasian, African American, Hispanic, etc.),
-* cancer stage (I, II, III, or IV),
-* birth delivery type (Vaginal, C-section). 
-
-A **continuous variable** is a variable that can take on a large number of possible values, potentially any value in some interval.
-
-Examples of continuous variables are
-
-* Birth weight in grams,
-* gestational age,
-* fasting LDL level.
-
-There are some variables that are on the boundary between categorical and continuous, but it is not worth quibbling about here. 
-
-The point to remember is that the types of graphs that you use and the types of statistics that you compute are dependent on many things, but first and foremost on whether the variables are categorical, continuous, or a mixture.
-
-Today, you will see examples involving mostly continuous variables.
-
-The first data set we will work with shows data various body measurements. A brief description of this file is available at
-
---> http://www.amstat.org/publications/jse/datasets/fat.txt
-
-You need to read in the file using the read.table function.
-
-```{r read}
-fn <- "http://www.amstat.org/publications/jse/datasets/fat.dat.txt"
-fd <- read.table(file=fn)
-head(fd)
-tail(fd)
-```
-
-R has many of the features of an object-oriented language, but it is not a true object-oriented programming language. There are a variety of objects in R like vectors, lists, matrices, and arrays, that are useful for storing, manipulating, and analyzing research data. We will spend most of this class using a particular object, the data frame.
-
-The object, fd, that you just created with the read.table function is a data frame. Data frames are rectangular grids of data. Each column in the data frame has the same length. A data frame can store data of various types (numeric, character, and dates are the most common types of data). The data within a column has to have the same type, but the different columns can have different data types.
-
-There are times when the rectangular grid of a data frame is too restrictive for your data, and R has other ways of storing this data (most notably, lists), but you will find that for most data analyses, a data frame will work just fine.
-
-The head function shows the first few rows of the data set and the tail function shows the last few rows of the data set.
-
-Always get in the habit of checking out the very bottom of your data frame. It's a common location for glitches.
-
-This data set did not have a header, a line at the very top of the file that lists variable names. R uses the default names V1, V2, etc. As a general rule, you should use brief (but descriptive) names for every variable in your data set. The names should be around 8 characters long. Longer variable names make your typing tedious and much shorter variable names makes your code terse and cryptic.
-
-You should avoid special symbols in your variable names especially symbols that are likely to cause confusion (the dash symbol, for example, which is also the symbol for subtraction). You should also avoid blanks. These rules are pretty much universal across most statistical software packages. If you violate these rules, you will find out that, at a minimum, you will always have to surround your variable name by quotes to avoid problems.
-
-There are times when you'd like to have a blank in your variable name and you can use two special symbols that you can use in R (and most other statistical pacakges), the underscore symbol (above the minus key on most keyboards) and the dot (period). These symbols create some artificial spacing that mimics the blanks. Another approach is "CamelCase" which is the mixture of upper and lower case within a variable name with each uppercase designating the beginning of a new "word".
-
-The names function will display the variable names in your data set.
-
-```{r names-1}
-names(fd)
-```
-
-You also can use the names function to create a different set of variable names.
-
-```{r names-2}
-names(fd) <- c("case","fat.b","fat.s","dens","age","wt","ht","bmi","ffw","neck","chest","abdomen","hip","thigh","knee","ankle","biceps","forearm","wrist")
-```
-
-I'm a bit more terse with these variable names than I normally would be just to reduce the amount of typing you have to do.
-
-Now, when you display part or all of your data frame, the new names will help you navigate successfully through it.
-
-```{r names-3}
-head(fd)
-```
-
-Most statistical packages allow you to provide a longer description for each variable in your dataset (a variable label, for example, in SPSS). The longer descriptions have almost no restrictions on blanks or special symbols and are useful for documenting the units of measurement for your variable, among other things. R does not have a formal equivalent to the SPSS variable label.
-
-We'll talk about additional documentation requirements for categorical data in part 2 of this class.
-
-I'm going to take a short break and you can also. Before you take your break, save your work. The save.image function stores a binary version of all your objects.
-
-```{r save-everything}
-save.image(file="../results/part1.RData")
-```
-
-Before you go, answer the following quiz questions.
-
-http://www.pmean.com/15/images/quiz1a.html
-
-Send the answers to the quiz by email with the subject line
-
-Introduction to R, (your name), quiz 1a.
