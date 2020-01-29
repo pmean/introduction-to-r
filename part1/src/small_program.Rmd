@@ -2,7 +2,9 @@
 title: "Small program"
 author: "Steve Simon"
 date: "Created 2019-01-28"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 This is a small program written in Rmarkdown to help you get started if you've never written an R program before.
