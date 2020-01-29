@@ -1,5 +1,5 @@
 ---
-title: 'Introduction to R: Data frames'
+title: 'Introduction to R: A small program'
 author: "Steve Simon"
 date: "Created 2020-01-27"
 output: powerpoint_presentation
