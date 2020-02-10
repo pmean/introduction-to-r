@@ -1,0 +1,33 @@
+---
+title: "Airline data set"
+author: "Steve Simon"
+date: "Created 2020-02-08"
+output: html_document
+---
+
+This program shows how to manipulate a simple set 
+of data and produce a few descriptive statistics.
+
+```{r version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+Load the file d.RData and list its contents.
+
+```{r read}
+load("../dat/d.RData")
+ls()
+```
+
+Print the data frame "bump."
+
+```{r print}
+bump
+```
+
+The str function gives an overview of any R object
+
+```{r str-function}
+str(bump)
+```
