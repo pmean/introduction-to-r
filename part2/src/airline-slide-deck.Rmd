@@ -7,6 +7,7 @@ output: powerpoint_presentation
 
 ```{r echo=FALSE}
 suppressMessages(suppressWarnings(library(stringr)))
+options(width=45)
 tx <- readLines("airline.Rmd")
 dashes <- str_which(tx, fixed("---"))
 backticks <- str_which(tx, "```")
@@ -15,6 +16,12 @@ backticks <- str_which(tx, "```")
 ### General structure of Rmarkdown
 
 ![](../images/markdown-structure.png)
+
+<div class="notes">
+
+Recall the general structure of an Rmarkdown file. It starts with a header, in a simple format known as YAML. Then you alternate between free text commentary and chunks of R programming statements. The chunks are surrounded by lines with three backticks and the opening set of three backticks is followed by the programming language (R) and an optional label for the chunk.
+
+</div>
 
 ### Documentation (1/3)
 
@@ -25,6 +32,8 @@ tx[dashes[1]:dashes[2]] %>%
 ```
 
 <div class="notes">
+
+You should use the beginning of the program to provide some brief documentation about the program.
 
 The header in an Rmarkdown file, provides the name of the program, the author, and when the program was created. I always modify the date in the header so that it includes the word "Created" so people don't get this confused with the date that the program was last modified.
 
@@ -40,7 +49,7 @@ tx[(dashes[2]+1):(backticks[1]- 1)] %>%
 
 <div class="notes">
 
-This program how to manipulate a simple set of data and produce a few descriptive statistics.
+Next, a section of free text briefly describes the purpose of the program.
 
 </div>
 
@@ -59,51 +68,87 @@ Sys.Date()
 
 <div class="notes">
 
-At the beginning of every program, you should include a brief explanation and print out the version of R that you are using and the date that the program was run. This is optional, but is one of the documentation practices that you should get in the habit of using.
+You should always print out the version of R that you are using and the date that the program was run. This is optional, but is one of the documentation practices that you should get in the habit of using.
 
 </div>
 
-### A brief comment about R Markdown.
+### Reading existing data
 
-+ R Markdown
-  + Mixture of free text commentary 
-+ Use of backticks (`)
-  + Delineates chunks of R code
-  + Three backticks followed by {r}
-  + R code
-  + Three more backticks
-
-<div class="notes">
-
-This file is written in R Markdown, a mixture of R commands and commentary. Lines surrounding the R commands start with three backquotes. The line at the top will also have curlybraces a lower case "r" and brief descriptive names of the code segment (e.g., read). The backquotes and curly braces allow me to produce a nicely formatted html file that intersperses the R commands, the R output, and the commentary.
-
-You can safely ignore the backquotes and curly braces. Use cut-and-paste from a text editor like notepad to run the appropriate commands without having to retype them. Please cut-and-paste the thre lines below into the R console.
-
-</div>
-
-```{r simple-example}
-x <- 1:9
-x
-summary(x)
-```
-
-You are not responsible for R Markdown in this class, but I wanted to show you one of the features of R Markdown. When you create objects in R, you can print those objects, as shown above, or you can incorporate those objects in your commentary. Here's an example.
-
-Our data set has values `r x`. The mean is `r mean(x)` and the standard deviation is `r sd(x)`
-
-### Cleaning house
-
-```{r clean-house}
-knitr::opts_chunk$set(eval=FALSE)
+```{r load}
+load("../dat/module02-datasets.RData")
 ls()
-rm(list=ls()) # This list=ls() option removes everything
 ```
 
 <div class="notes">
 
-When I start up a new program, I usually take the time to remove any objects that might be left over from a previous program. It isn't really necessary, but sometimes it can help avoid some problems. You can take a look at what objects are currently available in memory with the ls function and you can remove some or all of these objects with the rm function.
+After loading data, use the ls function to review what information was loaded.
 
 </div>
+
+### Displaying data
+
+```{r display}
+bump
+```
+
+<div class="notes">
+
+R has a print function, but if you just list the name of a data frame, it will, by default, display itself.
+
+</div>
+
+### Displaying a single value
+
+```{r single-value}
+bump[1, 1]
+bump[12, 5]
+```
+
+<div class="notes">
+
+You can display individual data points by specifying the row and column inside square brackets.
+
+</div>
+
+### Displaying a whole row
+
+```{r single-row}
+bump[1, ]
+bump[12, ]
+```
+
+<div class="notes">
+
+You can display an entire row by specifying it and leaving the column entry blank.
+
+</div>
+
+
+### Displaying a whole column
+
+```{r single-column}
+bump[ , 1]
+bump[ , 5]
+```
+
+<div class="notes">
+
+You can display an entire column similarly. There is an important difference in the display here. When you display a single column, it will fit more than one data point in the same row to save space. This is an important but very subtle change.
+
+</div>
+
+### Displaying in column format
+
+```{r data-frame}
+data.frame(bump[ , 5])
+```
+
+### Using column names
+
+```{r column-names}
+bump$airline
+bump$r2017
+```
 
 ### Some definitions
 
@@ -228,7 +273,7 @@ To list the entire data frame, just type the name. In R, when you type the name 
 
 </div>
 
-```{r single-column}
+```{r single-column-1}
 fd
 fd[1, 1] # first row, first column
 fd[1, ] # all columns for first row

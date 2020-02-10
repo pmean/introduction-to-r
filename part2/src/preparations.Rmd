@@ -2,10 +2,19 @@
 title: "Preparations for module02"
 author: "Steve Simon"
 date: "Created 2020-02-08"
-output: powerpoint_presentation
+output: html_document
 ---
 
 ```{r input-bump}
-bump <- read.table("../dat/airline-bumping-2017.txt", header=TRUE, sep="\t")
+bump <- read.table(
+  "../dat/airline-bumping-2017.txt", 
+  header=TRUE, sep="\t",
+  stringsAsFactors=FALSE)
 bump
 ```
+
+```{r save}
+save(bump, file="../dat/module02-datasets.RData")
+```
+
+

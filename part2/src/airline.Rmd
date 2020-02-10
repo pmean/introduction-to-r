@@ -16,7 +16,7 @@ Sys.Date()
 Load the file d.RData and list its contents.
 
 ```{r read}
-load("../dat/d.RData")
+load("../dat/module02-datasets.RData")
 ls()
 ```
 
