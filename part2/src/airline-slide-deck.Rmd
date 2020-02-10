@@ -133,15 +133,9 @@ bump[ , 5]
 
 <div class="notes">
 
-You can display an entire column similarly. There is an important difference in the display here. When you display a single column, it will fit more than one data point in the same row to save space. This is an important but very subtle change.
+You can display an entire column similarly. There is an important difference in the display here. When you display a single column, it will fit more than one data point in the same row to save space. This is an important but very subtle change. It is not important at this stage of the class, however.
 
 </div>
-
-### Displaying in column format
-
-```{r data-frame}
-data.frame(bump[ , 5])
-```
 
 ### Using column names
 
@@ -149,6 +143,12 @@ data.frame(bump[ , 5])
 bump$airline
 bump$r2017
 ```
+
+<div class="notes">
+
+Each column has a name and you can use that name instead of the column number.
+
+</div>
 
 ### Some definitions
 
