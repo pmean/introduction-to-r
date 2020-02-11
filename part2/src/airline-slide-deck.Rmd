@@ -7,7 +7,7 @@ output: powerpoint_presentation
 
 ```{r echo=FALSE}
 suppressMessages(suppressWarnings(library(stringr)))
-options(width=45)
+options(width=55)
 tx <- readLines("airline.Rmd")
 dashes <- str_which(tx, fixed("---"))
 backticks <- str_which(tx, "```")
@@ -59,6 +59,7 @@ Next, a section of free text briefly describes the purpose of the program.
 tx[backticks[1]:backticks[2]] %>% 
   str_c(collapse="\n") %>% 
   cat
+rm(list=ls())
 ```
 
 ```{r version-and-current-date, echo=FALSE}
@@ -181,6 +182,16 @@ There are some variables that are on the boundary between categorical and contin
 The point to remember is that the types of graphs that you use and the types of statistics that you compute are dependent on many things, but first and foremost on whether the variables are categorical, continuous, or a mixture.
 
 Today, you will see examples involving mostly continuous variables.
+
+</div>
+
+### From fat-data-dictionary.txt
+
+`r readLines("../dat/fat-data-dictionary.txt")[3]`
+
+<div class="notes">
+
+Here is the first paragraph from the data dictionary.
 
 </div>
 

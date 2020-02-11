@@ -2,8 +2,10 @@
 title: "Preparations for module02"
 author: "Steve Simon"
 date: "Created 2020-02-08"
-output: html_document
+output: powerpoint_presentation
 ---
+
+### bump
 
 ```{r input-bump}
 bump <- read.table(
@@ -13,8 +15,38 @@ bump <- read.table(
 bump
 ```
 
+### fd
+
+```{r input-fd}
+fd <- read.table("../dat/fat.txt")
+names(fd) <- c(
+  "case", 
+  "fat_b", 
+  "fat_s", 
+  "density", 
+  "age",
+  "weight", 
+  "height", 
+  "bmi", 
+  "ffw", 
+  "neck", 
+  "chest",
+  "abdomen", 
+  "hip", 
+  "thigh", 
+  "knee", 
+  "ankle",
+  "biceps", 
+  "forearm", 
+  "wrist"
+)
+head(fd)  
+```
+
+### Save everything
+
 ```{r save}
-save(bump, file="../dat/module02-datasets.RData")
+save(bump, fd, file="../dat/module02-datasets.RData")
 ```
 
 
