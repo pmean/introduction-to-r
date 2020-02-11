@@ -1,8 +1,0 @@
----
-title: "Introduction to R, part 1d"
-author: "Steve Simon"
-date: "Monday, August 10, 2016"
-output: html_document
----
-
-This program has been eliminated because of a re-organization of content. You can find the material that this part covered in Part 1C and Part 1e.

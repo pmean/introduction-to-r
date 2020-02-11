@@ -1,63 +1,245 @@
 ---
-title: "Introduction to R, Module 2"
+title: "Module02: Data with mostly continuous variables"
 author: "Steve Simon"
 date: "Created 2020-02-08"
 output: powerpoint_presentation
 ---
 
-### Introduction
+```{r echo=FALSE}
+suppressMessages(suppressWarnings(library(stringr)))
+options(width=55)
+tx <- readLines("airline.Rmd")
+dashes <- str_which(tx, fixed("---"))
+backticks <- str_which(tx, "```")
+```
 
-This program how to manipulate a simple set of data and produce a few descriptive statistics.
+### General structure of Rmarkdown
 
-```{r version-and-current-date}
+![](../images/markdown-structure.png)
+
+<div class="notes">
+
+Recall the general structure of an Rmarkdown file. It starts with a header, in a simple format known as YAML. Then you alternate between free text commentary and chunks of R programming statements. The chunks are surrounded by lines with three backticks and the opening set of three backticks is followed by the programming language (R) and an optional label for the chunk.
+
+</div>
+
+### Documentation (1/3)
+
+```{r yaml-header, echo=FALSE, comment=""}
+tx[dashes[1]:dashes[2]] %>%
+  str_c(collapse="\n") %>%
+  cat
+```
+
+<div class="notes">
+
+You should use the beginning of the program to provide some brief documentation about the program.
+
+The header in an Rmarkdown file, provides the name of the program, the author, and when the program was created. I always modify the date in the header so that it includes the word "Created" so people don't get this confused with the date that the program was last modified.
+
+</div>
+
+### Documentation (2/3)
+
+```{r first-few-lines, echo=FALSE, comment=""}
+tx[(dashes[2]+1):(backticks[1]- 1)] %>%
+  str_c(collapse="\n") %>%
+  cat
+```
+
+<div class="notes">
+
+Next, a section of free text briefly describes the purpose of the program.
+
+</div>
+
+### Documentation (3/3)
+
+```{r first-chunk, echo=FALSE, comment=""}
+tx[backticks[1]:backticks[2]] %>% 
+  str_c(collapse="\n") %>% 
+  cat
+rm(list=ls())
+```
+
+```{r version-and-current-date, echo=FALSE}
 R.version.string
 Sys.Date()
 ```
 
 <div class="notes">
 
-At the beginning of every program, you should include a brief explanation and print out the version of R that you are using and the date that the program was run. This is optional, but is one of the documentation practices that you should get in the habit of using.
+You should always print out the version of R that you are using and the date that the program was run. This is optional, but is one of the documentation practices that you should get in the habit of using.
 
 </div>
 
-### A brief comment about R Markdown.
+### Reading existing data
 
-+ R Markdown
-  + Mixture of free text commentary 
-+ Use of backticks (`)
-  + Delineates chunks of R code
-  + Three backticks followed by {r}
-  + R code
-  + Three more backticks
-
-<div class="notes">
-
-This file is written in R Markdown, a mixture of R commands and commentary. Lines surrounding the R commands start with three backquotes. The line at the top will also have curlybraces a lower case "r" and brief descriptive names of the code segment (e.g., read). The backquotes and curly braces allow me to produce a nicely formatted html file that intersperses the R commands, the R output, and the commentary.
-
-You can safely ignore the backquotes and curly braces. Use cut-and-paste from a text editor like notepad to run the appropriate commands without having to retype them. Please cut-and-paste the thre lines below into the R console.
-
-</div>
-
-```{r simple-example}
-x <- 1:9
-x
-summary(x)
-```
-
-You are not responsible for R Markdown in this class, but I wanted to show you one of the features of R Markdown. When you create objects in R, you can print those objects, as shown above, or you can incorporate those objects in your commentary. Here's an example.
-
-Our data set has values `r x`. The mean is `r mean(x)` and the standard deviation is `r sd(x)`
-
-### Cleaning house
-
-```{r clean-house}
+```{r load}
+load("../dat/module02-datasets.RData")
 ls()
-rm(list=ls()) # This list=ls() option removes everything
 ```
 
 <div class="notes">
 
-When I start up a new program, I usually take the time to remove any objects that might be left over from a previous program. It isn't really necessary, but sometimes it can help avoid some problems. You can take a look at what objects are currently available in memory with the ls function and you can remove some or all of these objects with the rm function.
+After loading data, use the ls function to review what information was loaded.
+
+</div>
+
+### From airline-data-dictionary.txt
+
+`r readLines("../dat/airline-data-dictionary.txt")[3]`
+
+<div class="notes">
+
+The first dataset that we will use in this video is "bump."
+
+Here is the first paragraph from the data dictionary.
+
+</div>
+
+### Displaying data
+
+```{r display}
+bump
+```
+
+<div class="notes">
+
+R has a print function, but if you just list the name of a data frame, it will, by default, display itself.
+
+</div>
+
+### Showing the structure
+
+```{r str}
+str(bump)
+```
+
+<div class="notes">
+
+The "str" function provides a description of "bump." It is a data frame. A data frame is a rectangular grid of data. The data values in a single column of data has to be consistent: either a set of numbers, a set of dates, a set of character strings, etc. But the type of data in one column can differ from the next column.
+
+Data frames are the workhorse of R. There are other ways of storing data: lists, arrays, vectors. But most of the data you will analyze in R will be stored in a data frame.
+
+</div>
+
+### Displaying a single value
+
+```{r single-value}
+bump[1, 1]
+bump[12, 5]
+```
+
+<div class="notes">
+
+You can display individual data points by specifying the row and column inside square brackets.
+
+</div>
+
+### Displaying a single row
+
+```{r single-row}
+bump[1, ]
+bump[12, ]
+```
+
+<div class="notes">
+
+You can display an entire row by specifying it and leaving the column entry blank.
+
+</div>
+
+
+### Displaying a single column (1/2)
+
+```{r echo=FALSE}
+options(width=40)
+```
+
+```{r single-column-1}
+bump[ , 1]
+```
+
+<div class="notes">
+
+You can display an entire column similarly.
+
+</div>
+
+### Displaying a single column (2/2)
+
+```{r single-column-2}
+bump[ , 5]
+```
+
+<div class="notes">
+
+There is an important difference in the display here. When you display a single column, it will fit more than one data point in the same row to save space. This may seem trivial and but once in a while it is not. The distinction may come up later in this class.
+
+</div>
+
+### Using column names
+
+```{r column-names}
+bump$airline
+```
+
+<div class="notes">
+
+Each column has a name and you can use that name instead of the column number.
+
+</div>
+
+### Displaying multiple rows or columns
+
+```{r multiple-1}
+bump[1:5, ]
+```
+
+<div class="notes">
+
+The code "1:5" means 1, 2, 3, 4, 5.
+
+</div>
+
+### Displaying multiple rows or columns
+
+```{r multiple-2}
+bump[ , c(2,4)]
+```
+
+<div class="notes">
+
+The "c" function allows you to select values that are not in a perfect sequence.
+
+</div>
+
+### The head function
+
+```{r echo=FALSE}
+options(width=50)
+```
+
+```{r head}
+head(bump)
+```
+
+<div class="notes">
+
+The "head" function displays the first five rows of data.
+
+</div>
+
+### The tail function
+
+```{r tail}
+tail(bump)
+```
+
+<div class="notes">
+
+The "tail" function displays the last five rows of data. If there is a problem with a data set, it often shows up more obviously at the bottom of a data frame than the top.
 
 </div>
 
@@ -95,32 +277,26 @@ Today, you will see examples involving mostly continuous variables.
 
 </div>
 
-### Body fat measures
+### From fat-data-dictionary.txt
+
+`r readLines("../dat/fat-data-dictionary.txt")[3]`
 
 <div class="notes">
 
-The first data set we will work with shows data various body measurements. A brief description of this file is available at
-
---> http://www.amstat.org/publications/jse/datasets/fat.txt
-
-You need to read in the file using the read.table function.
+Here is the first paragraph from the data dictionary.
 
 </div>
 
-### Load data
-
-```{r read}
-load("../dat/d.RData")
-ls()
-```
-
-### Print data
-
-```{r print}
-bump
-```
-
-###
+### Some simple rules for data frames
++ Rectangular grid
++ Different types across columns
++ Single type within a column
++ Alternative ways to store data
+  + Vector
+  + Matrix
+  + Array
+  + List
+<div class="notes">
 
 R has many of the features of an object-oriented language, but it is not a true object-oriented programming language. There are a variety of objects in R like vectors, lists, matrices, and arrays, that are useful for storing, manipulating, and analyzing research data. We will spend most of this class using a particular object, the data frame.
 
@@ -132,35 +308,27 @@ The head function shows the first few rows of the data set and the tail function
 
 Always get in the habit of checking out the very bottom of your data frame. It's a common location for glitches.
 
+</div>
+
+### Variable names
++ Short but descriptive
++ Mix of letters and numbers
+  + Must start with a letter
+  + Avoid most symbols
++ No blanks
+  + CamelCase
+  + dot.delimited.names
+  + underscore_delimited_names
+
+<div class="notes">
+
 This data set did not have a header, a line at the very top of the file that lists variable names. R uses the default names V1, V2, etc. As a general rule, you should use brief (but descriptive) names for every variable in your data set. The names should be around 8 characters long. Longer variable names make your typing tedious and much shorter variable names makes your code terse and cryptic.
 
 You should avoid special symbols in your variable names especially symbols that are likely to cause confusion (the dash symbol, for example, which is also the symbol for subtraction). You should also avoid blanks. These rules are pretty much universal across most statistical software packages. If you violate these rules, you will find out that, at a minimum, you will always have to surround your variable name by quotes to avoid problems.
 
 There are times when you'd like to have a blank in your variable name and you can use two special symbols that you can use in R (and most other statistical pacakges), the underscore symbol (above the minus key on most keyboards) and the dot (period). These symbols create some artificial spacing that mimics the blanks. Another approach is "CamelCase" which is the mixture of upper and lower case within a variable name with each uppercase designating the beginning of a new "word".
 
-### Displaying variable names
-
-```{r names-1}
-names(fd)
-```
-
-### Changing variable names
-
-```{r names-2}
-names(fd) <- c("case","fat.b","fat.s","dens","age","wt","ht","bmi","ffw","neck","chest","abdomen","hip","thigh","knee","ankle","biceps","forearm","wrist")
-```
-
-<div class="notes">
-
-You also can use the names function to create a different set of variable names.
-
 </div>
-
-### More notes
-
-I'm a bit more terse with these variable names than I normally would be just to reduce the amount of typing you have to do.
-
-Now, when you display part or all of your data frame, the new names will help you navigate successfully through it.
 
 ### Head function
 
@@ -178,38 +346,17 @@ I'm going to take a short break and you can also. Before you take your break, sa
 
 </div>
 
+### Tail function
+
+```{r names-4}
+tail(fd)
+```
+
 <div class="notes">
 
 To list the entire data frame, just type the name. In R, when you type the name of an object, it knows that you want a display of what is in that object. To list just part of a data frame, you can use a matrix style of notation.
 
 </div>
-
-```{r single-column}
-fd
-fd[1, 1] # first row, first column
-fd[1, ] # all columns for first row
-fd[, 1] # all rows for first column
-fd[1, "ht"] # first row, "ht" column
-fd[1:50, "ht"] # first fifty rows, "ht" column
-```
-
-### Dollar sign
-
-```{r dollar-sign}
-fd$ht # all rows for "ht" column
-fd$ht[1:50] # first fifty rows for "ht" column
-# Notice that fd$ht[1:50] and fd[1:50, "ht"] produce the same results.
-```
-
-<div class="notes">
-
-There is a short cut for displaying a particular column that uses the dollar sign. Notice how the subset of fd$ht differs from the subset of the entire data frame.
-
-</div>
-
-### On your own (do this, but you do not need to turn in anything to me)
-
-Display the first ten rows and the first five columns of your data.
 
 ### Break
 + End of part 1
@@ -416,21 +563,7 @@ summary(fd2)
 
 There are many ways that you can do this. The simplest is to highlight the output, copy it to the clipboard and then paste it into another program.
 
-You can also direct R output to a text file with the sink function.
-
-</div>
-
-### New slide 
-
-```{r sink-example}
-sink("../results/summary.txt")
-summary(fd2)
-sink()
-```
-
-<div class="notes">
-
-It's important when you're done to turn the sink function off with a call to the sink function with no arguments.
+You can also direct R output to a text file with the sink function. Read the help file on sink for more details.
 
 Pasting into Excel is tricky, because you fit individual tabular data elements into individual cells. Sometimes you can do better by saving the output from a function like summary to an object and then exporting that object to a csv file.
 
