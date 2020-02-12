@@ -1,0 +1,36 @@
+sleep.txt
+
+This file has 252 rows and 19 variables. The two key variables are measures of body fat, a rather complex assessment that requires weighing a person underwater. At the same time, researchers collected simpler measures of circumference at the neck, chest, abdomen, hip, thigh, knee, ankle, biceps, forearm, and wrist to see if the complex measure of body fat could be approximated by some combination of circumference measures.
+
+There is a second data set on sleep in mammals. You can find a brief description of this data set at
+
+--> http://www.statsci.org/data/general/sleep.html
+
+and you can download the actual data at
+
+--> http://www.statsci.org/data/general/sleep.txt
+
+Notice that the last three variables are ordinal, but for the purposes of this class, we will treat them the same as the other variables.
+
+
+case, sequence number from 1 to 252
+fat_b, percent of body fat using Brozek's equation
+fat_s, percent of body fat using Siri's equation
+density, (gm/cm^3)
+age, (years)
+weight, (pounds)
+height, (inches)
+bmi, (g/cm^2)
+ffw, fat free weight (pounds)
+neck, circumference (cm) 
+chest, circumference (cm) 
+abdomen, circumference (cm) 
+hip, circumference (cm) 
+thigh, circumference (cm) 
+knee, circumference (cm) 
+ankle, circumference (cm) 
+biceps, circumference (cm) 
+forearm, circumference (cm) 
+wrist,  circumference (cm)
+
+You are free to use this data for non-commercial purposes.
