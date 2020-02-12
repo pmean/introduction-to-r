@@ -7,7 +7,7 @@ output: powerpoint_presentation
 
 ```{r echo=FALSE}
 suppressMessages(suppressWarnings(library(stringr)))
-options(width=55)
+options(width=50)
 tx <- readLines("airline.Rmd")
 dashes <- str_which(tx, fixed("---"))
 backticks <- str_which(tx, "```")
@@ -243,6 +243,16 @@ The "tail" function displays the last five rows of data. If there is a problem w
 
 </div>
 
+### Break
++ What have you learned
+  + Rmarkdown structure
+  + Printing a data frame
+  + Printing pieces of a data frame
++ What is coming next
+  + Definitions of categorical and continuous data
+  + The "fat" data set
+  + Outliers and missing values
+
 ### Some definitions
 
 + Categorical = small number of possible values
@@ -296,6 +306,7 @@ Here is the first paragraph from the data dictionary.
   + Matrix
   + Array
   + List
+  
 <div class="notes">
 
 R has many of the features of an object-oriented language, but it is not a true object-oriented programming language. There are a variety of objects in R like vectors, lists, matrices, and arrays, that are useful for storing, manipulating, and analyzing research data. We will spend most of this class using a particular object, the data frame.
@@ -330,38 +341,6 @@ There are times when you'd like to have a blank in your variable name and you ca
 
 </div>
 
-### Head function
-
-```{r names-3}
-head(fd)
-```
-
-<div class="notes">
-
-Most statistical packages allow you to provide a longer description for each variable in your dataset (a variable label, for example, in SPSS). The longer descriptions have almost no restrictions on blanks or special symbols and are useful for documenting the units of measurement for your variable, among other things. R does not have a formal equivalent to the SPSS variable label.
-
-We'll talk about additional documentation requirements for categorical data in part 2 of this class.
-
-I'm going to take a short break and you can also. Before you take your break, save your work. The save.image function stores a binary version of all your objects.
-
-</div>
-
-### Tail function
-
-```{r names-4}
-tail(fd)
-```
-
-<div class="notes">
-
-To list the entire data frame, just type the name. In R, when you type the name of an object, it knows that you want a display of what is in that object. To list just part of a data frame, you can use a matrix style of notation.
-
-</div>
-
-### Break
-+ End of part 1
-+ Start of part 2
-
 ### Unusual data value
 
 There is an unusual data value, which you might not notice right away, but one of the heights is 29.5 inches. We'll talk in more detail about the summary function later, but right now I wanted to show you function because if you have an outlier in your data, you are most likely to discover it by using the summary function.
@@ -395,14 +374,16 @@ A second choice is to remove the entire row from the data frame. The -42 means e
 
 </div>
 
-### Remove
+### Remove the outlier
 
 ```{r remove}
 fd1 <- fd[-42,]
-fd1$ht
+summary(fd1$ht)
 ```
 
-<div class="notes"
+<div class="notes">
+
+### Set to missing
 
 A third possibility is to designate the abnormal value as missing. In R, a missing value is represented by NA.
 
@@ -411,7 +392,7 @@ A third possibility is to designate the abnormal value as missing. In R, a missi
 ```{r missing}
 fd2 <- fd
 fd2[42,"ht"] <- NA
-fd2$ht
+summary(fd2$ht)
 ```
 
 <div class="notes">
@@ -431,8 +412,13 @@ We'll use the data set with the 29.5 changed to a missing value for all of the r
 Display the data for the wt variable and use the summary function. Are there any obvious outliers for weight?
 
 ### Break
-+ End of part 2
-+ Start of part 3
++ What have you learned
+  + Definitions of categorical and continuous data
+  + The "fat" data set
+  + Outliers and missing values
++ What is coming next
+  + Tracking missing values
+  + Histograms
 
 ### Summary
 
@@ -460,7 +446,11 @@ The short term solution to the above problem is to use a special function, is.na
 which(is.na(fd2$ht))
 ```
 
+<div class="notes">
+
 The summary function will trap and remove missing values, but most other functions in R will, by default, report a result as missing if any values going into that function are missing. The philosophy in R, I suppose, is that you need to actively select an approach for handling missing values rather than relying on a lazy default. Also, a  missing value is less likely to evade your notice when you have to actively specify an approach for handling the missing values.
+
+</div>
 
 ```{r mean-sd-1}
 mean(fd2$ht)
@@ -544,6 +534,14 @@ You haven't created any new data frames, but save eveything anyway.
 
 </div>
 
+### Break
++ What have you learned
+  + Tracking missing values
+  + Histograms
++ What is coming next
+  + Saving text information
+  + Saving graphs
+  
 ### New slide 
 
 <div class="notes">
@@ -617,9 +615,12 @@ We created a new object (overall_summary), so you might want to save things here
 </div>
 
 ### Break
-
-+ End of part 3
-+ Start of part 4 
++ What have you learned
+  + Saving text information
+  + Saving graphs
++ What is coming next
+  + Correlations
+  + Scatterplots
 
 <div class="notes">
 
@@ -648,7 +649,7 @@ Don't take these rules too literally. You're not trying to make definitive state
 ### Correlation matrices
 
 ```{r corr-1}
-cor(fd2$fat.b,fd2$age)
+cor(fd2$fat_b,fd2$age)
 ```
 
 <div class="notes">
@@ -690,7 +691,7 @@ The best graphical way to display a relationship between two continuous variable
 ### New slide 
 
 ```{r scatterplot-1}
-plot(fd2$abdomen,fd2$fat.b)
+plot(fd2$abdomen,fd2$fat_b)
 plot(fd2$ht,fd2$abdomen)
 ```
 
@@ -703,7 +704,7 @@ There are lots of options available to customize your graph. Here are just a few
 ### New slide 
 
 ```{r scatterplot-2}
-plot(fd2$abdomen/2.54,fd2$fat.b,
+plot(fd2$abdomen/2.54,fd2$fat_b,
      xlab="Abdomen circumference in inches",
      ylab="Percentage of body fat using Brozek's equation",
      pch="+")
@@ -724,8 +725,8 @@ Here's a linear regression trend line
 
 ```{r trend-1}
 fd2$abdomen.in <- fd2$abdomen/2.54
-trend.line <- lm(fat.b~abdomen.in,data=fd2)
-plot(fd2$abdomen.in,fd2$fat.b)
+trend.line <- lm(fat_b~abdomen.in,data=fd2)
+plot(fd2$abdomen.in,fd2$fat_b)
 abline(trend.line)
 ```
 
@@ -735,11 +736,18 @@ Here's a smooth curve.
 
 </div>
 
+### Break
++ What have you learned
+  + Saving text information
+  + Saving graphs
++ What is coming next
+  + Description of sleep data
+
 ### New slide 
 
 ```{r trend-2}
-smooth.curve <- lowess(fd2$age,fd2$fat.b)
-plot(fd2$age,fd2$fat.b)
+smooth.curve <- lowess(fd2$age,fd2$fat_b)
+plot(fd2$age,fd2$fat_b)
 lines(smooth.curve)
 ```
 
