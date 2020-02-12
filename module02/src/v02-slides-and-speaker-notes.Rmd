@@ -7,7 +7,7 @@ output: powerpoint_presentation
 
 ```{r echo=FALSE}
 suppressMessages(suppressWarnings(library(stringr)))
-options(width=50)
+options(width=45)
 tx <- readLines("airline.Rmd")
 dashes <- str_which(tx, fixed("---"))
 backticks <- str_which(tx, "```")
@@ -800,177 +800,9 @@ We created a few new objects, so you might want to save things here before proce
 
 </div>
 
-### New slide 
-
-<div class="notes">
-
-
-The material for Part 1 did not include enough information about getting data into and out of R. Here are a few extra examples.
-
-</div>
-
-### Read in comma separated values
-
-<div class="notes">
-
-The read.csv function will read a text file with commas separating individual data points. This is a commonly used format and frequently has the extension .csv.
-
-In notepad or another text editor, type in the following
-values.
-
-1,4
-
-2,8
-
-3,12
-
-4,16
-
-and save the file using the name simple.csv. Note the directory that you are saving it in.
-
-Here's a time saving hint: run the getwd function without any arguments (getwd()) to see where the current working directory. This is the place that R is currently looking for files if you don't provide a path. If you store the file simple.csv in the current working directory, then you don't have to type in the path name as well as the filename.
-
-You can use the setwd command to change the current working directory. Be sure to use forward slashes (/) in your pathname rather than backslashes (\).
-
-</div>
-
-### New slide 
-
-```{r read-csv}
-fn <- "../dat/simple.csv"
-d1 <- read.csv(file=fn)
-d1
-```
-
-<div class="notes">
-
-Oops! That didn't work the way I wanted it to. Look at the help file for read.csv. What option would you use to avoid losing the first line of data?
-
-### On your own  (do this, but you do not need to turn in anything to me)
-
-Add the line x,y to the top of your csv file and read it in using the header=TRUE option.
-
-Note: depending on how you typed your data, you may or may not get an error message like "Warning in readLines(file, n = thisblock): incomplete final line found"
-
-This happens when R does not find a carriage return at the end of the last line of data. This is easily fixed by opening the text file and going to the very end with CTRL-END.
-
-if you land at the end of the very last line, you don't have a final carriage return. If you land on a blank line below the last line of text, then you are fine.
-
-### Using the more general function, read.table
-
-<div class="notes">
-
-Review the options for the read.table command.
-
-Type in the same data, but using the tilde (~) as a separator (e.g., 1~4). Save the file as tilde.txt.
-
-Here is how you would use read.table to read this file.
-
-</div>
-
-### Reading in space delimited files.
-
-```{r read-table}
-fn <- "../dat/tilde.txt"
-d2 <- read.table(file=fn,header=TRUE,sep="~")
-```
-
-<div class="notes">
-
-Open up notepad and type in the following lines.
-
-1  4
-
-2  8
-
-3 12
-
-4 16
-
-Be sure to line up the numbers properly by inserting two blanks between 1 and 4 and two blanks between 2 and 8, but only one blank between 3 and 12 and between 4 and 16.
-
-Save the file as space.txt.
-
-If you tried to read in the file with sep=" ", you would get an error. Try this to see what the error looks like.
-
-
-You can either always edit the file and replace any double blanks with single blanks, but if you look carefully at the help file, you will see that the argument sep="" (which is the default) will use white space (one or more blanks, tabs, carriage returns, or newlines). This works pretty well but not always. We will see a file where you have to fix things before you can import it properly.
-
-</div>
-
-### New slide 
-
-```{r read-space}
-fn <- "../dat/space.txt"
-# Try read.table(fn,sep=" ") first.
-d3 <- read.table(fn,sep="")
-```
-
-<div class="notes">
-
-Note that the default for read.table is header=FALSE, as opposed to the default of HEADER=TRUE for read.csv.
-
-</div>
-
-### Reading fixed width format files
-
-<div class="notes"
-
-Sometimes you will get a file with no delimiters to save space. This requires that each variable takes up a fixed number of columns and that information is often specified in a separate file.
-
-Create a fixed width file in notepad with the following lines.
-
-1 4
-
-2 8
-
-312
-
-416
-
-and store it as fixed.txt.
-
-</div>
-
-### New slide 
-
-```{r fixed}
-fn <- "../dat/fixed.txt"
-d4 <- read.fwf(fn,c(1,2))
-d4
-```
-
-<div class="notes">
-
-You should also consider the read.fortran function. Check out the help file.
-
-### Writing text files
-
-If you want to write a text file, you can use either the write.csv or write.table functions. Look up the help files on these functions. We'll create a small data frame and store it in a comma delimited and tab delimited format.
-
-</div>
-
-### New slide 
-
-```{r write-text}
-d5 <- data.frame(x=c(13,12,11),y=c(2,4,6))
-fn <- "../results/output1.csv"
-write.csv(d5,fn)
-fn <- "../results/output2.txt"
-write.table(d5,fn)
-```
-
-<div class="notes">
-
-Open these files in notepad to see what they look like.
-
-</div>
-
-### On your own (do this, but you do not need to turn it anything to me)
-
-To avoid the extra line at the top and the row names "1","2","3" use the options header=FALSE and col.names=FALSE. Try this and see what the two files look like now.
-
 ### Writing binary files
+
+<div class="notes">
 
 By default, R saves everything that you create on exiting from the program and stores it in a file with no name and with an extension of RData (in other words, .RData). This file is automatically loaded the next time you start R from the same subdirectory.
 
@@ -978,6 +810,9 @@ If you want to save a data frame in binary format, use the function save(). Bina
 
 In other words, don't send a binary file to someone who does not have R. Binary files are useful when you are moving data from one R user to another, or data from one computer to another, or sometimes when you are moving data from one folder to another.
 
+</div>
+
+### Homework
 
 I had a student ask, “What, exactly, do I need to turn in for the homework assignments. I said that I’d like to see the R commands, the R output, and a brief commentary. Then I realized that it might be helpful to see a real example. So I made up a simple homework assignment to illustrate what I’m looking for.
 
@@ -1114,6 +949,17 @@ The correlation is 0.12. There is little or no association between bmi and age.
 
 Concluding remarks. What you see here is only a suggestion. Feel free to create a format that you like. The three things I am looking for is a listing of the R commands that you used, the text or graphical output, and a brief interpretation.
 
+</div>
+
+### Adding a smooth curve
+
+```{r download-ggplot2, eval=FALSE}
+# You only need to do this once, then put eval=FALSE in the line above from that point onward.
+install.packages("ggplot2")
+```
+
+<div class="notes">
+
 I noticed several of the students having trouble with adding a smooth curve to a scatterplot, and it really isn't their fault. I have been using R forclose to fiften years, which is mostly good, but it is bad because I tend to use approaches that worked with early versions of R rather than more recent approaches. I guess the term for this is that I'm "old school". But this old can learn a few new tricks, so let me explain why the old school approach to adding a smooth curve is sub-optimal and how the new approach using the ggplot2 library is better.
 
 First, you need to download the ggplot2 package.
@@ -1121,11 +967,6 @@ First, you need to download the ggplot2 package.
 </div>
 
 ### New slide 
-
-```{r download-ggplot2, eval=FALSE}
-# You only need to do this once, then put eval=FALSE in the line above from that point onward.
-install.packages("ggplot2")
-```
 
 <div class="notes">
 
