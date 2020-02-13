@@ -1,0 +1,51 @@
+---
+title: "M06. Overview of module06"
+author: "Steve Simon"
+date: "Created 2020-02-13"
+output: html_document
+---
+
+This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
+
+This document is only partially written.
+
+Effect of Surface and Vision on Balance
+
++ Description: http://www.statsci.org/data/oz/ctsib.html
++ Short and fat format: http://www.statsci.org/data/oz/ctsibrm.txt
++ Tall and thin format: http://www.statsci.org/data/oz/ctsibuni.txt
++ Also found at: www.pmean.com/15/images/day4balance1.txt, and
+www.pmean.com/15/images/day4balance2.txt
+
+Resins Rid Termites from Trees
+
++ Description and data: http://lib.stat.cmu.edu/DASL/Datafiles/Termites.html
++ Also at: www.pmean.com/15/images/day4termites.txt
+
+Depression Before and After an Earthquake
+
++ Description: http://www.statsci.org/data/general/lomaprie.html
++ Data: http://www.statsci.org/data/general/lomaprie.txt
++ Also found at: www.pmean.com/15/images/day4quake.txt
+
+Energy Requirements Running, Walking and Cycling
+
++ Description: http://www.statsci.org/data/general/energy.html
++ Data: http://www.statsci.org/data/general/energy.txt
++ Also found at: www.pmean.com/15/images/day4energy.txt
+
+Cholesterol Levels after Heart Attack
+
++ Description: http://www.statsci.org/data/general/cholest.html
++ Data: http://www.statsci.org/data/general/cholestg.txt
++ Also found at: www.pmean.com/15/images/day4cholesterol.txt
+
+Runners with Low Back Pain
+
++ Description: http://www.statsci.org/data/oz/backpain.html
++ Data: http://www.statsci.org/data/oz/backpain.txt
++ Also found at: www.pmean.com/15/images/day4backpain.txt
+
+Recovery of Patients from Stroke
+
++ Description: http://www.statsci.org/data/oz/stroke.html

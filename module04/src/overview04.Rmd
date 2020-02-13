@@ -1,0 +1,29 @@
+---
+title: "M04. Overview of module04"
+author: "Steve Simon"
+date: "Created 2020-02-13"
+output: html_document
+---
+
+This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
+
+This document is only partially written.
+
+Mortality on the Titanic
+
+You should find the data file on mortality among passengers of the Titanic at
+
++ Data: http://www.statsci.org/data/general/titanic.txt
++ Description: http://www.statsci.org/data/general/titanic.html
++ Alternate source: http://www.pmean.com/15/images/day2titanic.txt
+
+Gardasil vaccine
+
++ Data: http://www.amstat.org/publications/jse/v19n1/gardasil.xls
++ Description: http://www.amstat.org/publications/jse/v19n1/gardasil.txt
++ Alternate source: http://www.pmean.com/15/images/day2gardasil.csv
+
+Dietary fiber (if there is extra time)
+
++ Description: http://lib.stat.cmu.edu/DASL/Datafiles/Fiber.html
+

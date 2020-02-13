@@ -269,10 +269,10 @@ The "tail" function displays the last five rows of data. If there is a problem w
 
 + Categorical = small number of possible values
 + Examples
-  + sex (Male or Female),
-  + race/ethnicity (Caucasian, African American, Hispanic, etc.),
-  + cancer stage (I, II, III, or IV),
-  + birth delivery type (Vaginal, C-section). 
+  + Sex (Male or Female),
+  + Race/ethnicity (Caucasian, African American, Hispanic, etc.),
+  + Cancer stage (I, II, III, or IV),
+  + Birth delivery type (Vaginal, C-section). 
 
 <div class="notes">
 
@@ -284,8 +284,8 @@ A **categorical variable** is a variable that can only take on a small number of
 + Continuous variable = large number of possible values
 + Examples of continuous variables are
   + Birth weight in grams,
-  + gestational age,
-  + fasting LDL level.
+  + Gestational age,
+  + Fasting LDL level.
 
 <div class="notes">
 
@@ -355,13 +355,13 @@ There are times when you'd like to have a blank in your variable name and you ca
 
 ### Unusual data value
 
-There is an unusual data value, which you might not notice right away, but one of the heights is 29.5 inches. We'll talk in more detail about the summary function later, but right now I wanted to show you function because if you have an outlier in your data, you are most likely to discover it by using the summary function.
-
 ```{r summary-of-ht}
 summary(fd$ht)
 ```
 
 <div class="notes">
+
+There is an unusual data value, which you might not notice right away, but one of the heights is 29.5 inches. We'll talk in more detail about the summary function later, but right now I wanted to show you function because if you have an outlier in your data, you are most likely to discover it by using the summary function.
 
 A height this small is not totally out of the realm of possibility. See, for example, 
 
@@ -643,7 +643,6 @@ Rounding the correlations makes them easier to read. Here is a different part of
 ### Another interesting set of correlations 
 
 ```{r corr-3}
-# round(100*cor(fd2[,-1]))
 leg.measures <- c("hip","thigh","knee","ankle")
 arm.measures <- c("biceps","forearm","wrist")
 round(100*cor(fd2[,leg.measures],fd2[,arm.measures]))
@@ -762,11 +761,11 @@ There's a technicality here in that the last few variables are categorical, but 
 ### A quick peek at the data 
 
 ```{r read-sleep, echo=FALSE}
-head(sleep)
+head(sleep, 3)
 ```
 
 <div class="notes">
 
-
+Here are the first two rows of data.
 
 </div>

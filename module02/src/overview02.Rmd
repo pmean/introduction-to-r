@@ -1,0 +1,36 @@
+---
+title: "M02. Overview of module02"
+author: "Steve Simon"
+date: "Created 2020-02-13"
+output: html_document
+---
+
+This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
+
+This module discusses how to hande datasets that have mostly continuous variables. These are the simplest datasets and represent a reasonable starting point. The module reviews for you the general structure of an Rmarkdown file and uses a simple dataset to show how to display various parts of a dataset. Then you will see work with a larger dataset showing how to detect outliers, create and handle a missing value, and produce descriptive statistics, histograms, correlations, and scatterplots.
+
+There are three datasets used in this module. All of these are stored in a single binary file, which you can download [here](../dat/module02-datasets.RData).
+
+bump
+
++ View the [data dictionary](../dat/airline-data-dictionary.txt)
++ Used in the video
++ Not needed for the homework assignment
+
+You should not need this, but there is a [text version](../dat/airline-bumping-2017.txt) of this dataset.
+
+fd
+
++ View the [data dictionary](../dat/fat-data-dictionary.txt)
++ Used in the video
++ Not needed for the homework assignment
+
+You should not need this, but there is a [text version](../dat/fat.txt) of this dataset.
+
+sleep
+
++ View the [data dictionary](../dat/sleep-data-dictionary.txt)
++ Not used in the video
++ You will need this dataset for the homework assignment
+
+You should not need this, but there is a [text version](../dat/sleep.txt) of this dataset.

@@ -1,8 +1,24 @@
 sleep.txt
 
-This file has 252 rows and 19 variables. The two key variables are measures of body fat, a rather complex assessment that requires weighing a person underwater. At the same time, researchers collected simpler measures of circumference at the neck, chest, abdomen, hip, thigh, knee, ankle, biceps, forearm, and wrist to see if the complex measure of body fat could be approximated by some combination of circumference measures.
+This file has 62 rows and 11 variables. The study wanted to see what factors affected sleep patterns (dreaming, non-dreaming, and total sleep) in mammals. The independent variables include Likert scale measurements (1-5) for predation, exposure, and danger. Other variables relate to the weight, brain size, lifespan and gestational period.
 
-There is a second data set on sleep in mammals. You can find a brief description of this data set at
+The file sleep.txt is a tab delimited file with variable names on the first row. Missing values are designated by the code NA.
+
+The variables are 
+
+Species,
+BodyWt (kg),
+BrainWt (g),
+NonDreaming (hours),
+Dreaming (hours),
+TotalSleep (hours),
+LifeSpan (years),
+Gestation (days),
+Predation,
+Exposure,
+Danger
+
+You can find a brief description of this data set at
 
 --> http://www.statsci.org/data/general/sleep.html
 
@@ -10,27 +26,12 @@ and you can download the actual data at
 
 --> http://www.statsci.org/data/general/sleep.txt
 
-Notice that the last three variables are ordinal, but for the purposes of this class, we will treat them the same as the other variables.
+Copyright (from http://www.statsci.org/data/index.html)
 
+Permission is granted to freely use material on the OzDASL site, although acknowledgement of the OzDASL site as the data source would be appreciated. Please be aware though that some of the OzData data sets were originally published elsewhere; original sources are cited on the description page. If you intend to re-publish one of these data sets it may be necessary to obtain permission from the original copyright holder.
 
-case, sequence number from 1 to 252
-fat_b, percent of body fat using Brozek's equation
-fat_s, percent of body fat using Siri's equation
-density, (gm/cm^3)
-age, (years)
-weight, (pounds)
-height, (inches)
-bmi, (g/cm^2)
-ffw, fat free weight (pounds)
-neck, circumference (cm) 
-chest, circumference (cm) 
-abdomen, circumference (cm) 
-hip, circumference (cm) 
-thigh, circumference (cm) 
-knee, circumference (cm) 
-ankle, circumference (cm) 
-biceps, circumference (cm) 
-forearm, circumference (cm) 
-wrist,  circumference (cm)
+Citation
 
-You are free to use this data for non-commercial purposes.
+Please cite the library as:
+
+Smyth, GK (2011). Australasian Data and Story Library (OzDASL). http://www.statsci.org/data.

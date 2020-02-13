@@ -1,0 +1,21 @@
+---
+title: "M05. Overview of module05"
+author: "Steve Simon"
+date: "Created 2020-02-13"
+output: html_document
+---
+
+This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
+
+This document is only partially written.
+
+Forced Expiratory Volume (FEV) Data
+
++ Data: http://www.amstat.org/publications/jse/datasets/fev.dat.txt
++ Description: http://www.amstat.org/publications/jse/datasets/fev.txt
++ Alternate source: http://www.pmean.com/15/images/day3fev.txt
+
+Home prices in Albuquerque
+
++ Data and description: http://lib.stat.cmu.edu/DASL/Datafiles/homedat.html
++ Alternate source: http://www.pmean.com/15/images/day3housing.txt
