@@ -70,23 +70,18 @@ It is okay to use short answers like "Nothing was confusing" or "Everything was 
 
 Graded: 3 points, one point deducted if submitted late.
 
-Download the the file [module02-datasets.RData](../dat/module02-datasets.RData) and store it in the appropriate folder. Then run a program using Rmarkdown to answer the following questions.the files in a src and dat directory somewhere on your computer. Modify the code so that you are listed as the author. Run the program and submit it as a PDF file.
+Download the the file [module02-datasets.RData](../dat/module02-datasets.RData) and store it in the appropriate folder. Then run a program using Rmarkdown to answer the following questions.
 
-If there are errors or warnings in your output, make your best effort to fix them, but getting anything to run, even something with error messages will be sufficient for this very first homework assignment.
+Include both the question and your answer to the question in the Rmarkdown code. Submit your work as a single PDF file.
 
-1. Notice that there is a huge range in body weight. Display the information for the smallest and the largest mammals.
+If there are errors or warnings in your output, send me PDF files of your code and your output by email and I will see if I can help.
 
-2. Which variables have missing data?
+Q1. Notice that there is a huge range in body weight. Display the information for the smallest and the largest mammals.
 
-3. Calculate the mean and standard deviation for TotalSleep.
+Q2. Which variables have missing data?
 
-4. Draw a histogram for the BodyWt variable. Note that this variable is highly skewed. Re-draw the histogram on the log scale. Hint: log(sl$BodyWt,base=10). For exta credit, relabel the axes with values at 0.001, 0.01, etc.
+Q3. Calculate the mean and standard deviation for TotalSleep.
 
-5. Calculate the ratio of BrainWt to BodyWt and express it as a percentage. Be sure to convert grams to kilograms (or vice versa) before computing the ratio. What animal has the smallest/largest ratio?
+Q4. Do bigger animals sleep longer or live longer? Show your results using a correlation coefficient.
 
-6. Do bigger animals sleep longer or live longer? Show your results using a correlation coefficient.
-
-7. Do animals who have high degrees of Predation, Exposure, or Danger sleep less? Show your results using a plot and a trendline.
-
-8. Place all the key results into a Word document or PowerPoint presentation, or as a PDF file or as an HTML file. Turn it in by email. Use the subject line: "Introduction to R, (your name), Part 1 Homework"
-
+Q5. Do animals who have high degrees of Predation, Exposure, or Danger sleep less? Show your results using a plot and a trendline.
