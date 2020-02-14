@@ -41,7 +41,7 @@ The header in an Rmarkdown file, provides the name of the program, the author, a
 
 ### Documentation (2/3)
 
-```{r first-few-lines, echo=FALSE, comment=""}
+```{r free-text, echo=FALSE, comment=""}
 tx[(dashes[2]+1):(backticks[1]- 1)] %>%
   str_c(collapse="\n") %>%
   cat
@@ -255,7 +255,7 @@ The "tail" function displays the last five rows of data. If there is a problem w
 
 </div>
 
-### Break
+### Break #1
 + What have you learned
   + Rmarkdown structure
   + Printing a data frame
@@ -306,6 +306,22 @@ Today, you will see examples involving mostly continuous variables.
 <div class="notes">
 
 Here is the first paragraph from the data dictionary.
+
+</div>
+
+### First few lines of data
+
+```{r echo=FALSE}
+options(width=40)
+```
+
+```{r first-few-lines}
+head(fd, 2)
+```
+
+<div class="notes">
+
+Here are the first few lines of the data set.
 
 </div>
 
@@ -375,14 +391,13 @@ You can use the which function to identify the row with this unusual value for f
 
 ```{r which}
 short_row <- which(fd$ht==29.5)
+short_row
 fd[short_row, ]
 ```
 
 <div class="notes">
 
 The other values look quite normal. You have to make a careful choice here. One possibility is to do nothing. If you leave the abnormal height in your data set, it may distort some of your graphs and skew some of your statistics. Still, it is often BETTER than some of the alternatives.
-
-A second choice is to remove the entire row from the data frame. The -42 means everything EXCEPT row 42.
 
 </div>
 
@@ -395,11 +410,11 @@ summary(fd1$ht)
 
 <div class="notes">
 
-### Set to missing
-
-A third possibility is to designate the abnormal value as missing. In R, a missing value is represented by NA.
+A second choice is to remove the entire row from the data frame. The - means everything EXCEPT that row.
 
 </div>
+
+### Set to missing
 
 ```{r missing}
 fd2 <- fd
@@ -408,6 +423,10 @@ summary(fd2$ht)
 ```
 
 <div class="notes">
+
+A third possibility is to designate the abnormal value as missing. In R, a missing value is represented by NA.
+
+Notice that the summary function for the ht variable notes that one of the values is missing. You should watch these missing values obsessively. This can get a bit tricky. 
 
 There is no one method that is preferred in this setting. If you encounter an unusual value, you should discuss it with your research team, investigate the original data sources, if possible, and review any procedures for handling unusual data values that might be specified in your research protocol.
 
@@ -419,11 +438,7 @@ We'll use the data set with the 29.5 changed to a missing value for all of the r
 
 </div>
 
-### On your own (do this, but you do not need to turn in anything to me)
-
-Display the data for the wt variable and use the summary function. Are there any obvious outliers for weight?
-
-### Break
+### Break #2
 + What have you learned
   + Definitions of categorical and continuous data
   + The "fat" data set
@@ -432,9 +447,7 @@ Display the data for the wt variable and use the summary function. Are there any
   + Tracking missing values
   + Histograms
 
-### Summary
-
-Notice that the summary function for the ht variable notes that one of the values is missing. You should watch these missing values obsessively. This can get a bit tricky. 
+### You cannot test missingness directly
 
 ```{r tracking-missing-1}
 which(fd2$ht==NA)
@@ -450,9 +463,7 @@ This is called a three valued logic system and it has advantages and disadvantag
 
 </div>
 
-### is.na
-
-The short term solution to the above problem is to use a special function, is.na.
+### Use is.na to test missingness
 
 ```{r tracking-missing-2}
 which(is.na(fd2$ht))
@@ -460,7 +471,13 @@ which(is.na(fd2$ht))
 
 <div class="notes">
 
-The summary function will trap and remove missing values, but most other functions in R will, by default, report a result as missing if any values going into that function are missing. The philosophy in R, I suppose, is that you need to actively select an approach for handling missing values rather than relying on a lazy default. Also, a  missing value is less likely to evade your notice when you have to actively specify an approach for handling the missing values.
+The short term solution to the above problem is to use a special function, is.na.
+
+The summary function will trap and remove missing values, but most other functions in R will, by default, report a result as missing if any values going into that function are missing. The philosophy in R, I suppose, is that you need to actively select an approach for handling missing values rather than relying on a lazy default.
+
+R is also erring on the side of caution most of the time. You may not be aware that there are missing values lurking in your data, and R is going to go out of its way to remind you, unless you tell it otherwise.
+
+This is different from SAS and SPSS, where the default options choose perfectly reasonable approaches, but approaches that don't raise concern about missingness to the degree that R does.
 
 </div>
 
@@ -521,11 +538,14 @@ Here is what the graph looks like.
 
 ```{r histogram02}
 histogram_enhanced <- ggplot(fd2, aes(x=ht)) + 
-  geom_histogram(fill="white", color="black", binwidth=3, na.rm=TRUE) +
+  geom_histogram(
+    fill="white", color="black", 
+    binwidth=3, na.rm=TRUE) +
   xlab("Height in inches") +
   scale_x_continuous(
     breaks=c(63, 66, 69, 72, 75, 78), 
-    labels=c("62-64", "65-67", "68-70", "71-73", "74-76", "77-79"))
+    labels=c("62-64", "65-67", "68-70",
+             "71-73", "74-76", "77-79"))
 png("../images/histogram02.png")
 histogram_enhanced
 dev.off()
@@ -547,7 +567,7 @@ Here is what the graph looks like.
 
 </div>
 
-### Break
+### Break #3
 + What have you learned
   + Tracking missing values
   + Histograms
@@ -560,11 +580,11 @@ Here is what the graph looks like.
 ### Correlation coefficients
 
 + Correlation
-  + Always between 0 and 1
+  + Always between -1 and 1
   + Strong positive if > 0.7
   + Strong negative if < -0.7
   + Weak positive if between 0.3 and 0.7
-  + Weak negative if between 0.3 and 0.7
+  + Weak negative if between -0.3 and -0.7
   + No relationship if between -0.3 and 0.3
   
 
@@ -576,7 +596,7 @@ Don't take these rules too literally. You're not trying to make definitive state
 
 </div>
 
-### Correlation matrices
+### Correlation coefficient
 
 ```{r corr-1}
 cor(fd2$fat_b,fd2$age)
@@ -588,7 +608,7 @@ You can get a matrix of correlations for every possible pair of variables. This 
 
 </div>
 
-### New slide 
+### Correlation matrix 
 
 ```{r corr-2}
 correlation_matrix <- cor(fd2[ ,-1])
@@ -597,6 +617,8 @@ correlation_matrix[1:8, 1:3]
 ```
 
 <div class="notes">
+
+Notice that the -1 in fd2 omits the first column, which is the case number, a variable that should not be incorporated in any statistical analyses.
 
 I don't want to display the full correlation matrix because it would go off the margins of the slide. But looking at just the first eigth rows and three columns, you can see something interesting. R does not know how to compute a correlation coefficient when there are missing values.
 
@@ -661,7 +683,8 @@ The best graphical way to display a relationship between two continuous variable
 ### Scatterplot
 
 ```{r scatterplot01}
-scatterplot_default <- ggplot(fd2, aes(x=abdomen, y=fat_b)) +
+scatterplot_default <- ggplot(fd2,
+    aes(x=abdomen, y=fat_b)) +
   geom_point()
 png(filename="../images/scatterplot01.png")
 scatterplot_default
@@ -738,10 +761,10 @@ Here is what the graph looks like.
 
 </div>
 
-### Break
+### Break #4
 + What have you learned
-  + Saving text information
-  + Saving graphs
+  + Correlations
+  + Scatterplots
 + What is coming next
   + Description of sleep data
 

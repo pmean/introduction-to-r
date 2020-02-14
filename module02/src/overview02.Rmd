@@ -7,30 +7,86 @@ output: html_document
 
 This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
 
-This module discusses how to hande datasets that have mostly continuous variables. These are the simplest datasets and represent a reasonable starting point. The module reviews for you the general structure of an Rmarkdown file and uses a simple dataset to show how to display various parts of a dataset. Then you will see work with a larger dataset showing how to detect outliers, create and handle a missing value, and produce descriptive statistics, histograms, correlations, and scatterplots.
+This module discusses how to handle datasets that have mostly continuous variables. These are the simplest datasets and represent a reasonable starting point. 
 
-There are three datasets used in this module. All of these are stored in a single binary file, which you can download [here](../dat/module02-datasets.RData).
+## Learning objectives
 
-bump
+In these videos you will learn
+
++ how to print all or part of a data frame
++ create a missing value code
++ find and account for missing values
++ produce histograms and scatterplots
+
+## Videos
+
+There are five videos in this module specific to the R programming language and two general videos about good programming practices. You can find the 
+
++ [Slides and speaker notes for the R videos](v02-slides-and-speaker-notes.pdf)
++ Slides and speaker notes for the general videos are not yet available.
+
+## Datasets used in this module
+
+There are three datasets used in this module. All of these are stored in a single binary file, which you can download [here](../dat/module02-datasets.RData). You should not need the text versions of the files, but I am including links to them below.
+
+### bump
 
 + View the [data dictionary](../dat/airline-data-dictionary.txt)
 + Used in the video
 + Not needed for the homework assignment
++ A [text version](../dat/airline-bumping-2017.txt) of this dataset.
 
-You should not need this, but there is a [text version](../dat/airline-bumping-2017.txt) of this dataset.
-
-fd
+### fd
 
 + View the [data dictionary](../dat/fat-data-dictionary.txt)
 + Used in the video
 + Not needed for the homework assignment
++ A [text version](../dat/fat.txt) of this dataset.
 
-You should not need this, but there is a [text version](../dat/fat.txt) of this dataset.
-
-sleep
+### sleep
 
 + View the [data dictionary](../dat/sleep-data-dictionary.txt)
 + Not used in the video
 + You will need this dataset for the homework assignment
++ A [text version](../dat/sleep.txt) of this dataset.
 
-You should not need this, but there is a [text version](../dat/sleep.txt) of this dataset.
+## Assignments
+
+### D02-01. Feedback after viewing videos
+
+Graded: 3 points, one point deduction if submitted after the due date.
+
+Review the videos in this section and answer the following questions.
+
+1. What was the most important thing you learned.
+
+2. What did you find confusing.
+
+3. What would you like to see covered next.
+
+It is okay to use short answers like "Nothing was confusing" or "Everything was confusing." You can also briefly concur with a previous student's comments.
+
+### HW02. Read in and analyze the sleep data.
+
+Graded: 3 points, one point deducted if submitted late.
+
+Download the the file [module02-datasets.RData](../dat/module02-datasets.RData) and store it in the appropriate folder. Then run a program using Rmarkdown to answer the following questions.the files in a src and dat directory somewhere on your computer. Modify the code so that you are listed as the author. Run the program and submit it as a PDF file.
+
+If there are errors or warnings in your output, make your best effort to fix them, but getting anything to run, even something with error messages will be sufficient for this very first homework assignment.
+
+1. Notice that there is a huge range in body weight. Display the information for the smallest and the largest mammals.
+
+2. Which variables have missing data?
+
+3. Calculate the mean and standard deviation for TotalSleep.
+
+4. Draw a histogram for the BodyWt variable. Note that this variable is highly skewed. Re-draw the histogram on the log scale. Hint: log(sl$BodyWt,base=10). For exta credit, relabel the axes with values at 0.001, 0.01, etc.
+
+5. Calculate the ratio of BrainWt to BodyWt and express it as a percentage. Be sure to convert grams to kilograms (or vice versa) before computing the ratio. What animal has the smallest/largest ratio?
+
+6. Do bigger animals sleep longer or live longer? Show your results using a correlation coefficient.
+
+7. Do animals who have high degrees of Predation, Exposure, or Danger sleep less? Show your results using a plot and a trendline.
+
+8. Place all the key results into a Word document or PowerPoint presentation, or as a PDF file or as an HTML file. Turn it in by email. Use the subject line: "Introduction to R, (your name), Part 1 Homework"
+
