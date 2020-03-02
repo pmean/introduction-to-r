@@ -1,5 +1,5 @@
 ---
-title: "Module02: Data with mostly continuous variables"
+title: "Module03: Reading text files"
 author: "Steve Simon"
 date: "Created 2020-02-08"
 output: powerpoint_presentation
@@ -10,23 +10,46 @@ suppressMessages(suppressWarnings(library(stringr)))
 options(width=45)
 ```
 
-### New slide 
+### Text files
++ Advantages
+  + Easy import into many programs
+  + Review using notepad
++ Wide range of formats
+  + Delimited
+  + Fixed width
++ First row for variable names
+  + Optional but recommended
++ Always look for a data dictionary
 
 <div class="notes">
 
+One of the most important skils you will learn in this class is how to read data from text files. Text files are commonly used for data storage because they are easily imported into a variety of different programs. You can often peek at a text file using a simple program like Notepad in order to get a quick feel for what the data looks like.
 
-The material for Part 1 did not include enough information about getting data into and out of R. Here are a few extra examples.
+Text files come in a variety of format. A delimited file uses a special character, often a comma, to designiate where one data value ends and the next one begins. In contrast, a fixed width file requires every variable to occupy a particular column or columns.
+
+Many text files include the names of the variables in the first row of text. This is not required, but it is strongly recommended.
 
 </div>
 
 ### Read in comma separated values
 
-<div class="notes">
++ Type the following into notepad.
 
-The read.csv function will read a text file with commas separating individual data points. This is a commonly used format and frequently has the extension .csv.
+```{r csv, echo=FALSE, comment=""}
+tx <- readLines("../dat/simple.csv")
+cat(tx, sep="\n")
+```
+
++ Save it
+  + in the dat directory
+  + filename: simple.csv
+
+<div class="notes">
 
 In notepad or another text editor, type in the following
 values.
+
+x,y
 
 1,4
 
@@ -36,37 +59,54 @@ values.
 
 4,16
 
-and save the file using the name simple.csv. Note the directory that you are saving it in.
+and save the file using the name simple.csv. Note the directory that you are saving it in. Ideally, it should be in a folder named "dat."
 
-Here's a time saving hint: run the getwd function without any arguments (getwd()) to see where the current working directory. This is the place that R is currently looking for files if you don't provide a path. If you store the file simple.csv in the current working directory, then you don't have to type in the path name as well as the filename.
-
-You can use the setwd command to change the current working directory. Be sure to use forward slashes (/) in your pathname rather than backslashes (\).
 
 </div>
 
-### New slide 
+### the read.csv function 
 
 ```{r read-csv}
 fn <- "../dat/simple.csv"
-d1 <- read.csv(file=fn)
-d1
+raw_data <- read.csv(file=fn, 
+  stringsAsFactors=FALSE)
+raw_data
 ```
 
 <div class="notes">
 
-Oops! That didn't work the way I wanted it to. Look at the help file for read.csv. What option would you use to avoid losing the first line of data?
+Comma separated files are so common that R has several dedicated functions for reading them. The simplest function is read.csv. It The best fuctions are in the readr library.
 
-### On your own  (do this, but you do not need to turn in anything to me)
+We will not talk about it in this module, but you almost always want to use the option stringsAsFactors=FALSE.
 
-Add the line x,y to the top of your csv file and read it in using the header=TRUE option.
+</div>
 
-Note: depending on how you typed your data, you may or may not get an error message like "Warning in readLines(file, n = thisblock): incomplete final line found"
+### Space delimited files
 
-This happens when R does not find a carriage return at the end of the last line of data. This is easily fixed by opening the text file and going to the very end with CTRL-END.
++ Type the following into notepad.
 
-if you land at the end of the very last line, you don't have a final carriage return. If you land on a blank line below the last line of text, then you are fine.
+```{r space-delimited, echo=FALSE, comment=""}
+tx <- readLines("../dat/simple.txt")
+cat(tx, sep="\n")
+```
 
-### Using the more general function, read.table
++ Save it
+  + in the dat directory
+  + filename: simple.txt
+
+<div class="notes">
+
+Now try something different. Type in the same data, but use a single space between each number rather than a comma.
+
+</div>
+
+### Using the read.table function
+
+```{r txt}
+fn <- "../dat/simple.txt"
+raw_data <- read.table(fn, header=TRUE, stringsAsFactors=FALSE, sep=" ")
+raw_data
+```
 
 <div class="notes">
 
@@ -78,53 +118,49 @@ Here is how you would use read.table to read this file.
 
 </div>
 
-### Reading in space delimited files.
+### Tab delimited files
 
-```{r read-table}
-fn <- "../dat/tilde.txt"
-d2 <- read.table(file=fn,header=TRUE,sep="~")
++ Type the following into notepad, but everywhere you see a space, press the tab key instead of the space bar.
+
+```{r tab, echo=FALSE, comment=""}
+tx <- readLines("../dat/simple.tsv")
+cat(tx, sep="\n")
 ```
 
++ Save it
+  + in the dat directory
+  + filename: simple.tsv
+
 <div class="notes">
-
-Open up notepad and type in the following lines.
-
-1  4
-
-2  8
-
-3 12
-
-4 16
-
-Be sure to line up the numbers properly by inserting two blanks between 1 and 4 and two blanks between 2 and 8, but only one blank between 3 and 12 and between 4 and 16.
-
-Save the file as space.txt.
-
-If you tried to read in the file with sep=" ", you would get an error. Try this to see what the error looks like.
-
-
-You can either always edit the file and replace any double blanks with single blanks, but if you look carefully at the help file, you will see that the argument sep="" (which is the default) will use white space (one or more blanks, tabs, carriage returns, or newlines). This works pretty well but not always. We will see a file where you have to fix things before you can import it properly.
 
 </div>
 
-### New slide 
+### Using the read.table function
 
-```{r read-space}
-fn <- "../dat/space.txt"
-# Try read.table(fn,sep=" ") first.
-d3 <- read.table(fn,sep="")
+```{r tsv}
+fn <- "../dat/simple.tsv"
+raw_data <- read.table(fn, header=TRUE, stringsAsFactors=FALSE, sep="\t")
+raw_data
 ```
 
 <div class="notes">
 
-Note that the default for read.table is header=FALSE, as opposed to the default of HEADER=TRUE for read.csv.
+Review the options for the read.table command.
+
+Type in the same data, but using the tilde (~) as a separator (e.g., 1~4). Save the file as tilde.txt.
+
+Here is how you would use read.table to read this file.
 
 </div>
 
 ### Reading fixed width format files
 
-<div class="notes"
+```{r fixed, echo=FALSE, comment=""}
+tx <- readLines("../dat/fixed.txt")
+cat(tx, sep="\n")
+```
+
+<div class="notes">
 
 Sometimes you will get a file with no delimiters to save space. This requires that each variable takes up a fixed number of columns and that information is often specified in a separate file.
 
@@ -144,10 +180,10 @@ and store it as fixed.txt.
 
 ### New slide 
 
-```{r fixed}
+```{r read.fwf}
 fn <- "../dat/fixed.txt"
-d4 <- read.fwf(fn,c(1,2))
-d4
+raw_data <- read.fwf(fn,c(1,2))
+raw_data
 ```
 
 <div class="notes">
@@ -361,118 +397,3 @@ The sleep in mammals data set offers a nice example of why lowess and loess are 
 
 </div>
 
-### New slide 
-
-```{r lowess-plot}
-plot(log(sl$BodyWt), sl$TotalSleep)
-lowess_fit <- lowess(x=log(sl$BodyWt), y=sl$TotalSleep)
-lines(lowess_fit)
-```
-
-<div class="notes">
-
-Pretty ugly. The breaks in the lines are caused by missing values, and a time-saving feature where the smoothing curve uses interpolation instead of smoothing on consecutive data points that are close to one another.You can fix this by removing the missing values.
-
-</div>
-
-### New slide 
-
-```{r lowess-plot-fix1}
-sl1 <- sl[is.finite(sl$TotalSleep), ]
-plot(log(sl1$BodyWt), sl1$TotalSleep)
-lowess_fit <- lowess(x=log(sl1$BodyWt), y=sl1$TotalSleep)
-lines(lowess_fit)
-```
-
-<div class="notes">
-
-The loess function also has some issues.
-
-</div>
-
-### New slide 
-
-```{r loess-plot}
-plot(log(sl$BodyWt), sl$TotalSleep)
-loess_fit <- loess(sl$TotalSleep~log(sl$BodyWt))
-lines(loess_fit)
-```
-
-<div class="notes">
-
-There are two problems here. The first is that the object created by loess differs from the object created by lowess in that the vector y inside the loess object is the original Y values, not the smoothed values. So sending the loess object to the lines function is like playing connect-the-dots.
-
-You need to use the predict function, but even this has issues.
-
-</div>
-
-### New slide 
-
-```{r loess-plot-fix1}
-plot(log(sl$BodyWt), sl$TotalSleep)
-loess_fit <- loess(sl$TotalSleep~log(sl$BodyWt))
-lines(loess_fit$x, predict(loess_fit))
-```
-
-<div class="notes">
-
-What's happening here is that the loess object lists the X values in the original order of the data set. Here are arrows showing the first six steps in drawing the smooth curve.
-
-</div>
-
-### New slide 
-
-```{r loess-plot-fix2}
-par(mfrow=c(2,3))
-for (j in 2:7) {
-  plot(log(sl$BodyWt), sl$TotalSleep)
-  loess_fit <- loess(sl$TotalSleep~log(sl$BodyWt))
-  lines(loess_fit$x[1:j], predict(loess_fit)[1:j])
-  arrows(loess_fit$x[j-1], predict(loess_fit)[j-1], 
-         loess_fit$x[j],   predict(loess_fit)[j], 
-         length=0.1, col="red", lwd=3)
-}
-```
-
-<div class="notes">
-
-You can sort the data before or after the loess function, but doing it beforehand is simpler.
-
-</div>
-
-### New slide 
-
-```{r loess-plot-fix3}
-# The log function is monotone increasing so it doesn't
-# change the order  from the original values of BodyWt.
-o <- order(sl$BodyWt)
-sl2 <- sl[o, ]
-plot(log(sl2$BodyWt), sl2$TotalSleep)
-loess_fit <- loess(sl2$TotalSleep~log(sl2$BodyWt))
-lines(loess_fit$x, predict(loess_fit))
-```
-
-<div class="notes">
-
-There is a better approach to drawing a smooth curve using a new library, ggplot2. The syntax for ggplot2 seems a bit odd at first, but it has the advantage of using a consistent approach to drawing graphs.
-
-</div>
-
-### New slide 
-
-```{r ggplot2}
-library(ggplot2)
-ggplot(data=sl, aes(x=log(BodyWt), y=TotalSleep)) + geom_point() + geom_smooth()
-```
-
-<div class="notes">
-
-Notice that the missing values are handled gracefully (with a warning even!) and that the order of the data is not an issue. The ggplot function sets up the general framework for the graph and then you add layers of information with the geom_point and geom_smooth functions. I dislike the confidence bands that are drawn by default, and you can turn these off with the se=FALSE argument in geom_smooth.
-
-I am thinking about revising the material in this class for the next iteration, and one of the biggest changes will be presenting all the graphs using the ggplot2 library.
-
-If you want to learn more about ggplot2, a nice starting point is
-
-https://rpubs.com/hadley/ggplot-intro
-
-</div>
