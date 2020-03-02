@@ -1,0 +1,33 @@
+---
+title: "Homework 02"
+author: "Steve Simon"
+date: "Created 2020-02-26"
+output: html_document
+---
+
+This program shows how to manipulate a simple set 
+of data and produce a few descriptive statistics.
+
+```{r version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+Load the file d.RData and list its contents.
+
+```{r read}
+load("../dat/tst2.RData")
+ls()
+```
+
+Print the data frame "bump."
+
+```{r print}
+head(sleep)
+```
+
+The str function gives an overview of any R object
+
+```{r str-function}
+str(sleep)
+```
