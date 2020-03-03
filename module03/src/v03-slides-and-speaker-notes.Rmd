@@ -143,9 +143,21 @@ raw_data <- read.table(fn, header=TRUE, stringsAsFactors=FALSE, sep="\t")
 raw_data
 ```
 
-<div class="notes">
+### Anything can be a delimiter
 
-Review the options for the read.table command.
++ Type the following into notepad
+
+```{r anything, echo=FALSE, comment=""}
+tx <- readLines("../dat/tilde.txt")
+cat(tx, sep="\n")
+```
+
++ Save it
+  + in the dat directory
+  + filename: tilde.txt
+
+
+<div class="notes">
 
 Type in the same data, but using the tilde (~) as a separator (e.g., 1~4). Save the file as tilde.txt.
 
@@ -153,14 +165,41 @@ Here is how you would use read.table to read this file.
 
 </div>
 
+### Using the read.table function
+
+```{r tilde}
+fn <- "../dat/tilde.txt"
+raw_data <- read.table(fn, header=TRUE, stringsAsFactors=FALSE, sep="~")
+raw_data
+```
+
+<div class="notes">
+
+The data reads in just fine. Why would you use a tilde as a delimiter. Sometimes your data itself includes delimiters like spaces and commas, and then you might want to choose an obscure out of the way symbol to serve as a delimiter.
+
+</div>
+
 ### Reading fixed width format files
+
++ Type the following into notepad
+  + Space between the 1 and 4
+  + Space between the 2 and 8
+  + No space between the 3 and 12
+  + No space between the 4 and 16
 
 ```{r fixed, echo=FALSE, comment=""}
 tx <- readLines("../dat/fixed.txt")
 cat(tx, sep="\n")
 ```
 
++ Save it
+  + in the dat directory
+  + filename: fixed.txt
+
+
 <div class="notes">
+
+Here's another variation.
 
 Sometimes you will get a file with no delimiters to save space. This requires that each variable takes up a fixed number of columns and that information is often specified in a separate file.
 
@@ -178,11 +217,11 @@ and store it as fixed.txt.
 
 </div>
 
-### New slide 
+### The read.fwf function 
 
 ```{r read.fwf}
 fn <- "../dat/fixed.txt"
-raw_data <- read.fwf(fn,c(1,2))
+raw_data <- read.fwf(fn, c(1, 2))
 raw_data
 ```
 
@@ -190,20 +229,30 @@ raw_data
 
 You should also consider the read.fortran function. Check out the help file.
 
+</div>
+
+### Why fixed width format?
+
+![](../images/ed2017.png)
+
+<div class="notes">
+
+Here's an example of a very large file, where fixed width format makes sense. There are 16,710 rows in the data set, each row (except the last one) have 2,455 columns. There are 944 variables. It's a very big file, and putting in 943 commas in each of 16,710 rows would make the file even worse.
+
+</div>
+
 ### Writing text files
 
 If you want to write a text file, you can use either the write.csv or write.table functions. Look up the help files on these functions. We'll create a small data frame and store it in a comma delimited and tab delimited format.
 
 </div>
 
-### New slide 
+### Writing text files 
 
 ```{r write-text}
-d5 <- data.frame(x=c(13,12,11),y=c(2,4,6))
-fn <- "../results/output1.csv"
-write.csv(d5,fn)
-fn <- "../results/output2.txt"
-write.table(d5,fn)
+raw_data <- data.frame(x=c(1, 2, 3, 4), y=c(4, 8, 12, 16))
+fn <- "../results/output_data.txt"
+write.table(raw_data, fn, row.names=FALSE)
 ```
 
 <div class="notes">
@@ -212,188 +261,47 @@ Open these files in notepad to see what they look like.
 
 </div>
 
-### On your own (do this, but you do not need to turn it anything to me)
+### Writing text files
 
-To avoid the extra line at the top and the row names "1","2","3" use the options header=FALSE and col.names=FALSE. Try this and see what the two files look like now.
-
-### Writing binary files
-
-By default, R saves everything that you create on exiting from the program and stores it in a file with no name and with an extension of RData (in other words, .RData). This file is automatically loaded the next time you start R from the same subdirectory.
-
-If you want to save a data frame in binary format, use the function save(). Binary formats are much faster but are pretty much useful only within R itself.
-
-In other words, don't send a binary file to someone who does not have R. Binary files are useful when you are moving data from one R user to another, or data from one computer to another, or sometimes when you are moving data from one folder to another.
-
-
-I had a student ask, “What, exactly, do I need to turn in for the homework assignments. I said that I’d like to see the R commands, the R output, and a brief commentary. Then I realized that it might be helpful to see a real example. So I made up a simple homework assignment to illustrate what I’m looking for.
-
-### Assignment
-
-1. Read in the data on various body measurements. A description is at
---> http://www.amstat.org/publications/jse/datasets/fat.txt
-and the file can be found at 
---> http://www.amstat.org/publications/jse/datasets/fat.dat.txt
-Display the first few rows and the last few rows of the data.
-
-2. List all of the bmi values.
-
-3. List the last row of the data set only.
-
-4. Calculate a summary for bmi.
-
-5. Draw a histogram for bmi and interpret it.
-
-6. Show the association between age and bmi using a correlation.
-
-Here's how you would do this using R Markdown and an html format.
-
-### Answer to 1.
-
-Here are the R commands to read in the file.
-
-### New slide 
-
-```{r q1}
-fn <- "http://www.amstat.org/publications/jse/datasets/fat.dat.txt"
-fd <- read.table(file=fn)
+```{r output1, echo=FALSE}
+tx <- readLines(fn)
+cat(tx, sep="\n")
 ```
 
 <div class="notes">
 
-Here are the first few rows of the data set.
+If you opened up the data in notepad or some other program, you would see a space delimited file. You can change the delimiter, among other things
 
 </div>
 
-### New slide 
+### Example #1
 
-```{r q1a}
-head(fd)
-```
++ https://stats.idre.ucla.edu/stat/data/binary.csv
 
-<div class="notes">
-Here are the last few rows of the data set.
-
-</div>
-
-### New slide 
-
-```{r q1b}
-tail(fd)
+```{r ex1, echo=FALSE}
+fn <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
+tx <- readLines(fn)
+cat(tx[1:6], sep="\n")
 ```
 
 <div class="notes">
 
-### Answer to 2. 
-
-Here are all the bmi values.
+Here is the first real-world example. Peeking at the first six lines of data, you can see clearly that it is uses comma delimiter and the first row of data contains the variable names.
 
 </div>
 
-### New slide 
 
-```{r q2}
-names(fd) <- c("case","fat.b","fat.s","dens","age","wt","ht","bmi","ffw","neck","chest","abdomen","hip","thigh","knee","ankle","biceps","forearm","wrist")
-fd$bmi
+### Example #1
+
++ No formal data dictionary, but here is a description
+  + "This dataset has a binary response (outcome, dependent) variable called admit. There are three predictor variables: gre, gpa and rank. We will treat the variables gre and gpa as continuous. The variable rank takes on the values 1 through 4. Institutions with a rank of 1 have the highest prestige, while those with a rank of 4 have the lowest."
+  + Found at https://stats.idre.ucla.edu/r/dae/logit-regression/
+
+### Example #1
+
+```{r}
+fn <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
+mydata <- read.csv(fn)
+head(mydata)
 ```
-
-<div class="notes">
-
-### Answer to 3.
-
-Here is the last row of the data.
-
-</div>
-
-### New slide 
-
-```{r q3}
-fd[252, ]
-```
-
-<div class="notes">
-
-### Answer to 4. 
-
-Here is a summary for bmi.
-
-</div>
-
-### New slide 
-
-```{r q4}
-summary(fd$bmi)
-```
-
-<div class="notes">
-
-[[NOTE: INTERPRETATION IS IMPORTANT, BOTH HERE AND FOR THE NEXT TWO QUESTIONS. You don't have to describe every single number, just pick two or three to talk about.]] Rounding to two significant figures, the mean is 25, the range is 18 to 49.
-
-### Answer to 5. 
-
-Here is a histogram for bmi.
-
-</div>
-
-### New slide ```{r q5}
-hist(fd$bmi)
-```
-
-<div class="notes">
-
-The distribution is slightly skewed with a possible outlier between 45 and 50.
-
-### Answer to 6.
-
-Here is a correlation between bmi and age.
-
-</div>
-
-### New slide 
-
-```{r q6}
-cor(fd$bmi, fd$age)
-```
-
-<div class="notes">
-
-The correlation is 0.12. There is little or no association between bmi and age.
-
-Concluding remarks. What you see here is only a suggestion. Feel free to create a format that you like. The three things I am looking for is a listing of the R commands that you used, the text or graphical output, and a brief interpretation.
-
-I noticed several of the students having trouble with adding a smooth curve to a scatterplot, and it really isn't their fault. I have been using R forclose to fiften years, which is mostly good, but it is bad because I tend to use approaches that worked with early versions of R rather than more recent approaches. I guess the term for this is that I'm "old school". But this old can learn a few new tricks, so let me explain why the old school approach to adding a smooth curve is sub-optimal and how the new approach using the ggplot2 library is better.
-
-First, you need to download the ggplot2 package.
-
-</div>
-
-### New slide 
-
-```{r download-ggplot2, eval=FALSE}
-# You only need to do this once, then put eval=FALSE in the line above from that point onward.
-install.packages("ggplot2")
-```
-
-<div class="notes">
-
-There are two functions built into R for scatterplot smoothing. The first is lowess and the second is loess. Both use a locally weighted average and you control the degree of smoothness by varying the size of the window. A wide window does a lot of smoothing and a narrow window does much less smoothing.
-
-The programs work okay, but are suboptimal for several reasons.
-
-1. They will sometimes choke on data sets with lots of ties among the independent variables.
-
-2. They will sometimes choke on data sets with missing values.
-
-3. They do not have a data= argument in variable list, forcing you to type the data frame name twice.
-
-4. They do not plot well if your data is not sorted properly. Here's a quick example of some of the problems you might see.
-
-</div>
-
-### New slide 
-
-<div class="notes">
-
-The sleep in mammals data set offers a nice example of why lowess and loess are suboptimal.
-
-</div>
 
