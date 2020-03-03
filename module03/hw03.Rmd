@@ -1,0 +1,16 @@
+---
+title: "Homework 03"
+author: "Steve Simon"
+date: "Created 2020-03-03"
+output: html_document
+---
+
+This program shows how to manipulate a simple set 
+of data and produce a few descriptive statistics.
+
+```{r version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+The oyster dataset shows two different computer vision methods that can be used to estimate oyster weight and oyster volume. The [data dictionary](http://jse.amstat.org/datasets/30oysters.txt) and the dataset itself can be found [here](http://jse.amstat.org/datasets/30oysters.dat.txt).

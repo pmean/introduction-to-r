@@ -295,13 +295,56 @@ Here is the first real-world example. Peeking at the first six lines of data, yo
 
 + No formal data dictionary, but here is a description
   + "This dataset has a binary response (outcome, dependent) variable called admit. There are three predictor variables: gre, gpa and rank. We will treat the variables gre and gpa as continuous. The variable rank takes on the values 1 through 4. Institutions with a rank of 1 have the highest prestige, while those with a rank of 4 have the lowest."
-  + Found at https://stats.idre.ucla.edu/r/dae/logit-regression/
+  + Description found at https://stats.idre.ucla.edu/r/dae/logit-regression/
+  
+<div class="notes">
+
+There is no formal data dictionary, which is a shame, but you can find a brief description on a second page where this data set is used.
+
+</div>
 
 ### Example #1
 
-```{r}
+```{r read-binary}
 fn <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
-mydata <- read.csv(fn)
+mydata <- read.csv(fn, stringsAsFactors=FALSE)
 head(mydata)
 ```
 
+<div class="notes">
+
+The read.csv file does a fine job here. I am only printing the first few rows of the data.
+
+</div>
+
+### Example #2
+
+![](../images/barbershop-in-notepad.png)
+
+<div class="notes">
+
+This is a second dataset. Looking at it in notepad, it looks like it is a tab delimited file.
+
+</div>
+
+### Example #2
+
++ No data dictionary
+  + Brief description: "At a barbershop music singing competition, choruses are judged on three scales: Music (quality of the arrangement, etc.), Performance, and Singing."
+  + Description found at https://dasl.datadescription.com/datafile/barbershop-music/
+
+### Example #2
+
+```{r read-tsa-3}
+fn <- "https://dasl.datadescription.com/download/data/3061"
+mydata <- read.table(
+  fn, header=TRUE, sep="\t", 
+  stringsAsFactors=FALSE)
+head(mydata)
+```
+
+<div class="notes">
+
+The read.table command works well here. The separator or delimiter is the tab character, which is coded in R as \t.
+
+</div>
