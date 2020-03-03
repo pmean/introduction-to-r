@@ -231,16 +231,6 @@ You should also consider the read.fortran function. Check out the help file.
 
 </div>
 
-### Why fixed width format?
-
-![](../images/ed2017.png)
-
-<div class="notes">
-
-Here's an example of a very large file, where fixed width format makes sense. There are 16,710 rows in the data set, each row (except the last one) have 2,455 columns. There are 944 variables. It's a very big file, and putting in 943 commas in each of 16,710 rows would make the file even worse.
-
-</div>
-
 ### Writing text files
 
 If you want to write a text file, you can use either the write.csv or write.table functions. Look up the help files on these functions. We'll create a small data frame and store it in a comma delimited and tab delimited format.
@@ -348,3 +338,45 @@ head(mydata)
 The read.table command works well here. The separator or delimiter is the tab character, which is coded in R as \t.
 
 </div>
+
+### Example #3
+
+![](../images/airport-in-browser.png)
+
+<div class="notes">
+
+This is a third data set. Notice that there are no variable names at the top of the file.
+
+</div>
+
+### Example #3
+
++ Data dictionary at http://jse.amstat.org/datasets/airport.txt. Here is an excerpt.
+
+```{}
+VARIABLE DESCRIPTIONS:
+Airport                          Columns 1-21
+City                             Columns 22-43 
+Scheduled departures             Columns 44-49 
+Performed departures             Columns 51-56
+Enplaned passengers              Columns 58-65
+Enplaned revenue tons of freight Columns 67-75
+Enplaned revenue tons of mail    Columns 77-85
+```
+
+<div class="notes">
+
+This dataset has a very nice data dictionary. From the description, you can tell that it is a fixed width format.
+
+</div>
+
+### Example #3
+
+```{r airport}
+fn <- "http://jse.amstat.org/datasets/airport.dat.txt"
+raw_data <- read.fwf(fn, 
+  c(21, 22, 6, 7, 9, 10, 10), header=FALSE)
+head(raw_data, 2)
+```
+
+### Some recommendations
