@@ -391,6 +391,25 @@ You have to do a bit of math here. If the first variable ends in column 21 and t
 
 </div>
 
+### Should I download before reading?
++ Read directly from website
+  + Convenient
+  + Updates incorporated at each run
++ Download then read
+  + Downloaded file doesn't disappear
+  + Avoid repeated long downloads
+  + Work even when Internet connection is down
+  
+<div class="notes">
+
+R gives you the option of reading a file on your computer or reading it from a website. For small datasets that you only use once (such as for your homework assignments), it doesn't matter. For larger files and repeated data analyses, there are some advantages to reading directly from the website and some advantages to downloading the file to your computer. 
+
+Reading directly from the website is convenient. You don't have to figure out where to store your downloaded file. If the website updates the file on a regular basis, reading directly always insures that you have the most current data.
+
+If you download the file and then read it, you provide yourself with some insurance against the website disappearing. If the download takes a long time, then you only have to endure that delay once. Finally, a downloaded file allows you to work when an Internet connection is not available, such as during a plane flight (though many airlines will now let you connect while in the air).
+
+</div>
+
 ### No data dictionary?
 + Peek at file
   + Same number of delimiters on each line
