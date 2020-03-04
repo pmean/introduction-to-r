@@ -233,6 +233,12 @@ You should also consider the read.fortran function. Check out the help file.
 
 ### Writing text files
 
++ Similar structure to read functions
+  + write.csv
+  + write.table
+
+<div class="notes">
+
 If you want to write a text file, you can use either the write.csv or write.table functions. Look up the help files on these functions. We'll create a small data frame and store it in a comma delimited and tab delimited format.
 
 </div>
@@ -379,4 +385,63 @@ raw_data <- read.fwf(fn,
 head(raw_data, 2)
 ```
 
-### Some recommendations
+<div class="notes">
+
+You have to do a bit of math here. If the first variable ends in column 21 and the second variable ends in column 43, then the number of columns for the second variable is 43-21.
+
+</div>
+
+### No data dictionary?
++ Peek at file
+  + Same number of delimiters on each line
++ Tabs versus multiple blanks are hard to distinguish
+  + Tab delimited?
+  + Space delimited?
+  + Fixed width format?
+  + http://www.pmean.com/12/pesky.html
+
+<div class="notes">
+
+Many files that you find on the Internet are missing any documentation or the documentation fails to help you figure out what approach to use to import the data. If that's the case, don't despair. There are several common sense things you can try.
+
+First, peek at the file and see if there are any obvious delimiters. It's important that you have the exact same number of delimiters on each line of data. If you think the comma is the delimiter, then if there are five commas on one line, then every line should have five commas. The exception would be delimiters found inside quotes.
+
+Tabs versus multiple blanks are hard to distinguish. This sometimes means that you will have difficulty telling whether to use a tab delimited file, a space delimited file, or a fixed width file. I have a web page that talks about this in detail. 
+
+</div>
+
+### No data dictionary?
++ Experiment
+  + Read warnings carefully
++ If needed, edit the file manually
+  + Simple edits of one or two offending lines
+  + Global search and replace
+    + Change tabs to blanks
+    + Change multiple blanks to single blank
+
+<div class="notes">
+
+There's nothing wrong with experimenting. Just pick one approach and try it. If you get an error message or the data is garbled, try a different approach. If you get warnings rather than errors, things may be okay, but look carefully at the warning message and double your vigilance efforts before you start analysis.
+
+If all else fails, go in and edit the file manually. This helps if there are just a couple of rows in the file that are causing you heartburn. Usually the error or warning message will give you enough of a hint that you locate the offending lines. If there are problems on every line or almost every line, then sometimes a global search and replace works well.
+
+</div>
+
+### Summary
++ read.csv for comma delimited files
++ read.table for other delimiters
+  + Beware the tab
++ read.fwf for fixed width files
++ write with write.csv, write.table
+
+<div class="notes">
+
+Read data from text files is an important survival skill in R. Use the read.csv function for comma-delimited files. This is the most common format for text files.
+
+Use read.table for other delimiters. Watch out for tab delimited files.
+
+Use read.fwf for fixed width files.
+
+If you need to write text files, the write.csv and write.table functions provide options similar to the two read functions.
+
+</div>
