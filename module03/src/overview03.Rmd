@@ -20,7 +20,7 @@ In this video, you will learn
 
 There is one video in this module specific to the R programming language and two general videos about good programming practices. You can find the 
 
-+ [Slides and speaker notes for the R videos](v02-slides-and-speaker-notes.pdf)
++ [Slides and speaker notes for the R videos](v03-slides-and-speaker-notes.pdf)
 + Slides and speaker notes for the general videos are not yet available.
 
 ## Datasets used in this module
@@ -55,9 +55,27 @@ I will not be providing a data dictionary for the small artifical dataset with f
 + Not needed for the homework assignment
 + A [text version](http://jse.amstat.org/datasets/airport.dat.txt) of this dataset.
 
+### Oyster
+
++ View the [data dictionary](http://jse.amstat.org/datasets/30oysters.txt)
++ You need this data for the homework assignment
++ A [text version](http://jse.amstat.org/datasets/30oysters.dat.txt) of this dataset.
+
+### Snails
+
++ View the [data dictionary](https://dryad.figshare.com/articles/Susceptibility_of_live_snails_to_predation/4114368)
++ You need this data for the homework assignment
++ A [text version](https://dryad.figshare.com/ndownloader/files/6668235) of this dataset.
+
+### Diamond rings
+
++ View the [data dictionary](http://jse.amstat.org/datasets/diamond.txt)
++ You need this data for the homework assignment
++ A [text version](http://jse.amstat.org/datasets/diamond.dat.txt) of this dataset.
+
 ## Assignments
 
-### D32-01. Feedback after viewing videos
+### D03-01. Feedback after viewing videos
 
 Graded: 3 points, one point deduction if submitted after the due date.
 
@@ -76,3 +94,8 @@ It is okay to use short answers like "Nothing was confusing" or "Everything was 
 Graded: 3 points, one point deducted if submitted late.
 
 `r readLines("../dat/hw0301.txt")`
+
+`r readLines("../dat/hw0302.txt")`
+
+`r readLines("../dat/hw0303.txt")`
+

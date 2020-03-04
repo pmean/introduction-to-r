@@ -1,0 +1,1 @@
+2. An experiment with predation of snails is described [here](https://dryad.figshare.com/articles/Susceptibility_of_live_snails_to_predation/4114368) and the data is stored [here](https://dryad.figshare.com/ndownloader/files/6668235). This is a comma separated text file. Read it into R and print the first six rows of data. 

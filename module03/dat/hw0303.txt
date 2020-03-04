@@ -1,0 +1,1 @@
+3. A study of diamond ring prices is described [here](http://jse.amstat.org/datasets/diamond.txt) and the data is stored [here](http://jse.amstat.org/datasets/diamond.dat.txt). This is a fixed width text file. Read it into R and print the first six rows of data. 

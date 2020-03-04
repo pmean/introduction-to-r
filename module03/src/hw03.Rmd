@@ -12,6 +12,8 @@ R.version.string
 Sys.Date()
 ```
 
-1. The oyster dataset shows two different computer vision methods that can be used to estimate oyster weight and oyster volume. Please consult the [data dictionary](http://jse.amstat.org/datasets/30oysters.txt) and then review [the dataset itself](http://jse.amstat.org/datasets/30oysters.dat.txt). This is a tab delimited file. Read it into R and print the first six rows of data.
+`r readLines("../dat/hw0301.txt")`
 
-2. An experiment with predation of two different species of snails is described [here](https://dryad.figshare.com/articles/Susceptibility_of_live_snails_to_predation/4114368) and the data is stored [here](https://dryad.figshare.com/ndownloader/files/6668235). This is a comma separated text file. Read it into R and print the first six rows of data. 
+`r readLines("../dat/hw0302.txt")`
+
+`r readLines("../dat/hw0303.txt")`
