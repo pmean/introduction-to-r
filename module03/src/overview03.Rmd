@@ -1,11 +1,78 @@
 ---
 title: "M03. Overview of module03"
 author: "Steve Simon"
-date: "Created 2020-02-13"
+date: "Created 2020-03-02"
 output: html_document
 ---
 
 This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
 
-This document has not yet been written.
+This is an overview of module, which discusses how to read and write text files in R. Parts of it are posted in various locations on the Canvas website. If you notice a discrepancy between this overview and the Canvas website, please notify me. The Canvas website always takes precedence.
 
+## Learning objectives
+
+In this video, you will learn 
++ how to read delimited text files
++ how to read fixed width text files
++ how to write text files
+
+## Videos
+
+There is one video in this module specific to the R programming language and two general videos about good programming practices. You can find the 
+
++ [Slides and speaker notes for the R videos](v02-slides-and-speaker-notes.pdf)
++ Slides and speaker notes for the general videos are not yet available.
+
+## Datasets used in this module
+
+I will not be providing a data dictionary for the small artifical dataset with four rows that appears in a variety of formats.
+
+### ED2017
+
++ View the [data dictionary](ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Dataset_Documentation/NHAMCS/doc17_ed-508.pdf)
++ Used very briefly in the video.
++ Not needed for the homework assignment
++ A [text version](ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NHAMCS/ED2017.zip) of this dataset.
+
+### Binary
+
++ There is no data dictionary, but a brief description is found buried on [this page](https://stats.idre.ucla.edu/r/dae/logit-regression/).
++ Used in the video.
++ Not needed for the homework assignment
++ A [text version](https://stats.idre.ucla.edu/stat/data/binary.csv) of this dataset.
+
+### Barbershop music
+
++ View the [data dictionary](https://dasl.datadescription.com/datafile/barbershop-music/)
++ Used in the video.
++ Not needed for the homework assignment
++ A [text version](https://dasl.datadescription.com/download/data/3061) of this dataset.
+
+### Airport
+
++ View the [data dictionary](http://jse.amstat.org/datasets/airport.txt)
++ Used in the video.
++ Not needed for the homework assignment
++ A [text version](http://jse.amstat.org/datasets/airport.dat.txt) of this dataset.
+
+## Assignments
+
+### D32-01. Feedback after viewing videos
+
+Graded: 3 points, one point deduction if submitted after the due date.
+
+Review the videos in this section and answer the following questions.
+
+1. What was the most important thing you learned.
+
+2. What did you find confusing.
+
+3. What would you like to see covered next.
+
+It is okay to use short answers like "Nothing was confusing" or "Everything was confusing." You can also briefly concur with a previous student's comments.
+
+### HW03. Read in two different text files.
+
+Graded: 3 points, one point deducted if submitted late.
+
+`r readLines("../dat/hw0301.txt")`
