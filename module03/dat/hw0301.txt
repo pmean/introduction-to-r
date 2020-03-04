@@ -1,0 +1,1 @@
+1. The oyster dataset shows two different computer vision methods that can be used to estimate oyster weight and oyster volume. Please consult the [data dictionary](http://jse.amstat.org/datasets/30oysters.txt) and then review [the dataset itself](http://jse.amstat.org/datasets/30oysters.dat.txt). This is a tab delimited file.
