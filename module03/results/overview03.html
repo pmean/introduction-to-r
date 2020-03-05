@@ -270,6 +270,7 @@ code {
 }
 img {
   max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -364,13 +365,112 @@ summary {
 
 <h1 class="title toc-ignore">M03. Overview of module03</h1>
 <h4 class="author">Steve Simon</h4>
-<h4 class="date">Created 2020-02-13</h4>
+<h4 class="date">Created 2020-03-02</h4>
 
 </div>
 
 
-<p>This document was last modified on 2020-02-13.</p>
-<p>This document has not yet been written.</p>
+<p>This document was last modified on 2020-03-05.</p>
+<p>This is an overview of module, which discusses how to read and write text files in R. Parts of it are posted in various locations on the Canvas website. If you notice a discrepancy between this overview and the Canvas website, please notify me. The Canvas website always takes precedence.</p>
+<div id="learning-objectives" class="section level2">
+<h2>Learning objectives</h2>
+<p>In this video, you will learn + how to read delimited text files + how to read fixed width text files + how to write text files</p>
+</div>
+<div id="videos" class="section level2">
+<h2>Videos</h2>
+<p>There is one video in this module specific to the R programming language and two general videos about good programming practices. You can find the</p>
+<ul>
+<li><a href="v03-slides-and-speaker-notes.pdf">Slides and speaker notes for the R videos</a></li>
+<li>Slides and speaker notes for the general videos are not yet available.</li>
+</ul>
+</div>
+<div id="datasets-used-in-this-module" class="section level2">
+<h2>Datasets used in this module</h2>
+<p>I will not be providing a data dictionary for the small artifical dataset with four rows that appears in a variety of formats.</p>
+<div id="ed2017" class="section level3">
+<h3>ED2017</h3>
+<ul>
+<li>View the <a href="ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Dataset_Documentation/NHAMCS/doc17_ed-508.pdf">data dictionary</a></li>
+<li>Used very briefly in the video.</li>
+<li>Not needed for the homework assignment</li>
+<li>A <a href="ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/NHAMCS/ED2017.zip">text version</a> of this dataset.</li>
+</ul>
+</div>
+<div id="binary" class="section level3">
+<h3>Binary</h3>
+<ul>
+<li>There is no data dictionary, but a brief description is found buried on <a href="https://stats.idre.ucla.edu/r/dae/logit-regression/">this page</a>.</li>
+<li>Used in the video.</li>
+<li>Not needed for the homework assignment</li>
+<li>A <a href="https://stats.idre.ucla.edu/stat/data/binary.csv">text version</a> of this dataset.</li>
+</ul>
+</div>
+<div id="barbershop-music" class="section level3">
+<h3>Barbershop music</h3>
+<ul>
+<li>View the <a href="https://dasl.datadescription.com/datafile/barbershop-music/">data dictionary</a></li>
+<li>Used in the video.</li>
+<li>Not needed for the homework assignment</li>
+<li>A <a href="https://dasl.datadescription.com/download/data/3061">text version</a> of this dataset.</li>
+</ul>
+</div>
+<div id="airport" class="section level3">
+<h3>Airport</h3>
+<ul>
+<li>View the <a href="http://jse.amstat.org/datasets/airport.txt">data dictionary</a></li>
+<li>Used in the video.</li>
+<li>Not needed for the homework assignment</li>
+<li>A <a href="http://jse.amstat.org/datasets/airport.dat.txt">text version</a> of this dataset.</li>
+</ul>
+</div>
+<div id="oyster" class="section level3">
+<h3>Oyster</h3>
+<ul>
+<li>View the <a href="http://jse.amstat.org/datasets/30oysters.txt">data dictionary</a></li>
+<li>You need this data for the homework assignment</li>
+<li>A <a href="http://jse.amstat.org/datasets/30oysters.dat.txt">text version</a> of this dataset.</li>
+</ul>
+</div>
+<div id="snails" class="section level3">
+<h3>Snails</h3>
+<ul>
+<li>View the <a href="https://dryad.figshare.com/articles/Susceptibility_of_live_snails_to_predation/4114368">data dictionary</a></li>
+<li>You need this data for the homework assignment</li>
+<li>A <a href="https://dryad.figshare.com/ndownloader/files/6668235">text version</a> of this dataset.</li>
+</ul>
+</div>
+<div id="diamond-rings" class="section level3">
+<h3>Diamond rings</h3>
+<ul>
+<li>View the <a href="http://jse.amstat.org/datasets/diamond.txt">data dictionary</a></li>
+<li>You need this data for the homework assignment</li>
+<li>A <a href="http://jse.amstat.org/datasets/diamond.dat.txt">text version</a> of this dataset.</li>
+</ul>
+</div>
+</div>
+<div id="assignments" class="section level2">
+<h2>Assignments</h2>
+<div id="d03-01.-feedback-after-viewing-videos" class="section level3">
+<h3>D03-01. Feedback after viewing videos</h3>
+<p>Graded: 3 points, one point deduction if submitted after the due date.</p>
+<p>Review the videos in this section and answer the following questions.</p>
+<ol style="list-style-type: decimal">
+<li><p>What was the most important thing you learned.</p></li>
+<li><p>What did you find confusing.</p></li>
+<li><p>What would you like to see covered next.</p></li>
+</ol>
+<p>It is okay to use short answers like “Nothing was confusing” or “Everything was confusing.” You can also briefly concur with a previous student’s comments.</p>
+</div>
+<div id="hw03.-read-in-two-different-text-files." class="section level3">
+<h3>HW03. Read in two different text files.</h3>
+<p>Graded: 3 points, one point deducted if submitted late.</p>
+<ol style="list-style-type: decimal">
+<li><p>The oyster dataset shows two different computer vision methods that can be used to estimate oyster weight and oyster volume. Please consult the <a href="http://jse.amstat.org/datasets/30oysters.txt">data dictionary</a> and then review <a href="http://jse.amstat.org/datasets/30oysters.dat.txt">the dataset itself</a>. This is a tab delimited file.</p></li>
+<li><p>An experiment with predation of snails is described <a href="https://dryad.figshare.com/articles/Susceptibility_of_live_snails_to_predation/4114368">here</a> and the data is stored <a href="https://dryad.figshare.com/ndownloader/files/6668235">here</a>. This is a comma separated text file. Read it into R and print the first six rows of data.</p></li>
+<li><p>A study of diamond ring prices is described <a href="http://jse.amstat.org/datasets/diamond.txt">here</a> and the data is stored <a href="http://jse.amstat.org/datasets/diamond.dat.txt">here</a>. This is a fixed width text file. Read it into R and print the first six rows of data.</p></li>
+</ol>
+</div>
+</div>
 
 
 

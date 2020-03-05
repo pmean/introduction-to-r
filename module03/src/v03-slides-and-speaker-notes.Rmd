@@ -410,6 +410,34 @@ If you download the file and then read it, you provide yourself with some insura
 
 </div>
 
+### Disadvantages of fixed width formatting?
++ Confusing
+  + What is 312? 3, 1, and 2? 31, and 2? 3 and 12? 312?
++ More work
++ Prone to errors
+
+<div class="notes">
+
+When you have no delimiters, it is easy to get confused. The third line, for example, of our simple data file is "312". That could be three numbers: 3, 1, and 2. It could be two numbers: 31 and 2? Or maybe 3 and 12? Or it could be a single number: 312. In a small dataset, you won't get confused, but you might with a larger dataset.
+
+It's also more work because you have to specify the number of columns that each variable uses. That's not trivial for a large file.
+
+The fixed width format is also more prone to errors. If you get the columns wrong, you might truncate some of your data.
+
+</div>
+
+### Example where fixed width formatting is needed.
+
+![](../images/ed2017.png)
+
+<div class="notes">
+
+Here's practical example where you really might need fixed width formatting. This is data from Emergency Department visits in a CDC survey. There are over 16,000 rows, which is bad enough. But each row (except the last one) has over 2,400 columns. These columns contain information for over 900 variables.
+
+If you were to use delimiters in this file, you'd have to add 900 commas or 900 tabs or 900 spaces or 900 tildes to each and every line. That works out to be 1.4 million commas across the entire file. That's a substantial increase to the size of an already very large and unwieldy file.
+
+</div>
+
 ### No data dictionary?
 + Peek at file
   + Same number of delimiters on each line
