@@ -1,0 +1,26 @@
+---
+title: "Corona virus map"
+author: "Steve Simon"
+date: "3/9/2020"
+output: html_document
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo=FALSE)
+suppressMessages(suppressWarnings(library(lubridate)))
+suppressMessages(suppressWarnings(library(tidyverse)))
+```
+
+### Read the files
+
+```{r read}
+fn <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"
+raw_data1 <- read.csv(paste0(fn, "03-08-2020.csv"), stringsAsFactors=FALSE)
+raw_data1$loc <- paste(raw_data1[[2]], raw_data1[[1]], sep=": ")
+head(raw_data1)
+raw_data2 <- read.csv(paste0(fn, "02-28-2020.csv"), stringsAsFactors=FALSE)
+raw_data2$loc <- paste(raw_data2[[2]], raw_data2[[1]], sep=": ")
+head(raw_data2)
+setdiff(raw_data1$loc, raw_data2$loc)
+setdiff(raw_data2$loc, raw_data1$loc)
+```
