@@ -13,36 +13,49 @@ suppressMessages(suppressWarnings(library(rnaturalearth)))
 suppressMessages(suppressWarnings(library(rnaturalearthdata)))
 suppressMessages(suppressWarnings(library(sf)))
 suppressMessages(suppressWarnings(library(tidyverse)))
+# install.packages("rnaturalearthhires", repos="http://packages.ropensci.org", type="source")
 ```
 
 ### Read the files
+
 
 ```{r ts}
 fn <- "../dat/time_series_19-covid-Deaths.csv"
 fn <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
 raw_data_ts <- read.csv(fn, stringsAsFactors=FALSE)
 world <- ne_countries(scale = "medium", returnclass = "sf")
+states <- ne_states(country="United States of America", returnclass = "sf")
+lat0 <-    24
+lat1 <-    51
+long0 <- -130
+long1 <-  -65
+raw_data_ts %>%
+  filter(Lat > lat0) %>%
+  filter(Lat < lat1) %>%
+  filter(Long >long0) %>%
+  filter(Long < long1) -> restricted_ts
 data_names <- names(raw_data_ts)
-location_rows <- 1:(dim(raw_data_ts)[1])
+location_rows <- 1:(dim(restricted_ts)[1])
 for (i in 5:51) {
-  case_count <- sum(raw_data_ts[ , i])
+  case_count <- sum(restricted_ts[ , i])
   random_angle <- 2*pi*runif(case_count)
   random_distance <- rbeta(case_count, 2, 1)
-  count_vector <- rep(location_rows, raw_data_ts[ , i])
-  y_scale_vector <- 0.1*rep(sqrt(raw_data_ts[ , i]), raw_data_ts[ , i])
-  lat_adjustment <- rep(cos(pi/180*raw_data_ts$Lat), raw_data_ts[ , i])
+  count_vector <- rep(location_rows, restricted_ts[ , i])
+  y_scale_vector <- 0.1*rep(sqrt(restricted_ts[ , i]), restricted_ts[ , i])
+  lat_adjustment <- rep(cos(pi/180*restricted_ts$Lat), restricted_ts[ , i])
   x_scale_vector <- y_scale_vector*lat_adjustment
   x_adj <- sin(random_angle)*random_distance*x_scale_vector
   y_adj <- cos(random_angle)*random_distance*y_scale_vector
-  filtered_ts <- raw_data_ts[count_vector, c("Long", "Lat")] 
+  filtered_ts <- restricted_ts[count_vector, c("Long", "Lat")] 
   filtered_ts$Long <- filtered_ts$Long + x_adj
   filtered_ts$Lat  <- filtered_ts$Lat  + y_adj
-  ggplot(data = world) +
+  ggplot(data = states) +
     geom_sf(color="gray", fill="white") +
     geom_point(
       data=filtered_ts, aes(Long, Lat),
-      size=0.1, alpha=0.1)  +
-      ggtitle(data_names[i], sum(raw_data_ts[ , i])) -> filtered_plot
+      size=0.5)  +
+    coord_sf(xlim = c(long0, long1), ylim = c(lat0, lat1), expand = FALSE) +
+      ggtitle(data_names[i], sum(restricted_ts[ , i])) -> filtered_plot
   plot(filtered_plot)
 }
 ```
