@@ -25,13 +25,23 @@ world <- ne_countries(scale = "medium", returnclass = "sf")
 data_names <- names(raw_data_ts)
 location_rows <- 1:(dim(raw_data_ts)[1])
 for (i in 5:51) {
+  case_count <- sum(raw_data_ts[ , i])
+  random_angle <- 2*pi*runif(case_count)
+  random_distance <- rbeta(case_count, 2, 1)
   count_vector <- rep(location_rows, raw_data_ts[ , i])
-  filtered_ts <- raw_data_ts[count_vector, c("Long", "Lat")]
+  y_scale_vector <- 0.1*rep(sqrt(raw_data_ts[ , i]), raw_data_ts[ , i])
+  lat_adjustment <- rep(cos(pi/180*raw_data_ts$Lat), raw_data_ts[ , i])
+  x_scale_vector <- y_scale_vector*lat_adjustment
+  x_adj <- sin(random_angle)*random_distance*x_scale_vector
+  y_adj <- cos(random_angle)*random_distance*y_scale_vector
+  filtered_ts <- raw_data_ts[count_vector, c("Long", "Lat")] 
+  filtered_ts$Long <- filtered_ts$Long + x_adj
+  filtered_ts$Lat  <- filtered_ts$Lat  + y_adj
   ggplot(data = world) +
     geom_sf(color="gray", fill="white") +
-    geom_jitter(
+    geom_point(
       data=filtered_ts, aes(Long, Lat),
-      width=1, height=1, size=0.1)  +
+      size=0.1, alpha=0.1)  +
       ggtitle(data_names[i], sum(raw_data_ts[ , i])) -> filtered_plot
   plot(filtered_plot)
 }
