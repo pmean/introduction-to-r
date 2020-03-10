@@ -8,19 +8,31 @@ output: html_document
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo=FALSE)
 suppressMessages(suppressWarnings(library(lubridate)))
+suppressMessages(suppressWarnings(library(rgeos)))
+suppressMessages(suppressWarnings(library(rnaturalearth)))
+suppressMessages(suppressWarnings(library(rnaturalearthdata)))
+suppressMessages(suppressWarnings(library(sf)))
 suppressMessages(suppressWarnings(library(tidyverse)))
 ```
 
 ### Read the files
 
-```{r read}
-fn <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"
-raw_data1 <- read.csv(paste0(fn, "03-08-2020.csv"), stringsAsFactors=FALSE)
-raw_data1$loc <- paste(raw_data1[[2]], raw_data1[[1]], sep=": ")
-head(raw_data1)
-raw_data2 <- read.csv(paste0(fn, "02-28-2020.csv"), stringsAsFactors=FALSE)
-raw_data2$loc <- paste(raw_data2[[2]], raw_data2[[1]], sep=": ")
-head(raw_data2)
-setdiff(raw_data1$loc, raw_data2$loc)
-setdiff(raw_data2$loc, raw_data1$loc)
+```{r ts}
+fn <- "../dat/time_series_19-covid-Deaths.csv"
+fn <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+raw_data_ts <- read.csv(fn, stringsAsFactors=FALSE)
+world <- ne_countries(scale = "medium", returnclass = "sf")
+data_names <- names(raw_data_ts)
+location_rows <- 1:(dim(raw_data_ts)[1])
+for (i in 5:51) {
+  count_vector <- rep(location_rows, raw_data_ts[ , i])
+  filtered_ts <- raw_data_ts[count_vector, c("Long", "Lat")]
+  ggplot(data = world) +
+    geom_sf(color="gray", fill="white") +
+    geom_jitter(
+      data=filtered_ts, aes(Long, Lat),
+      width=1, height=1, size=0.1)  +
+      ggtitle(data_names[i], sum(raw_data_ts[ , i])) -> filtered_plot
+  plot(filtered_plot)
+}
 ```
