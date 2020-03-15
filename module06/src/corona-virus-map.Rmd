@@ -7,55 +7,89 @@ output: html_document
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo=FALSE)
+# install.packages("rnaturalearthhires", repos="http://packages.ropensci.org", type="source")
 suppressMessages(suppressWarnings(library(lubridate)))
+suppressMessages(suppressWarnings(library(mapproj)))
 suppressMessages(suppressWarnings(library(rgeos)))
+suppressMessages(suppressWarnings(library(rjson)))
 suppressMessages(suppressWarnings(library(rnaturalearth)))
 suppressMessages(suppressWarnings(library(rnaturalearthdata)))
 suppressMessages(suppressWarnings(library(sf)))
+suppressMessages(suppressWarnings(library(stringr)))
 suppressMessages(suppressWarnings(library(tidyverse)))
-# install.packages("rnaturalearthhires", repos="http://packages.ropensci.org", type="source")
+```
+
+
+
+```{r}
+ne_states(country="United States of America", returnclass = "sf") %>%
+  filter(postal != "HI" & postal != "AK") -> states
+world1 <- ne_countries(scale = "medium", returnclass = "sf")
+continental_us <- ggplot() + geom_sf(data = states)
+```
+
+
+```{r}
+projection_string <- "+proj=laea +lon_0=-100 +lat_0=40 +ellps=WGS84 +no_defs"
+states %>%
+  filter(name_en=="Colorado") %>%
+  ggplot() + 
+  geom_sf() + 
+  coord_sf(crs=projection_string)
 ```
 
 ### Read the files
 
 
-```{r ts}
-fn <- "../dat/time_series_19-covid-Deaths.csv"
+```{r ts, eval=TRUE}
 fn <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
-raw_data_ts <- read.csv(fn, stringsAsFactors=FALSE)
+read.csv(fn, stringsAsFactors=FALSE) %>%
+  st_as_sf(coords=c("Long", "Lat")) -> raw_data_ts
+fn <- "https://raw.githubusercontent.com/beoutbreakprepared/COVID-19-data-mapping-pipeline/master/ncov2019.unique-locations.json"
+raw_data_ts <- readLines(fn)
+pull_fields <- function(raw_data, field_name) {
+  raw_data %>%
+    str_subset(field_name) %>%
+    str_remove_all("^.*: ") %>%
+    str_remove_all('"') %>%
+    str_remove_all(",")
+}
+raw_data_ts[1:100] %>%
+  pull_fields("latitude") %>%
+  as.numeric %>%
+  data.frame %>%
+  set_names("lat")
+```
+
+```{r}
 world <- ne_countries(scale = "medium", returnclass = "sf")
 states <- ne_states(country="United States of America", returnclass = "sf")
-lat0 <-    24
-lat1 <-    51
-long0 <- -130
-long1 <-  -65
+```
+
+```{r}
+long.lat.range <- c(-130, -65, 24, 51); region_filter <- raw_data_ts$Country.Region=="US"
+long.lat.range <- c(-180, 180, -90, 90)
 raw_data_ts %>%
-  filter(Lat > lat0) %>%
-  filter(Lat < lat1) %>%
-  filter(Long >long0) %>%
-  filter(Long < long1) -> restricted_ts
-data_names <- names(raw_data_ts)
-location_rows <- 1:(dim(restricted_ts)[1])
-for (i in 5:51) {
-  case_count <- sum(restricted_ts[ , i])
-  random_angle <- 2*pi*runif(case_count)
-  random_distance <- rbeta(case_count, 2, 1)
-  count_vector <- rep(location_rows, restricted_ts[ , i])
-  y_scale_vector <- 0.1*rep(sqrt(restricted_ts[ , i]), restricted_ts[ , i])
-  lat_adjustment <- rep(cos(pi/180*restricted_ts$Lat), restricted_ts[ , i])
-  x_scale_vector <- y_scale_vector*lat_adjustment
-  x_adj <- sin(random_angle)*random_distance*x_scale_vector
-  y_adj <- cos(random_angle)*random_distance*y_scale_vector
-  filtered_ts <- restricted_ts[count_vector, c("Long", "Lat")] 
-  filtered_ts$Long <- filtered_ts$Long + x_adj
-  filtered_ts$Lat  <- filtered_ts$Lat  + y_adj
+  filter(region_filter) -> restricted_ts
+```
+
+```{r}
+last_date <- dim(raw_data_ts)[2]-1
+date_names <- str_sub(names(raw_data_ts)[5:last_date], 2)
+```
+
+```{r}
+i <- last_date
+  circle_size <- sqrt(restricted_ts[ , i])
+  # if (sum(circle_size)==0) next
+  non_zero_cases <- circle_size>0
   ggplot(data = states) +
     geom_sf(color="gray", fill="white") +
-    geom_point(
-      data=filtered_ts, aes(Long, Lat),
-      size=0.5)  +
-    coord_sf(xlim = c(long0, long1), ylim = c(lat0, lat1), expand = FALSE) +
-      ggtitle(data_names[i], sum(restricted_ts[ , i])) -> filtered_plot
+    geom_sf(
+      data=restricted_ts[non_zero_cases, ],
+      size=circle_size[non_zero_cases],
+      color="darkorange", alpha=0.5)  +
+    coord_sf(xlim = long.lat.range[1:2], ylim = long.lat.range[3:4], expand = FALSE) +
+      ggtitle(date_names[i-4], sum(restricted_ts[ , i])) -> filtered_plot
   plot(filtered_plot)
-}
 ```
