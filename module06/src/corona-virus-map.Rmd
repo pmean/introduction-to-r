@@ -41,10 +41,13 @@ states %>%
 ### Read the files
 
 
-```{r ts, eval=TRUE}
+```{r ts}
 fn <- "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
 read.csv(fn, stringsAsFactors=FALSE) %>%
   st_as_sf(coords=c("Long", "Lat")) -> raw_data_ts
+```
+
+```{r}
 fn <- "https://raw.githubusercontent.com/beoutbreakprepared/COVID-19-data-mapping-pipeline/master/ncov2019.unique-locations.json"
 raw_data_ts <- readLines(fn)
 pull_fields <- function(raw_data, field_name) {
