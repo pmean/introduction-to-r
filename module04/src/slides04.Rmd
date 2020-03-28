@@ -1,7 +1,7 @@
 ---
-title: "Introduction to R, part 2a"
+title: "Introduction to R, module04"
 author: "Steve Simon"
-date: "created 2016-08-13"
+date: "Created 2016-08-13"
 output: powerpoint_presentation
 ---
 
@@ -26,17 +26,14 @@ The version of R is stored in an internal constant, R.version.string. You can fi
 
 ### The Titanic dataset
 
-You should find the data file on mortality among passengers of the Titanic at
-
---> http://www.statsci.org/data/general/titanic.txt
-
-A brief description of this file is available at
-
---> http://www.statsci.org/data/general/titanic.html
++ Titanic dataset
+  + http://www.statsci.org/data/general/titanic.txt
++ Titanic data dictionary
+  + http://www.statsci.org/data/general/titanic.html
 
 <div class="notes">
 
-You can go the web to find information about this file.
+You should find the data file on mortality among passengers of the Titanic at the website listed here. There is a pretty good data dictionary as well.
 
 </div>
 
@@ -417,47 +414,6 @@ ti$age.groups <- cut(ti$Age,breaks=c(0,2,6,9,12,19,99),labels=lb)
 table(ti$age.groups,useNA="always")
 lb <- c("Infant (up to 2 yrs)","Toddler (3 to 6 yrs)","Child (7 to 9 yrs)","Tween (10 to 12 yrs)","Teenager (13 to 19 yrs)","Adult (20 yrs and older")
 ```
-
-### For your homework
-
-The data set is available as an Excel spreadsheet at
-
---> http://www.amstat.org/publications/jse/v19n1/gardasil.xls
-
-and a description of the file is available at
-
---> http://www.amstat.org/publications/jse/v19n1/gardasil.txt
-
-<div class="notes">
-
-The Gardasil vaccine requires three shots in order to be effective. A study conducted at Johns Hopkins looked at how often patients failed to get all three shots. They wanted to see if insurance status, age, and other factors could predict who was at greatest risk for failing to get all three shots.
-
-Note to myself. I have not run through the analysis of this data set, yet, but it should have many of the same features as the Titanic data set, as almost all of the variables are categorical.
-
-<div>
-
-```{r read-gardasil}
-fn <- "../dat/gardasil.csv"
-ga <- read.csv(fn)
-```
-
-### Homework assignment #2.
-
-Answer the questions found at
-
-http://www.pmean.com/15/images/
-
-Place all the key results into a Word document, PowerPoint presentation, as a PDF file or as an HTML file. Turn it in by email. Use the subject line: "Introduction to R, (your name), Part 2 Homework"
-
-### A third data set
-
-If there is time, here is a third data set
-
-```{r diet, eval=FALSE}
-fn <- "http://lib.stat.cmu.edu/DASL/Datafiles/Fiber.html"
-diet <- read.table(fn, skip=26, comment.char="<", header=TRUE)
-```
-
 
 ### Save all my work
 
