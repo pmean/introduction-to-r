@@ -293,27 +293,11 @@ You can add a total count to the frequency table with the addmargins function.
 
 </div>
 
-### Summary function for categorical data
+### Factors
 
-```{r summary5}
-summary(ti[ , -1])
-```
-
-<div class="notes">
-
-Last time, we learned about the summary function, which produced the minimum, maximum, quartiles, mean, and missing value counts. Summary will actually look at the argument being passed to it and try to produce different summary statistics based on what the argument looks like. This, in technical terms, is an object-oriented feature of the R programming language (the use of classes and methods, to be more specific).
-
-If the argument sent to summary is a character vector rather than a numeric vector, it will use frequency counts.
-
-Sometimes this is very nice but sometimes it is not so nice.
-
-</div>
-
-### Summary
-
-```{r summary4}
-ti$surv.factor <- factor(ti$Survived, levels=0:1, labels=c("No","Yes"))
-summary(ti)
+```{r factors}
+ti$surv_factor <- factor(ti$Survived, levels=0:1, labels=c("No","Yes"))
+table(ti$surv_factor)
 ```
 
 <div class="notes">
@@ -322,6 +306,31 @@ The factor function is similar to the variable label in SPSS and the format stat
 
 </div>
 
+### Crosstabulation
+
+```{r crosstabs1}
+pclass_by_gender <- table(ti$PClass, ti$Sex)
+pclass_by_gender
+```
+
+<div class="notes">
+
+A crosstabulation shows counts across the combination of two different categorical variables. This table shows that there are `r pclass_by_gender[1, 1]` female first class passengers, `r pclass_by_gender[1, 2]` male first class passengers, `r pclass_by_gender[2, 1]` female second class passengers, etc.
+
+</div>
+
+### Row proportions
+
+```{r row_proporionts}
+prop.table(pclass_by_gender, margin=1)
+```
+
+### Row percentages
+
+```{r row_pcts}
+round(100*prop.table(pclass_by_gender, margin=1))
+```
+
 ### Barplot of counts, code only
 
 ```{r barplot1}
@@ -329,6 +338,7 @@ library(ggplot2)
 simple_barplot <- 
   ggplot(ti, aes(x=PClass)) + 
     geom_bar()
+ggsave("../images/barplot1.png", simple_barplot, width=4, height=4)
 ```
 
 <div class="notes">
@@ -337,11 +347,7 @@ I'm not a big fan of bar plots, but they sometimes have their uses. You can get 
 
 </div>
 
-### Barplot of counts, graph
-
-```{r barplot2, echo=FALSE}
-ggsave("../images/barplot1.png", simple_barplot, width=4, height=4)
-```
+### Barplot of counts, graph only
 
 ![Barplot of counts](../images/barplot1.png)
 
@@ -354,11 +360,12 @@ Here is what the plot looks like.
 
 ### Barplot of proportions, code only
 
-```{r barplot3}
+```{r barplot2}
 proportions_barplot <- 
   ggplot(ti, aes(x=PClass)) + 
     geom_bar(aes(weight=1/n)) +
-    ylab("Proportion")
+    scale_y_continuous("Proportion")
+ggsave("../images/barplot2.png", proportions_barplot, width=4, height=4)
 ```
 
 <div class="notes">
@@ -369,11 +376,7 @@ Use weights to get a bar chart of proportions.
 
 ### Barplot of proportions, graph only
 
-```{r barplot4, echo=FALSE}
-ggsave("../images/barplot3.png", proportions_barplot, width=4, height=4)
-```
-
-![Barplot of proportions](../images/barplot3.png)
+![Barplot of proportions](../images/barplot2.png)
 
 <div class="notes">
 
@@ -383,11 +386,12 @@ Here is what the plot looks like.
 
 ### Barplot of percentages, code only
 
-```{r barplot5}
+```{r barplot3}
 proportions_barplot <- 
   ggplot(ti, aes(x=PClass)) + 
     geom_bar(aes(weight=100/n)) +
-    ylab("Percent")
+    scale_y_continuous("Percent", breaks=c(0, 20, 40), labels=c("0%", "20%", "40%"))
+ggsave("../images/barplot3.png", proportions_barplot, width=4, height=4)
 ```
 
 <div class="notes">
@@ -398,26 +402,13 @@ Use different weights to get a bar chart of proportions.
 
 ### Barplot of counts, graph
 
-```{r barplot6, echo=FALSE}
-ggsave("../images/barplot5.png", proportions_barplot, width=4, height=4)
-```
-
-![Barplot of counts](../images/barplot5.png)
+![Barplot of counts](../images/barplot3.png)
 
 <div class="notes">
 
 Here is what the plot looks like.
 
 </div>
-
-### Barplot
-
-You can make things even nicer by pasting a percent sign on the vertical axis tick marks.
-
-```{r barplot4}
-barplot(100*prop.table(table(ti$PClass)),axes=FALSE)
-axis(side=2,at=10*(0:5),labels=paste(10*(0:5),"%",sep=""))
-```
 
 ### New categorical variables
 
@@ -443,9 +434,7 @@ range(ti[which(ti$child==0), "Age"])
 
 <div class="notes">
 
-Anytime you create a new categorical variable, you should run a crosstabulation to check your results. Pay special attention to how missing values are handled. I'm only printing out the head and the tail to save space, but you should look at the entire table.
-
-Note that since age has lots of values, we prefer to use that as the rows in the crosstabulation.
+Anytime you create a new categorical variable, you should run a quality check to make sure nothing is wrong. The range function is useful for this.
 
 </div>
 
@@ -453,12 +442,12 @@ Note that since age has lots of values, we prefer to use that as the rows in the
 
 ```{r recode-check2}
 chk <- table(ti$Age,ti$child,useNA="always")
-tail(chk)
+head(chk)
 ```
 
 <div class="notes">
 
-The Powerpoint slide won't fit the entire table in, so you have to use your imagination a bit here.
+An alternative is to run a crosstabulation. I am only showing the first few rows, but if you print the entire crosstabulation, you will see the switch over from child=1 to child=0 at 18 years of age.
 
 </div>
 
