@@ -152,7 +152,8 @@ There are other types of variables also, such as count variables, that have thei
 ### Freqency counts
 
 ```{r table-simple}
-table(ti$PClass)
+PClass_counts <- table(ti$PClass)
+PClass_counts
 ```
 
 <div class="notes">
@@ -174,8 +175,8 @@ So the table function produces only counts.
 ### Proportions
 
 ```{r table-proportion}
-tb <- table(ti$PClass)
-prop.table(tb)
+PClass_proportions <- prop.table(PClass_counts)
+PClass_proportions
 ```
 
 <div class="notes">
@@ -189,8 +190,8 @@ The prop.table function takes a frequency table and converts it to a proportion.
 ### Percentages
 
 ```{r table-pct}
-pct <- round(100*prop.table(tb))
-pct
+PClass_percents <- round(100*PClass_proportions)
+PClass_percents
 ```
 
 <div class="notes">
@@ -203,12 +204,24 @@ Multiply by 100 and round to get percentages.
 
 ```{r table-pct-sign}
 pct.sign <- "%"
-paste(pct,pct.sign,sep="")
+PClass_nice_percents <- paste(PClass_percents, pct.sign)
+PClass_nice_percents
 ```
 
 <div class="notes">
 
 You can get even fancier. The paste function concatenates several string variables and if something is not a string, R will convert it to a string before concatenating.
+
+</div>
+
+### Percentages
+
+```{r table-pct-sign-no-space}
+PClass_nicer_percents <- paste(PClass_percents, pct.sign, sep="")
+PClass_nicer_percents
+```
+
+<div class="notes">
 
 The "sep" parameter tells R what to put between the two values you are pasting together. By default it is a single blank character, but we don't want a blank between the number and the percent sign.
 
@@ -217,35 +230,33 @@ The "sep" parameter tells R what to put between the two values you are pasting t
 ### Percentages
 
 ```{r table-names}
-paste(names(pct),pct,pct.sign,sep="")
+colon <- ": "
+PClass_nicest_percents <- 
+  paste(
+    names(PClass_percents), 
+    colon,
+    PClass_percents, 
+    pct.sign, sep="")
+PClass_nicest_percents
 ```
 
 <div class="notes">
 
-Somehow, the names of the passenger class got lost. So let's add them back in.
+Somehow, the names of the passenger class got lost. So let's add them back in. A colon and a space between the names and the numbers helps as well.
 
 </div>
 
-### Percentages
-
-```{r table-punctuation}
-colon <- ": "
-paste(names(tb),colon,pct,pct.sign,sep="")
-```
-
-<div class="notes">
-
-You can add spacing and a bit of punctuation to make the output look more readable.
-
-</div> 
-
-### Percentages
+### Fractions and percentages
 
 ```{r fractions}
-n  <- sum(tb)
+n  <- sum(PClass_counts)
 slash <- "/"
 comma <- ", "
-paste(names(tb),colon,tb,slash,n,comma,pct,pct.sign,sep="")
+percents_and_fractions <- paste(
+  PClass_nicest_percents, comma,
+  PClass_counts, slash, n,
+  sep="")
+percents_and_fractions
 ```
 
 <div class="notes">
@@ -273,7 +284,7 @@ The default option in the table function is to not list missing values. During t
 ### Total count
 
 ```{r table-addmargins}
-addmargins(table(ti$PClass,useNA="always"))
+addmargins(table(ti$PClass, useNA="always"))
 ```
 
 <div class="notes">
@@ -285,8 +296,7 @@ You can add a total count to the frequency table with the addmargins function.
 ### Summary function for categorical data
 
 ```{r summary5}
-summary(ti$PClass)
-summary(ti$Age)
+summary(ti[ , -1])
 ```
 
 <div class="notes">
@@ -301,22 +311,9 @@ Sometimes this is very nice but sometimes it is not so nice.
 
 ### Summary
 
-```{r summary3}
-summary(ti$Sex)
-summary(ti$Survived)
-```
-
-<div class="notes">
-
-When you have a categorical variable that uses number codes, you need to either handle this as a special case, or you need to create a factor variable.
-
-</div>
-
-### Summary
-
 ```{r summary4}
-ti$surv.factor <- factor(ti$Survived,levels=0:1,labels=c("No","Yes"))
-summary(ti$surv.factor)
+ti$surv.factor <- factor(ti$Survived, levels=0:1, labels=c("No","Yes"))
+summary(ti)
 ```
 
 <div class="notes">
@@ -325,27 +322,99 @@ The factor function is similar to the variable label in SPSS and the format stat
 
 </div>
 
-### Barplot
+### Barplot of counts, code only
 
-I'm not a big fan of bar plots, but they sometimes have their uses. You can get a barplot for the frequency count
-
-```{r barplot}
-barplot(table(ti$PClass))
+```{r barplot1}
+library(ggplot2)
+simple_barplot <- 
+  ggplot(ti, aes(x=PClass)) + 
+    geom_bar()
 ```
 
-or for the percentage (note the use of the ylab argument here).
+<div class="notes">
 
-### Barplot
+I'm not a big fan of bar plots, but they sometimes have their uses. You can get a barplot for the frequency count.
 
-```{r barplot2}
-barplot(100*prop.table(table(ti$PClass)),ylab="Percent")
+</div>
+
+### Barplot of counts, graph
+
+```{r barplot2, echo=FALSE}
+ggsave("../images/barplot1.png", simple_barplot, width=4, height=4)
 ```
+
+![Barplot of counts](../images/barplot1.png)
+
+<div class="notes">
+
+Here is what the plot looks like.
+
+</div>
+
+
+### Barplot of proportions, code only
+
+```{r barplot3}
+proportions_barplot <- 
+  ggplot(ti, aes(x=PClass)) + 
+    geom_bar(aes(weight=1/n)) +
+    ylab("Proportion")
+```
+
+<div class="notes">
+
+Use weights to get a bar chart of proportions.
+
+</div>
+
+### Barplot of proportions, graph only
+
+```{r barplot4, echo=FALSE}
+ggsave("../images/barplot3.png", proportions_barplot, width=4, height=4)
+```
+
+![Barplot of proportions](../images/barplot3.png)
+
+<div class="notes">
+
+Here is what the plot looks like.
+
+</div>
+
+### Barplot of percentages, code only
+
+```{r barplot5}
+proportions_barplot <- 
+  ggplot(ti, aes(x=PClass)) + 
+    geom_bar(aes(weight=100/n)) +
+    ylab("Percent")
+```
+
+<div class="notes">
+
+Use different weights to get a bar chart of proportions.
+
+</div>
+
+### Barplot of counts, graph
+
+```{r barplot6, echo=FALSE}
+ggsave("../images/barplot5.png", proportions_barplot, width=4, height=4)
+```
+
+![Barplot of counts](../images/barplot5.png)
+
+<div class="notes">
+
+Here is what the plot looks like.
+
+</div>
 
 ### Barplot
 
 You can make things even nicer by pasting a percent sign on the vertical axis tick marks.
 
-```{r barplot3}
+```{r barplot4}
 barplot(100*prop.table(table(ti$PClass)),axes=FALSE)
 axis(side=2,at=10*(0:5),labels=paste(10*(0:5),"%",sep=""))
 ```
@@ -354,6 +423,7 @@ axis(side=2,at=10*(0:5),labels=paste(10*(0:5),"%",sep=""))
 
 ```{r recode-simple}
 ti$child <- as.numeric(ti$Age<18)
+table(ti$child, useNA="always")
 ```
 
 <div class="notes">
@@ -366,21 +436,43 @@ Suppose you wanted to compute a categorical variable called "child" which is equ
 
 ### Quality check
 
-Anytime you create a new categorical variable, you should run a crosstabulation to check your results. Pay special attention to how missing values are handled. I'm only printing out the head and the tail to save space, but you should look at the entire table.
-
-```{r recode-check}
-chk <- table(ti$Age,ti$child,useNA="always")
-head(chk)
-tail(chk)
+```{r recode-check1}
+range(ti[which(ti$child==1), "Age"])
+range(ti[which(ti$child==0), "Age"])
 ```
+
+<div class="notes">
+
+Anytime you create a new categorical variable, you should run a crosstabulation to check your results. Pay special attention to how missing values are handled. I'm only printing out the head and the tail to save space, but you should look at the entire table.
 
 Note that since age has lots of values, we prefer to use that as the rows in the crosstabulation.
 
-### On your own
+</div>
 
-Redfine a child as anyone under 21 years of age. Use the factor function to create labels of "adult" for 0 and "child" for 1. Are children more likely to survive than adults?
+### Quality check
+
+```{r recode-check2}
+chk <- table(ti$Age,ti$child,useNA="always")
+tail(chk)
+```
+
+<div class="notes">
+
+The Powerpoint slide won't fit the entire table in, so you have to use your imagination a bit here.
+
+</div>
 
 ### More on recoding
+
+
+```{r recode-combine}
+ti$lower.class <- as.numeric(ti$PClass=="2nd" | ti$PClass=="3rd")
+table(ti$PClass,ti$lower.class)
+ti$lower.class <- factor(ti$lower.class, levels=c(0,1), labels=c("No", "Yes"))
+table(ti$PClass, ti$lower.class)
+```
+
+<div class="notes">
 
 Sometimes you want to combine two or more of the categories together. Here is how you might create a new passenger class variable with values of 1 for second and third class and 0 for first class.
 
@@ -388,15 +480,10 @@ The vertical bar (|) is the R symobl for logical OR.
 
 As before, it's a good a idea to run a crosstabulation to verify that the new coding was done properly.
 
-```{r recode-combine}
-ti$lower.class <- as.numeric(ti$PClass=="2nd" | ti$PClass=="3rd")
-table(ti$PClass,ti$lower.class)
-ti$lower.class.factor <- factor(ti$lower.class, levels=c(0,1), labels=c("No", "Yes"))
-```
+</div>
 
 ### Creating multi-level categories
 
-You can create multi-level categories using a complex logic system, but you can do it simpler and faster with the cut function.
 
 ```{r recode-cut}
 ti$age.groups <- cut(ti$Age,breaks=c(0,2,6,9,12,19,99))
@@ -404,16 +491,26 @@ table(ti$age.groups,useNA="always")
 table(ti$Age, ti$age.groups, useNA="always")
 ```
 
-### Change labels
+<div class="notes">
 
-The notation used by cut may be familiar to mathematicians who know the difference between open and closed sets, but you can choose different labels.
+You can create multi-level categories using a complex logic system, but you can do it simpler and faster with the cut function.
+
+</div>
+
+### Change labels
 
 ```{r recode-cut-label}
 lb <- c("Infant","Toddler","Child","Tween","Teenager","Adult")
+lb <- c("Infant (up to 2 yrs)","Toddler (3 to 6 yrs)","Child (7 to 9 yrs)","Tween (10 to 12 yrs)","Teenager (13 to 19 yrs)","Adult (20 yrs and older")
 ti$age.groups <- cut(ti$Age,breaks=c(0,2,6,9,12,19,99),labels=lb)
 table(ti$age.groups,useNA="always")
-lb <- c("Infant (up to 2 yrs)","Toddler (3 to 6 yrs)","Child (7 to 9 yrs)","Tween (10 to 12 yrs)","Teenager (13 to 19 yrs)","Adult (20 yrs and older")
 ```
+
+<div class="notes">
+
+The notation used by cut may be familiar to mathematicians who know the difference between open and closed sets, but you can choose different labels.
+
+</div>
 
 ### Save all my work
 
