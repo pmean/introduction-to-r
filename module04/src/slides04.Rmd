@@ -7,7 +7,7 @@ output: powerpoint_presentation
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo=TRUE)
-```
+``` 
 
 ### Introduction
 
@@ -127,6 +127,17 @@ The which.min and which.max functions simplify the task of finding the row or ro
 Notice that the little baby survived, but not the old man.
 
 </div>
+
+### First break
++ What have you learned
+  + Reading in the Titanic dataset
++ What's next
+  + Categorical versus continuous variables
+  + Counts, proportions, and percentage
+  + Factors
+  + Crosstabulations
+  + Barplots
+  + New categorical variables
 
 ### Categorical versus continuous variables
 
@@ -293,6 +304,17 @@ You can add a total count to the frequency table with the addmargins function.
 
 </div>
 
+### Second break
++ What have you learned
+  + Reading in the Titanic dataset
+  + Categorical versus continuous variables
+  + Counts, proportions, and percentage
++ What's next
+  + Factors
+  + Crosstabulations
+  + Barplots
+  + New categorical variables
+
 ### Factors
 
 ```{r factors}
@@ -321,15 +343,105 @@ A crosstabulation shows counts across the combination of two different categoric
 
 ### Row proportions
 
-```{r row_proporionts}
-prop.table(pclass_by_gender, margin=1)
+```{r row_proportions}
+row_proportions <- prop.table(pclass_by_gender, margin=1)
+row_proportions
 ```
+
+<div class="notes">
+
+The prop.table function converts counts into proportions. Here is an example of row proportions.
+
+</div>
 
 ### Row percentages
 
 ```{r row_pcts}
-round(100*prop.table(pclass_by_gender, margin=1))
+row_pcts <- round(100*row_proportions)
+row_pcts
 ```
+
+<div class="notes">
+
+It is a lot easier to read if you convert the proportions into percentages and then round. In first class, `r row_pcts[1, 1]`% of the passengers are female. In second class, `r row_pcts[2, 1]`% are female, and so forth.
+
+</div>
+
+### Column percentages
+
+```{r col_pcts}
+col_proportions <- prop.table(pclass_by_gender, margin=2)
+col_pcts <- round(100*col_proportions)
+col_pcts
+```
+
+<div class="notes">
+
+Setting the margin parameter to 2 gives column proportions. Column proportions add up to 1 within each column. Again, converting to percents and rounding helps a lot. Among the female passengers, `r col_pcts[1, 1]`% traveled in first class, `r col_pcts[2, 1]`% in second class, and `r col_pcts[3, 1]`% in third class.
+
+</div>
+
+### Column percentages
+
+```{r cell_pcts}
+cell_proportions <- prop.table(pclass_by_gender)
+cell_pcts <- round(100*cell_proportions)
+cell_pcts
+```
+
+<div class="notes">
+
+If you omit the margin parameter, R produces cell proportions. Cell proportions add up to 1 across all the cells in the table. Converting to percents, you can see that `r cell_pcts[1, 1]`% of the passengers were first class femles, `r cell_pcts[1, 2]`% were first class males, `r cell_pcts[2, 1]`% were second class females, etc.
+
+</div>
+
+### Which percentages should you use
++ General guidance
+  + Set the rows to your treatment/exposure 
+  + Set the columns to your outcome
+  + Compute row percentages
++ why not try several formats
+  + Revised your tables as often as you revise your writing
+  
+<div class="notes">
+
+It's beyond the scope of this class, but with crosstabulations, you have choices as to what should be the rows and what should be the columns. Then you can compute row, column, or cell percentages.
+
+I've found that nine times out of ten, the best choice depends on what is your treatment variable and what is your outcome. It usually works best if you place the treatment variable in the rows and the outcome in the columns and compute row percentages. That shows how often you see a particular outcome in the treatment group and the percentage in the control group is right beneath it.
+
+That being said, I would also encourage you to try several different approaches.
+
+</div>
+
+### Practical example
+
+```{r survival-chart}
+gender_by_survival <- table(ti$Sex, ti$surv_factor)
+survival_proportions <- prop.table(gender_by_survival, margin=1)
+survival_percents <- round(100*survival_proportions)
+survival_percents
+```
+
+<div class="notes">
+
+The key question in the Titanic dataset is survival. Who lived and who died. Kate Winslet lived, but sad to say, Leonardo diCaprio didn't. So what was the survival rate for all women? For all men?
+
+Using the rules shown on the previous slide, survival is obviously the outcome. Make that the columns and gender the rows. Then compute row percentages (margin=1).
+
+For this, you can see that only `r survival_proportions[1, 2]`% of the women survived, but `r survival_proportions[2, 2]`% of the men did.
+
+</div>
+
+### Third break
++ What have you learned
+  + Reading in the Titanic dataset
+  + Categorical versus continuous variables
+  + Counts, proportions, and percentage
+  + Factors
+  + Crosstabulations
++ What's next
+  + Barplots
+  + New categorical variables
 
 ### Barplot of counts, code only
 
@@ -344,6 +456,8 @@ ggsave("../images/barplot1.png", simple_barplot, width=4, height=4)
 <div class="notes">
 
 I'm not a big fan of bar plots, but they sometimes have their uses. You can get a barplot for the frequency count.
+
+Because of the way Rmarkdown displays graphs, I have to put the code on a separate slide from the graph.
 
 </div>
 
@@ -410,6 +524,17 @@ Here is what the plot looks like.
 
 </div>
 
+### Fourth break
++ What have you learned
+  + Reading in the Titanic dataset
+  + Categorical versus continuous variables
+  + Counts, proportions, and percentage
+  + Factors
+  + Crosstabulations
+  + Barplots
++ What's next
+  + New categorical variables
+
 ### New categorical variables
 
 ```{r recode-simple}
@@ -456,7 +581,6 @@ An alternative is to run a crosstabulation. I am only showing the first few rows
 
 ```{r recode-combine}
 ti$lower.class <- as.numeric(ti$PClass=="2nd" | ti$PClass=="3rd")
-table(ti$PClass,ti$lower.class)
 ti$lower.class <- factor(ti$lower.class, levels=c(0,1), labels=c("No", "Yes"))
 table(ti$PClass, ti$lower.class)
 ```
@@ -473,36 +597,53 @@ As before, it's a good a idea to run a crosstabulation to verify that the new co
 
 ### Creating multi-level categories
 
-
 ```{r recode-cut}
-ti$age.groups <- cut(ti$Age,breaks=c(0,2,6,9,12,19,99))
-table(ti$age.groups,useNA="always")
-table(ti$Age, ti$age.groups, useNA="always")
+cut_points <- c(0, 1.5, 12, 19, 99)
+ti$age_groups <- cut(ti$Age, breaks=cut_points)
+table(ti$age_groups, useNA="always")
 ```
 
 <div class="notes">
 
 You can create multi-level categories using a complex logic system, but you can do it simpler and faster with the cut function.
 
+If you are familiar with math notation, the square bracket means that the value on the boundary belongs in the set, and a parentheses means that it does not belong in the set. So (1.5, 12] means don't include the 1.5 in this set, but do include the 12.
+
 </div>
 
-### Change labels
+### Creating multi-level categories
 
-```{r recode-cut-label}
-lb <- c("Infant","Toddler","Child","Tween","Teenager","Adult")
-lb <- c("Infant (up to 2 yrs)","Toddler (3 to 6 yrs)","Child (7 to 9 yrs)","Tween (10 to 12 yrs)","Teenager (13 to 19 yrs)","Adult (20 yrs and older")
-ti$age.groups <- cut(ti$Age,breaks=c(0,2,6,9,12,19,99),labels=lb)
-table(ti$age.groups,useNA="always")
+```{r labels}
+lb <- c("Infant", "Child", "Teenager", "Adult")
+ti$age_groups <- cut(ti$Age, breaks=cut_points, labels=lb)
+table(ti$age_groups, useNA="always")
 ```
 
 <div class="notes">
 
-The notation used by cut may be familiar to mathematicians who know the difference between open and closed sets, but you can choose different labels.
+It might be better to include labels to describe the age groups.
 
 </div>
 
-### Save all my work
+### Quality check
 
-```{r save-image}
+```{r qc}
+range(ti$Age[which(ti$age_groups=="Infant")])
+range(ti$Age[which(ti$age_groups=="Child")])
+range(ti$Age[which(ti$age_groups=="Teenager")])
+range(ti$Age[which(ti$age_groups=="Adult")])
+```
+
+### Summary
++ What have you learned
+  + Reading in the Titanic dataset
+  + Categorical versus continuous variables
+  + Counts, proportions, and percentage
+  + Factors
+  + Crosstabulations
+  + Barplots
+  + New categorical variables
+
+```{r save-image, echo=FALSE}
 save.image("slides04.RData")
 ```
