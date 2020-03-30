@@ -1,18 +1,21 @@
 ---
-title: "M02. Overview of module02"
+title: "M01. Overview of module01"
 author: "Steve Simon"
-date: "Created 2020-02-13"
+date: "Created 2020-03-30"
 output: html_document
 ---
 
 This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
 
+This module discusses how to handle datasets that have mostly continuous variables. These are the simplest datasets and represent a reasonable starting point. 
+
 ## Learning objectives
 
-In these videos you will learn
+In these videos you will learn how to
 
-+ how to install R and RStudio
-+ how to run a small R program
++ install R and RStudio
++ organize a directory structure
++ write and run a small R program
 
 ## Videos
 
@@ -23,7 +26,7 @@ There are five videos in this module specific to the R programming language and 
 
 ## Datasets used in this module
 
-There are three datasets used in this module. All of these are stored in a single binary file, which you can download [here](../dat/module02-datasets.RData). You should not need the text versions of the files, but I am including links to them below.
+There are three datasets used in this module. All of these are stored in a single binary file, which you can download [here](../dat/module01-datasets.RData). You should not need the text versions of the files, but I am including links to them below.
 
 ### bump
 
@@ -48,7 +51,15 @@ There are three datasets used in this module. All of these are stored in a singl
 
 ## Assignments
 
-### D02-01. Feedback after viewing videos
+### D01-01. Introduce yourself
+
+Graded: 3 points, one point deduction if submitted after the deadline.
+
+Tell us about yourself. What degree program you are in, why you are taking this class, and what you are hoping to do when you graduate.
+
+Optionally, include a picture of yourself and tell us about one of your hobbies.
+
+### D01-02. Feedback after viewing videos
 
 Graded: 3 points, one point deduction if submitted after the due date.
 
