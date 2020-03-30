@@ -19,14 +19,18 @@ In these videos you will learn how to
 
 ## Videos
 
-There are five videos in this module specific to the R programming language and two general videos about good programming practices. You can find the 
+There are two required videos for this module.
 
-+ [Slides and speaker notes for the R videos](v02-slides-and-speaker-notes.pdf)
-+ Slides and speaker notes for the general videos are not yet available.
++ V01-01. A simple program (20 minutes)
+  + The slides and speaker notes for this video can be found [here](http://www.pmean.com/introduction-to-r/results/v01-slides-and-speaker-notes.pdf).
++ General video. Good documentation (25 minutes)
+  + The slides and speaker notes for this video are not yet available.
+
+Go to the Canvas website to view these videos.
 
 ## Datasets used in this module
 
-There are three datasets used in this module. All of these are stored in a single binary file, which you can download [here](../dat/module01-datasets.RData). You should not need the text versions of the files, but I am including links to them below.
+There is one dataset used in this module. It is stored in a single binary file, which you can download [here](../dat/module01-datasets.RData). You should not need the text version of the file, but I am including links to them below.
 
 ### bump
 
@@ -34,20 +38,6 @@ There are three datasets used in this module. All of these are stored in a singl
 + Used in the video
 + Not needed for the homework assignment
 + A [text version](../dat/airline-bumping-2017.txt) of this dataset.
-
-### fd
-
-+ View the [data dictionary](../dat/fat-data-dictionary.txt)
-+ Used in the video
-+ Not needed for the homework assignment
-+ A [text version](../dat/fat.txt) of this dataset.
-
-### sleep
-
-+ View the [data dictionary](../dat/sleep-data-dictionary.txt)
-+ Not used in the video
-+ You will need this dataset for the homework assignment
-+ A [text version](../dat/sleep.txt) of this dataset.
 
 ## Assignments
 
@@ -73,22 +63,7 @@ Review the videos in this section and answer the following questions.
 
 It is okay to use short answers like "Nothing was confusing" or "Everything was confusing." You can also briefly concur with a previous student's comments.
 
-### HW02. Read in and analyze the sleep data.
+### HW01. Adapt the small program to run on your computer.
 
 Graded: 3 points, one point deducted if submitted late.
 
-Download the the file [module02-datasets.RData](../dat/module02-datasets.RData) and store it in the appropriate folder. Then run a program using Rmarkdown to answer the following questions.
-
-Include both the question and your answer to the question in the Rmarkdown code. Submit your work as a single PDF file.
-
-If there are errors or warnings in your output, send me PDF files of your code and your output by email and I will see if I can help.
-
-Q1. Notice that there is a huge range in body weight. Display the information for the smallest and the largest mammals.
-
-Q2. Which variables have missing data?
-
-Q3. Calculate the mean and standard deviation for TotalSleep.
-
-Q4. Do bigger animals sleep longer or live longer? Show your results using a correlation coefficient.
-
-Q5. Do animals who have high degrees of Predation, Exposure, or Danger sleep less? Show your results using a plot and a trendline.
