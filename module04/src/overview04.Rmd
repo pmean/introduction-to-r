@@ -9,7 +9,9 @@ This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
 
 This document is only partially written.
 
-Mortality on the Titanic
+### Datasets
+
+#### Mortality on the Titanic
 
 You should find the data file on mortality among passengers of the Titanic at
 
@@ -17,7 +19,7 @@ You should find the data file on mortality among passengers of the Titanic at
 + Description: http://www.statsci.org/data/general/titanic.html
 + Alternate source: http://www.pmean.com/15/images/day2titanic.txt
 
-Gardasil vaccine
+#### Gardasil vaccine
 
 + Data: http://www.amstat.org/publications/jse/v19n1/gardasil.xls
 + Description: http://www.amstat.org/publications/jse/v19n1/gardasil.txt
@@ -27,3 +29,31 @@ Dietary fiber (if there is extra time)
 
 + Description: http://lib.stat.cmu.edu/DASL/Datafiles/Fiber.html
 
+### R functions you've seen before
+
++ aes
++ as.numeric
++ ggplot
++ head
++ read.table
++ summary
++ tail
+
+### R functions introduced in this module
+
++ addmargins, adds totals to frequency counts
++ cut, divides a continuous variable into categories
++ factor, adds labels to categories represented by numbers
++ geom_bar, add bars to a graph
++ ggsave, saves a graph to a file
++ names, lists names associated with a frequency table
++ paste, combines two or more strings into a single string
++ prop.table, converts counts into proportions
++ range, computes minimum and maximum
++ round, rounds a number
++ scale_y_continuous, defines features for a plot's y-axis
++ sum, adds up all the values
++ table, produces frequency counts and crosstabulations.
++ which, selects rows which meet a logical condition
++ which.max, seletcs row or rows where a maximum occurs
++ which.min, selects row or rows where a minimum occurs

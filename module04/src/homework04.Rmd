@@ -1,11 +1,11 @@
 ---
 title: "Module04 homework"
 author: "Steve Simon"
-date: "Created 2020/03/28"
+date: "Created 2020-03-28"
 output: html_document
 ---
 
-Having completed all the part 2 videos, I would like you to turn in some simple analyses that you run on two fresh data sets. This homework assignment will be graded pass/fail.
+Having completed all the videos in this module, I would like you to turn in some simple analyses that you run on two fresh data sets. This homework assignment will be graded pass/fail.
 
 The Gardasil vaccine requires three shots in order to be effective. A study conducted at Johns Hopkins looked at how often patients failed to get all three shots. They wanted to see if insurance status, age, and other factors could predict who was at greatest risk for failing to get all three shots.
 
@@ -23,7 +23,7 @@ http://www.amstat.org/publications/jse/v19n1/gardasil.txt
 
 For every question, include the relevant R output and a brief written commentary explaining what the results mean. When you send your answers, please include the original questions (e.g., Q1: What is the 18th letter of the alphabet. A. The letter "R").
 
-The diet dataset compares four different types of crackers. The subjects that ate the crackers rated them on the amount of bloating.
+The first four questions relate to the Gardasil dataset, a study of patients who received the Gardasil vaccine. A key question that this dataset was intended to address is what factors influenced whether a patient got all the required shots. More details are given below.
 
 1. Create factors for AgeGroup, Race, Completed, Location. Show frequency counts for all four of these variables.
 
@@ -33,7 +33,13 @@ The diet dataset compares four different types of crackers. The subjects that at
 
 4. Does the likelihood of completing all four shots vary by AgeGroup, Race, or Location? Calculate the appropriate percentages.
 
-### For your homework
+The next two questions relate to the diet dataset that compares four different types of crackers. The subjects that ate the crackers rated them on the amount of bloating. More details are given below.
+
+5. Calculate frequency tables for both categorical variables in the dataset. Are there any missing values?
+
+6. Calculate a crosstabulation with nicely rounded percentages. Try to arrange the rows and columns and percentages so that your table best addresses the question, what type of cracker had the most and the least bloating.
+
+### Gardasil dataset
 
 + Gardasil dataset (Text file)
   + http://www.amstat.org/publications/jse/v19n1/gardasil.dat.txt
@@ -42,33 +48,19 @@ The diet dataset compares four different types of crackers. The subjects that at
 + Gardasil data dictionary
   + http://www.amstat.org/publications/jse/v19n1/gardasil.txt
 
-<div class="notes">
-
 The Gardasil vaccine requires three shots in order to be effective. A study conducted at Johns Hopkins looked at how often patients failed to get all three shots. They wanted to see if insurance status, age, and other factors could predict who was at greatest risk for failing to get all three shots.
-
-Note to myself. I have not run through the analysis of this data set, yet, but it should have many of the same features as the Titanic data set, as almost all of the variables are categorical.
-
-<div>
 
 ### Gardasil data dictionary
 
 ![Gardasil data dictionary](../images/gardasil-data-dictionary01.png)
 
-<div class="notes">
-
 Here is the data dictionary. It is a bit hard to read so let me zoom in to the important section.
-
-</div>
 
 ### Gardasil data dictionary
 
 ![Gardasil data dictionary excerpt](../images/gardasil-data-dictionary02.png)
 
-<div class="notes">
-
 Almost all of the variables are categorical and they all use number codes.
-
-</div>
 
 ### Gardasil data, text file
 
@@ -96,7 +88,15 @@ The data looks a bit unusual, but the relatively even spacing seems to indicate 
 
 </div>
 
-### Diet data dictonary
+### Cracker dataset
+
++ Cracker dataset (Text file)
+  + https://dasl.datadescription.com/download/data/3163
++ Cracker data dictionary
+  + http://dasl.datadescription.com/datafile/diet
+
+
+### Cracker data dictonary
 
 ![Brief description of diet dataset](../images/diet-data-dictionary.png)
 
@@ -106,24 +106,7 @@ This is a brief description of the file.
 
 </div>
 
-### Diet dataset
+### Cracker dataset
 
 ![First few rows of text file](../images/diet-view.png)
-
-### How to read in this file
-+ Is it space delimited or tab delimited?
-  + Both! 
-    + Tab on first line
-    + Spaces on all others.
-+ Possible solutions
-  + Download and convert first line tab to one blank
-  + Use default delimiter in read.table (white space)
-    + read.table(fn, stringsAsFactors=FALSE)
-    
-<div class="notes">
-
-This file is tricky.
-
-</div>
-
 
