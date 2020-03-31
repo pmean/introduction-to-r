@@ -27,28 +27,28 @@ There are five videos in this module specific to the R programming language and 
 
 ## Datasets used in this module
 
-There are three datasets used in this module. All of these are stored in a single binary file, which you can download [here](../dat/module02-datasets.RData). You should not need the text versions of the files, but I am including links to them below.
+There are three datasets used in this module. All of these are stored in a single binary file, which you can download [here](../data/module02-datasets.RData). You should not need the text versions of the files, but I am including links to them below.
 
 ### bump
 
-+ View the [data dictionary](../dat/airline-data-dictionary.txt)
++ View the [data dictionary](../data/airline-data-dictionary.txt)
 + Used in the video
 + Not needed for the homework assignment
-+ A [text version](../dat/airline-bumping-2017.txt) of this dataset.
++ A [text version](../data/airline-bumping-2017.txt) of this dataset.
 
 ### fd
 
-+ View the [data dictionary](../dat/fat-data-dictionary.txt)
++ View the [data dictionary](../data/fat-data-dictionary.txt)
 + Used in the video
 + Not needed for the homework assignment
-+ A [text version](../dat/fat.txt) of this dataset.
++ A [text version](../data/fat.txt) of this dataset.
 
 ### sleep
 
-+ View the [data dictionary](../dat/sleep-data-dictionary.txt)
++ View the [data dictionary](../data/sleep-data-dictionary.txt)
 + Not used in the video
 + You will need this dataset for the homework assignment
-+ A [text version](../dat/sleep.txt) of this dataset.
++ A [text version](../data/sleep.txt) of this dataset.
 
 ## Assignments
 
@@ -70,7 +70,7 @@ It is okay to use short answers like "Nothing was confusing" or "Everything was 
 
 Graded: 3 points, one point deducted if submitted late.
 
-Download the the file [module02-datasets.RData](../dat/module02-datasets.RData) and store it in the appropriate folder. Then run a program using Rmarkdown to answer the following questions.
+Download the the file [module02-datasets.RData](../data/module02-datasets.RData) and store it in the appropriate folder. Then run a program using Rmarkdown to answer the following questions.
 
 Include both the question and your answer to the question in the Rmarkdown code. Submit your work as a single PDF file.
 

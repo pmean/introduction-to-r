@@ -76,7 +76,7 @@ You should always print out the version of R that you are using and the date tha
 ### Reading existing data
 
 ```{r load}
-load("../dat/module02-datasets.RData")
+load("../data/module02-datasets.RData")
 ls()
 ```
 
@@ -88,7 +88,7 @@ After loading data, use the ls function to review what information was loaded.
 
 ### From airline-data-dictionary.txt
 
-`r readLines("../dat/airline-data-dictionary.txt")[3]`
+`r readLines("../data/airline-data-dictionary.txt")[3]`
 
 <div class="notes">
 
@@ -301,7 +301,7 @@ Today, you will see examples involving mostly continuous variables.
 
 ### From fat-data-dictionary.txt
 
-`r readLines("../dat/fat-data-dictionary.txt")[3]`
+`r readLines("../data/fat-data-dictionary.txt")[3]`
 
 <div class="notes">
 
@@ -770,7 +770,7 @@ Here is what the graph looks like.
 
 ### New slide 
 
-`r readLines("../dat/sleep-data-dictionary.txt")[3]`
+`r readLines("../data/sleep-data-dictionary.txt")[3]`
 
 
 <div class="notes">

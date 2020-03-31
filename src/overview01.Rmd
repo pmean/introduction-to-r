@@ -30,14 +30,14 @@ Go to the Canvas website to view these videos.
 
 ## Datasets used in this module
 
-There is one dataset used in this module. It is stored in a single binary file, which you can download [here](../dat/module01-datasets.RData). You should not need the text version of the file, but I am including links to them below.
+There is one dataset used in this module. It is stored in a single binary file, which you can download [here](../data/module01-datasets.RData). You should not need the text version of the file, but I am including links to them below.
 
 ### bump
 
-+ View the [data dictionary](../dat/airline-data-dictionary.txt)
++ View the [data dictionary](../data/airline-data-dictionary.txt)
 + Used in the video
 + Not needed for the homework assignment
-+ A [text version](../dat/airline-bumping-2017.txt) of this dataset.
++ A [text version](../data/airline-bumping-2017.txt) of this dataset.
 
 ## Assignments
 

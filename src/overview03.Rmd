@@ -93,9 +93,9 @@ It is okay to use short answers like "Nothing was confusing" or "Everything was 
 
 Graded: 3 points, one point deducted if submitted late.
 
-`r readLines("../dat/hw0301.txt")`
+`r readLines("../data/hw0301.txt")`
 
-`r readLines("../dat/hw0302.txt")`
+`r readLines("../data/hw0302.txt")`
 
-`r readLines("../dat/hw0303.txt")`
+`r readLines("../data/hw0303.txt")`
 

@@ -36,7 +36,7 @@ Many text files include the names of the variables in the first row of text. Thi
 + Type the following into notepad.
 
 ```{r csv, echo=FALSE, comment=""}
-tx <- readLines("../dat/simple.csv")
+tx <- readLines("../data/simple.csv")
 cat(tx, sep="\n")
 ```
 
@@ -67,7 +67,7 @@ and save the file using the name simple.csv. Note the directory that you are sav
 ### the read.csv function 
 
 ```{r read-csv}
-fn <- "../dat/simple.csv"
+fn <- "../data/simple.csv"
 raw_data <- read.csv(file=fn, 
   stringsAsFactors=FALSE)
 raw_data
@@ -86,7 +86,7 @@ We will not talk about it in this module, but you almost always want to use the 
 + Type the following into notepad.
 
 ```{r space-delimited, echo=FALSE, comment=""}
-tx <- readLines("../dat/simple.txt")
+tx <- readLines("../data/simple.txt")
 cat(tx, sep="\n")
 ```
 
@@ -103,7 +103,7 @@ Now try something different. Type in the same data, but use a single space betwe
 ### Using the read.table function
 
 ```{r txt}
-fn <- "../dat/simple.txt"
+fn <- "../data/simple.txt"
 raw_data <- read.table(fn, header=TRUE, stringsAsFactors=FALSE, sep=" ")
 raw_data
 ```
@@ -123,7 +123,7 @@ Here is how you would use read.table to read this file.
 + Type the following into notepad, but everywhere you see a space, press the tab key instead of the space bar.
 
 ```{r tab, echo=FALSE, comment=""}
-tx <- readLines("../dat/simple.tsv")
+tx <- readLines("../data/simple.tsv")
 cat(tx, sep="\n")
 ```
 
@@ -138,7 +138,7 @@ cat(tx, sep="\n")
 ### Using the read.table function
 
 ```{r tsv}
-fn <- "../dat/simple.tsv"
+fn <- "../data/simple.tsv"
 raw_data <- read.table(fn, header=TRUE, stringsAsFactors=FALSE, sep="\t")
 raw_data
 ```
@@ -148,7 +148,7 @@ raw_data
 + Type the following into notepad
 
 ```{r anything, echo=FALSE, comment=""}
-tx <- readLines("../dat/tilde.txt")
+tx <- readLines("../data/tilde.txt")
 cat(tx, sep="\n")
 ```
 
@@ -168,7 +168,7 @@ Here is how you would use read.table to read this file.
 ### Using the read.table function
 
 ```{r tilde}
-fn <- "../dat/tilde.txt"
+fn <- "../data/tilde.txt"
 raw_data <- read.table(fn, header=TRUE, stringsAsFactors=FALSE, sep="~")
 raw_data
 ```
@@ -188,7 +188,7 @@ The data reads in just fine. Why would you use a tilde as a delimiter. Sometimes
   + No space between the 4 and 16
 
 ```{r fixed, echo=FALSE, comment=""}
-tx <- readLines("../dat/fixed.txt")
+tx <- readLines("../data/fixed.txt")
 cat(tx, sep="\n")
 ```
 
@@ -220,7 +220,7 @@ and store it as fixed.txt.
 ### The read.fwf function 
 
 ```{r read.fwf}
-fn <- "../dat/fixed.txt"
+fn <- "../data/fixed.txt"
 raw_data <- read.fwf(fn, c(1, 2))
 raw_data
 ```

@@ -12,8 +12,8 @@ R.version.string
 Sys.Date()
 ```
 
-`r readLines("../dat/hw0301.txt")`
+`r readLines("../data/hw0301.txt")`
 
-`r readLines("../dat/hw0302.txt")`
+`r readLines("../data/hw0302.txt")`
 
-`r readLines("../dat/hw0303.txt")`
+`r readLines("../data/hw0303.txt")`

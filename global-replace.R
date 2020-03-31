@@ -17,7 +17,7 @@ gsr <- function(dir_name, file_pattern, old_string, new_string="no replacement",
     if (!replace_flag) next
     new_text <-  str_replace_all(file_text, old_string, new_string)
     print(paste0("Replacing ", length(new_lines), " lines."))
-    writeLines(new_text, new_text)
+    writeLines(new_text, paste(dir_name, i_file, sep="/"))
   }
   return(file_text)
 }
