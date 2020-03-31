@@ -1,3 +1,6 @@
+# move.R
+# written by Steve Simon
+
 display_info <- function(x_list, x_name) {
   n <- length(x_list)
   if (n==0) {return(0)}
