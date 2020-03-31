@@ -11,13 +11,13 @@ For every question, include the relevant R output and a brief written commentary
 
 The first four questions relate to the Gardasil dataset, a study of patients who received the Gardasil vaccine. A key question that this dataset was intended to address is what factors influenced whether a patient got all the required shots. More details are given below.
 
-1. Create factors for AgeGroup, Race, Completed, Location. Show frequency counts for all four of these variables.
+1. Create factors for AgeGroup, Race, Completed. Show frequency counts for all four of these variables.
 
-2. What proportion of patients completed all three shots?
+2. What percentage of patients completed all three shots?
 
-3. Use a crosstabulation to compare Age to AgeGroup, and Location to LocationType. Are the recodings into AgeGroup and LocationType done properly?
+3. Use a crosstabulation to compare Age to AgeGroup. Are the recodings into AgeGroup done properly?
 
-4. Does the likelihood of completing all four shots vary by AgeGroup, Race, or Location? Calculate the appropriate percentages.
+4. Does the likelihood of completing all four shots vary by AgeGroup or Race? Calculate the appropriate percentages.
 
 The next two questions relate to the diet dataset that compares four different types of crackers. The 13 subjects that ate the crackers rated them on the amount of bloating. More details are given below.
 
@@ -52,27 +52,29 @@ Here is the first version of the file. Notice the regular spacing throughout. Bu
 
 ![View of text data](../images/gardasil-view02.png)
 
+Here's a view of the alternate format.
+
 ### How should you read in this file?
 
 The data looks a bit unusual, but the relatively even spacing, except for the first line seems to indicate a tab delimited file. The second format is obviously a comma separated value format. You can tell by the file extension (csv) and by peeking at the file in a text editor.
 
 </div>
 
-### Cracker dataset
+### Diet dataset
 
-+ Cracker dataset (Text file)
++ Diet dataset (Text file)
   + https://dasl.datadescription.com/download/data/3163
-+ Cracker data dictionary
++ Diet data dictionary
   + http://dasl.datadescription.com/datafile/diet
 
 
-### Cracker data dictonary
+### Diet data dictonary
 
 ![Brief description of diet dataset](../images/diet-data-dictionary.png)
 
 This is a brief description of the file.
 
-### Cracker dataset
+### Diet dataset
 
 ![First few rows of text file](../images/diet-view.png)
 
