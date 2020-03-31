@@ -25,9 +25,10 @@ You should find the data file on mortality among passengers of the Titanic at
 + Description: http://www.amstat.org/publications/jse/v19n1/gardasil.txt
 + Alternate source: http://www.pmean.com/15/images/day2gardasil.csv
 
-Dietary fiber (if there is extra time)
+#### Dietary fiber
 
-+ Description: http://lib.stat.cmu.edu/DASL/Datafiles/Fiber.html
++ Data: https://dasl.datadescription.com/download/data/3163
++ Description: http://lib.stat.cmu.edu/DASL/datafile/diet/
 
 ### R functions you've seen before
 

@@ -22,4 +22,4 @@ gsr <- function(dir_name, file_pattern, old_string, new_string="no replacement",
   return(file_text)
 }
 
-file_text <- gsr("src", "*.Rmd", fixed("/dat/"), "/data/", TRUE)
+file_text <- gsr("src", "*.Rmd", fixed("/dat/"), "/data/")

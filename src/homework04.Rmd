@@ -7,20 +7,6 @@ output: html_document
 
 Having completed all the videos in this module, I would like you to turn in some simple analyses that you run on two fresh data sets. This homework assignment will be graded pass/fail.
 
-The Gardasil vaccine requires three shots in order to be effective. A study conducted at Johns Hopkins looked at how often patients failed to get all three shots. They wanted to see if insurance status, age, and other factors could predict who was at greatest risk for failing to get all three shots.
-
-The data set is available at
-
-http://www.amstat.org/publications/jse/v19n1/gardasil.dat.txt
-
-An alternate format is available at
-
-http://www.pmean.com/15/images/day2gardasil.csv
-
-You can find a data dictionary at
-
-http://www.amstat.org/publications/jse/v19n1/gardasil.txt
-
 For every question, include the relevant R output and a brief written commentary explaining what the results mean. When you send your answers, please include the original questions (e.g., Q1: What is the 18th letter of the alphabet. A. The letter "R").
 
 The first four questions relate to the Gardasil dataset, a study of patients who received the Gardasil vaccine. A key question that this dataset was intended to address is what factors influenced whether a patient got all the required shots. More details are given below.
@@ -33,7 +19,7 @@ The first four questions relate to the Gardasil dataset, a study of patients who
 
 4. Does the likelihood of completing all four shots vary by AgeGroup, Race, or Location? Calculate the appropriate percentages.
 
-The next two questions relate to the diet dataset that compares four different types of crackers. The subjects that ate the crackers rated them on the amount of bloating. More details are given below.
+The next two questions relate to the diet dataset that compares four different types of crackers. The 13 subjects that ate the crackers rated them on the amount of bloating. More details are given below.
 
 5. Calculate frequency tables for both categorical variables in the dataset. Are there any missing values?
 
@@ -54,37 +40,21 @@ The Gardasil vaccine requires three shots in order to be effective. A study cond
 
 ![Gardasil data dictionary](../images/gardasil-data-dictionary01.png)
 
-Here is the data dictionary. It is a bit hard to read so let me zoom in to the important section.
-
-### Gardasil data dictionary
-
-![Gardasil data dictionary excerpt](../images/gardasil-data-dictionary02.png)
-
-Almost all of the variables are categorical and they all use number codes.
+Here is the data dictionary. Almost all of the variables are categorical and they all use number codes.
 
 ### Gardasil data, text file
 
 ![View of text data](../images/gardasil-view01.png)
 
-<div class="notes">
-
-Here is the first version of the file. Notice the regular spacing throughout.
-
-</div>
+Here is the first version of the file. Notice the regular spacing throughout. But also notice how the first line, the names of the variables don't quite line up.
 
 ### Gardasil data, text file
 
 ![View of text data](../images/gardasil-view02.png)
 
 ### How should you read in this file?
-+ First text format
-  + Try tab separated file
-+ Second text format
-  + Try comma separated value
-  
-<div class="notes">
 
-The data looks a bit unusual, but the relatively even spacing seems to indicate a tab delimited file. The second format is obviously a comma separated value format. You can tell by the file extension (csv) and by peeking at the file in a text editor.
+The data looks a bit unusual, but the relatively even spacing, except for the first line seems to indicate a tab delimited file. The second format is obviously a comma separated value format. You can tell by the file extension (csv) and by peeking at the file in a text editor.
 
 </div>
 
@@ -100,13 +70,12 @@ The data looks a bit unusual, but the relatively even spacing seems to indicate 
 
 ![Brief description of diet dataset](../images/diet-data-dictionary.png)
 
-<div class="notes">
-
 This is a brief description of the file.
-
-</div>
 
 ### Cracker dataset
 
 ![First few rows of text file](../images/diet-view.png)
 
+### How should you read in this file?
+
+The data looks a bit unusual, but the relatively even spacing seems to indicate a tab delimited file. The hint that it is not a fixed width file is in the very first line, where the variable name Cracker does not line up with data directly beneath it.
