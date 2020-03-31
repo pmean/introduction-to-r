@@ -67,3 +67,6 @@ It is okay to use short answers like "Nothing was confusing" or "Everything was 
 
 Graded: 3 points, one point deducted if submitted late.
 
+Download the code for [small-program.Rmd](../src/small-program.Rmd) and the datafile two-small-dataframes.RData(../data/two-small-dataframes.RData) and store the files in a src and data directory somewhere on your computer. Modify the code so that you are listed as the author. Run the program and submit it as a PDF file.
+
+If there are errors or warnings in your output, make your best effort to fix them, but getting anything to run, even something with error messages will be sufficient for this very first homework assignment.
