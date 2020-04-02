@@ -7,10 +7,6 @@ output: html_document
 
 This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
 
-This document is only partially written.
-
-### Datasets
-
 #### Mortality on the Titanic
 
 You should find the data file on mortality among passengers of the Titanic at
@@ -21,14 +17,11 @@ You should find the data file on mortality among passengers of the Titanic at
 
 #### Gardasil vaccine
 
-+ Data: http://www.amstat.org/publications/jse/v19n1/gardasil.xls
-+ Description: http://www.amstat.org/publications/jse/v19n1/gardasil.txt
-+ Alternate source: http://www.pmean.com/15/images/day2gardasil.csv
+See below
 
 #### Dietary fiber
 
-+ Data: https://dasl.datadescription.com/download/data/3163
-+ Description: http://lib.stat.cmu.edu/DASL/datafile/diet/
+See below
 
 ### R functions introduced in this module
 
@@ -83,24 +76,6 @@ The next two questions relate to the diet dataset that compares four different t
 
 The Gardasil vaccine requires three shots in order to be effective. A study conducted at Johns Hopkins looked at how often patients failed to get all three shots. They wanted to see if insurance status, age, and other factors could predict who was at greatest risk for failing to get all three shots.
 
-### Gardasil data dictionary
-
-![Gardasil data dictionary](../images/gardasil-data-dictionary01.png)
-
-Here is the data dictionary. Almost all of the variables are categorical and they all use number codes.
-
-### Gardasil data, text file
-
-![View of text data](../images/gardasil-view01.png)
-
-Here is the first version of the file. Notice the regular spacing throughout. But also notice how the first line, the names of the variables don't quite line up.
-
-### Gardasil data, text file
-
-![View of text data](../images/gardasil-view02.png)
-
-Here's a view of the alternate format.
-
 ### How should you read in this file?
 
 The data looks a bit unusual, but the relatively even spacing, except for the first line seems to indicate a tab delimited file. The second format is obviously a comma separated value format. You can tell by the file extension (csv) and by peeking at the file in a text editor.
@@ -111,17 +86,8 @@ The data looks a bit unusual, but the relatively even spacing, except for the fi
   + https://dasl.datadescription.com/download/data/3163
 + Diet data dictionary
   + http://dasl.datadescription.com/datafile/diet
-
-
-### Diet data dictonary
-
-![Brief description of diet dataset](../images/diet-data-dictionary.png)
-
-This is a brief description of the file.
-
-### Diet dataset
-
-![First few rows of text file](../images/diet-view.png)
+  
+This dataset represents an experiment where 13 volunteers ate four different types of crackers intended for dieters. The volunteers recorded the amount of bloating they experienced after eating each type of cracker. The researchers were interested in a new formulation (gum) that they hoped would be well tolerated.
 
 ### How should you read in this file?
 
