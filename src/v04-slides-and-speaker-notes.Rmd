@@ -645,5 +645,5 @@ range(ti$Age[which(ti$age_groups=="Adult")])
   + New categorical variables
 
 ```{r save-image, echo=FALSE}
-save.image("slides04.RData")
+save.image("../data/slides04.RData")
 ```

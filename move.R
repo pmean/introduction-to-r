@@ -23,7 +23,6 @@ for (i in c(html_list, pdf_list, pptx_list)) {
   file.copy(fn, res_path, overwrite=TRUE)
   file.remove(fn)
 }
-cat(paste0("\n", project_name, "\n"))
 display_info(pdf_list,  "pdf")
 display_info(html_list, "html")
 display_info(pptx_list, "pptx")
