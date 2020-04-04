@@ -1,0 +1,14 @@
+The file albuquerque-housing.txt was found originally at a website DASL (Data And Story Library) that is no longer available. I have a copy of the original data, which was described there as "a random sample of records of resales of homes from Feb 15 to Apr 30, 1993 from the files maintained by the Albuquerque Board of Realtors. This type of data is collected by multiple listing agencies in many cities and is used by realtors as an information base." There are 117 records in this database. I made a few minor modifications to the dataset, converting the price to dollars and changed the missing value code from * to NA.
+
+There was no indication about copyright status on the original website. The use of the data here for educational purposes falls under the fair use provisions of copyright law.
+
+Variable Names:
+
+Price = Selling price (in dollars)
+SquareFeet = Square feet of living space
+AgeYears = Age of home (years)
+NumberFeatures = Number out of 11 features (dishwasher, refrigerator, microwave, disposer, washer, intercom, skylight(s), compactor, dryer, handicap fit, cable TV access)
+Northeast = Located in northeast sector of city (1=Yes, 0=No)
+CustomBuild = Custom built (1=Yes, 0=No)
+CornerLot = Corner location (1=Yes, 0=No)
+Tax = Yearly property tax (in dollars)

@@ -148,7 +148,7 @@ Again, these seem to be reasonable values.
 
 ### Scatterplot
 
-```{r fev_scatterplot, eval=FALSE}
+```{r fev_scatterplot}
 library(ggplot2)
 plot1 <- ggplot(fev, aes(x=ht, y=fev)) +
   geom_point()
@@ -220,116 +220,205 @@ The females smoke more often than the males, `r pct_table["female", "smoker"]`% 
 
 </div>
 
+### Break #1
+
++ What have you learned
+  + Review analysis of continuous variables
+  + Review analysis of categorical variables
++ What's next
+  + Analysis of a mix: continuous and categorical
+  
+<div class="notes">
+
+Let's take a short break here. What you've seen so far is review of methods that you use when examining relationships between two continuous variables (scatterplots) and methods that you use when examining relationships between two categorical variables (crosstabulations).
+
+Coming up next is how you examine relationships between a continuous variable and a categorical variable.
+
+</div>
+
 ### Boxplots
+
+```{r fev_boxplots-fev}
+plot2 <- ggplot(fev, aes(x=smoke_factor, y=fev)) +
+  geom_boxplot()
+ggsave("../images/smoke-by-fev.png")
+```
+
+<div class="notes">
 
 When you want to look at a relationship between a categorical variable and a continuous variable, you should use a boxplot.
 
-```{r fev_boxplots-fev}
-boxplot(fev~smoke_factor,data=fev)
-```
+</div>
 
-This is very odd. You can get a hint as to why smokers might have higher fev values than non-smokers by looking at how age and smoking status are related.
+### Boxplots
 
-```{r fev_boxplots-age}
-boxplot(age~smoke_factor,data=fev)
-```
-
+![Boxplots comparing FEV values for smokers and non-smokers](../images/smoke-by-fev.png)
 
 <div class="notes">
 
+Here is the boxplot. The results are very odd. Smokers tend to have higher FEV values than non-smokers. 
 
+You can get a hint as to why smokers might have higher fev values than non-smokers by looking at how age and smoking status are related.
 
 </div>
 
-### On your own
+### Boxplots
 
-Look at the relationship between sex and fev.
-
-You should also calculate the means for each continuous variable within each level of the categorical variable.
-
-Note: you don't really need the na.rm=TRUE argument here, but you might in other examples.
-
-```{r fev_by_fev}
-# fev mean by smoke_factor
-by(fev$fev,fev$smoke_factor,mean,na.rm=TRUE)
-# fev standard deviation by smoke_factor
-by(fev$fev,fev$smoke_factor,sd,na.rm=TRUE)
+```{r fev_boxplots-age}
+plot3 <- ggplot(fev, aes(smoke_factor, age)) +
+  geom_boxplot()
+ggsave("../images/smoke-by-age.png", plot3, height=4, width=4)
 ```
+
+<div class="notes">
+
+This is the code to draw a boxplot of the ages for smokers and non-smokers
+
+</div>
+
+### Boxplots
+
+![Boxplots comparing ages for smokers and non-smokers](../images/smoke-by-age.png)
+
+<div class="notes">
+
+Here's what's happening. Older kids are more likely to be smokers, and older kids have bigger and more mature lungs. This a classic case of confounding.
+
+</div>
+
+### Break #2
+
++ What have you learned?
+  + Boxplots
++ What's coming up next?
+  + Group means and standard deviations
+  
+<div class="notes">
+
+Time for another break. You saw how to use boxplots to visually compare a continuous variable across different levels of a categorical variable.
+
+Coming up next is the calculation of group means and standard deviations.
+
+</div>
+
+### Group means
+
+```{r fev_means}
+fev_means <- by(fev$fev, fev$smoke, mean, na.rm=TRUE)
+fev_means
+```
+
+<div class="notes">
+
+Here are the group means.
+
+</div>
+
+### Group standard deviations
+
+```{r fev_sd}
+fev_stdev <- by(fev$fev, fev$smoke, sd, na.rm=TRUE)
+fev_stdev
+```
+
+<div class="notes">
+
+Here are the group standard deviations.
 
 The output is not labelled all that clearly, but you can use the paste function to make things look nicer.
 
+</div>
+
+### Group means
+
 ```{r fev_paste_fev}
-grp_means <- by(fev$fev,fev$smoke_factor,mean)
-grp_stdev <- by(fev$fev,fev$smoke_factor,sd)
 colon <- ": "
 plus_minus <- "+/-"
-paste(names(grp_means),colon,round(grp_means,1),
-      plus_minus,round(grp_stdev,1),sep="")
+paste(
+  names(fev_means),
+  colon,
+  round(fev_means, 1),
+  plus_minus,
+  round(fev_stdev, 1),
+  sep="")
 ```
+
+<div class="notes">
+
+You don't need to use this extra level of effort for your homework. It's just an attempt by me to show again a common pattern in R. Simple functions produce simple results and these can be combined in a variety of different ways.
+
+</div>
+
+### Group means
+
+```{r fev_paste_age}
+age_means <- by(fev$age, fev$smoke_factor, mean, na.rm=TRUE)
+age_stdev <- by(fev$age, fev$smoke_factor, sd, na.rm=TRUE)
+colon <- ": "
+plus_minus <- "+/-"
+paste(
+  names(age_means),
+  colon,
+  round(age_means,1),
+  plus_minus,
+  round(age_stdev,1),
+  sep="")
+```
+
+<div class="notes">
 
 Let's calculate mean ages for smokers and nonsmokers. Notice that smokers are 4 years older on average than nonsmokers.
 
-```{r fev_paste_age}
-grp_means <- by(fev$age,fev$smoke_factor,mean)
-grp_stdev <- by(fev$age,fev$smoke_factor,sd)
-colon <- ": "
-plus_minus <- "+/-"
-paste(names(grp_means),colon,round(grp_means,1),
-      plus_minus,round(grp_stdev,1),sep="")
-```
+</div>
+
+### The Albuquerque dataset
+
++ Housing data dictionary
+  + http://www.pmean.com/introduction-to-r/data/albuquerque-data-dictionary.txt
++ Housing dataset
+  + http://www.pmean.com/introduction-to-r/data/albuquerque-housing.txt
 
 <div class="notes">
 
-
+The first file you will need for your homework is the Albuquerque dataset. It has information on 117 housing resales in the city of Albuquerque, New Mexico back in 1993. The dataset includes information on the size and age of the house, among other things, that might be predictive of the sales price.
 
 </div>
 
-### On your own
+### The Albuquerque dataset
 
-Compute the mean and standard deviation for fev by sex.
+![Data dictionary for the Albuquerque dataset](../images/albuquerque-data-dictionary.png)
 
 <div class="notes">
 
+This is the data dictionary. Notice that there are several categorical variables. 
 
+Northeast is an indicator variable for whether the house was located in the Northeast part of the city, which is believed to be slightly more upscale than the other parts of the city.
+
+CustomBuild is an indicator variable for whether the house was built using special (custom) plans or if it was built using standard plans.
+
+CornerLot is an indicator variable for whether the house sat on a corner lot (a lot at the intersection of two streets). There are reasons to believe that houses on corner lots should be more expensive than other houses, but also reasons to believe that these houses should be less expensive.
 
 </div>
 
-### Read in the housing data set
+### The Albuquerque dataset
 
-You should find the data file on housing prices in Albuquerque at
+![A peek at the raw data for the Albuquerque dataset](../images/albuquerque-view.png)
 
---> http://lib.stat.cmu.edu/DASL/Datafiles/homedat.html
+<div class="notes">
 
-You should cut-and-paste the actual data to notepad and save it with the name housing.txt. You need to read in the file using the read.table function.
+The data shown here seems to indicate the use of a single space as a delimiter.
 
-For technical reasons, you want the as.is=TRUE argument. Otherwise AGE and TAX are converted to factors which causes all sorts of grief.
+</div>
 
 ```{r read.housing}
-al <- read.table(file="../data/housing.txt",header=TRUE,as.is=TRUE)
+al <- read.table(
+  file="../data/housing.txt",
+  header=TRUE,
+  sep=" ",
+  stringsAsFactors=FALSE)
 head(al)
 tail(al)
 ```
-
-```{r univariate}
-summary(al)
-```
-
-There is a problem with AGE. The person who entered the data intended for an asterisk to represent a missing value. But R interpreted the asterisk as a string and converted all the numeric ages to strings also. That's why R summarizes age using counts rather than means. Use the as.numeric function to fix this.
-
-A side effect, which is desired in this case, is that anything that cannot be converted from a string to a number (like an asterisk) is instead converted to a missing value.
-
-```{r convert_age}
-al$age_years <- as.numeric(al$AGE)
-summary(al$age_years)
-```
-
-There is a mix of categorical and continuous variables. Recall that you use a scatterplot to examine the relationship between two continuous variables, a crosstabls and an odds ratio to examine the relationship between two categorical variables, and a boxplot to examine the relationship between a categorical variable and a continuous variable.
-
-<div class="notes">
-
-
-
-</div>
 
 ### On your own
 
@@ -357,19 +446,16 @@ There is a mix of categorical and continuous variables. Recall that you use a sc
 
 </div>
 
-### A third data set
+### The Diamond dataset
 
-If there is time, we can explore a third data set, diamond prices. The data is at 
-
---> http://www.amstat.org/publications/jse/v9n2/4cdata.txt
-
-and a description is at 
-
---> http://www.amstat.org/publications/jse/v9n2/4c.txt
-
++ Diamond data dictionary
+  + http://jse.amstat.org/v9n2/4C.txt
++ Diamond dataset
+  + http://jse.amstat.org/v9n2/4Cdata.txt
+  
 <div class="notes">
 
-
+Note that the data dictionary describes two different datasets. You will be using the first dataset, the one with a smaller number of variables.
 
 </div>
 
