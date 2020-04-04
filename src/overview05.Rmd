@@ -1,21 +1,70 @@
 ---
 title: "M05. Overview of module05"
 author: "Steve Simon"
-date: "Created 2020-02-13"
+date: "Created 2020-04-04"
 output: html_document
 ---
 
 This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
 
-This document is only partially written.
-
-Forced Expiratory Volume (FEV) Data
+### The FEV dataset
 
 + Data: http://www.amstat.org/publications/jse/datasets/fev.dat.txt
 + Description: http://www.amstat.org/publications/jse/datasets/fev.txt
 + Alternate source: http://www.pmean.com/15/images/day3fev.txt
 
-Home prices in Albuquerque
+This dataset is used in the videos.
 
-+ Data and description: http://lib.stat.cmu.edu/DASL/Datafiles/homedat.html
-+ Alternate source: http://www.pmean.com/15/images/day3housing.txt
+### R functions introduced in this module
+
+by, calculates within values of a categorical variable
+geom_boxplot, adds boxplots to your graph
+range, displays both the minimum and maximum value
+
+### Your homework
+
+Having completed all the videos in this module, I would like you to turn in some simple analyses that you run on two fresh data sets. This homework assignment will be graded pass/fail.
+
+For every question, include the relevant R output and a brief written commentary explaining what the results mean. When you send your answers, please include the original questions (e.g., Q1: What is the 18th letter of the alphabet. A. The letter "R").
+
+Questions 1-4 refer to the Albuquerque dataset.
+
+1. Convert the number codes for the categorical variables to factors. Show frequency tables for these variables after conversion. Are any values missing for these categorical variables?
+
+2. Compute means and standard deviations for all the continuous variables. How many missing values are there for age and for tax?
+
+3. Find the largest house (biggest square footage) in the data set. Is the largest house also the most expensive house?
+
+4. Evaluate the relationship between PRICE and SQFT using a scatterplot. Do larger houses tend to cost more?
+
+5. Show how much more expensive custom built homes are compared to standard homes using a boxplot and through calculation of the means and standard deviations.
+
+Questions 6-7 refer to the Diamond dataset.
+
+6. Show the relationship between carat size and price using a scatterplot.
+
+7. Show the relationship between color and price and the relatonship between clarity and price using boxplots.
+
+### The Albuquerque dataset
+
++ Housing data dictionary
+  + http://www.pmean.com/introduction-to-r/data/albuquerque-data-dictionary.txt
++ Housing dataset
+  + http://www.pmean.com/introduction-to-r/data/albuquerque-housing.txt
+
+### How should you read in this file?
+
+There is only a single blank between each data value. Use a blank as a delimiter.
+
+### The Diamond dataset
+
++ Diamond data dictionary
+  + http://jse.amstat.org/v9n2/4C.txt
++ Diamond dataset
+  + http://jse.amstat.org/v9n2/4Cdata.txt
+  
+### How should you read in this file?
+
+This could either be a tab delimited file or a fixed width file. If you scroll through enough of the data, you will see that the price is right justified. Tab delimited files almost always have left justification for all data. So try a fixed width format.
+
+

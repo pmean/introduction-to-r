@@ -7,21 +7,13 @@ output: html_document
 
 This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
 
-#### Mortality on the Titanic
-
-You should find the data file on mortality among passengers of the Titanic at
+### The Titanic dataset
 
 + Data: http://www.statsci.org/data/general/titanic.txt
 + Description: http://www.statsci.org/data/general/titanic.html
 + Alternate source: http://www.pmean.com/15/images/day2titanic.txt
 
-#### Gardasil vaccine
-
-See below
-
-#### Dietary fiber
-
-See below
+This dataset is used in the videos.
 
 ### R functions introduced in this module
 
@@ -43,7 +35,6 @@ See below
 + which.min, selects row or rows where a minimum occurs
 
 ### Your homework
-
 
 Having completed all the videos in this module, I would like you to turn in some simple analyses that you run on two fresh data sets. This homework assignment will be graded pass/fail.
 
@@ -92,3 +83,4 @@ This dataset represents an experiment where 13 volunteers ate four different typ
 ### How should you read in this file?
 
 The data looks a bit unusual, but the relatively even spacing seems to indicate a tab delimited file. The hint that it is not a fixed width file is in the very first line, where the variable name Cracker does not line up with data directly beneath it.
+

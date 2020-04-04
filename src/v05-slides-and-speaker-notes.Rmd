@@ -95,7 +95,6 @@ If you count carefully, you will see that the first three columns represent the 
 
 ```{r fev-tail}
 tail(fev)
-str(fev)
 ```
 
 <div class="notes">
@@ -371,6 +370,23 @@ Let's calculate mean ages for smokers and nonsmokers. Notice that smokers are 4 
 
 </div>
 
+### Break #3
+
++ What have you learned?
+  + Review earlier material
+  + Boxplots
+  + Group means and standard deviations
++ What's coming up next?
+  + Datasets needed for your homework
+  
+<div class="notes">
+
+Time for another break. You saw how to use boxplots to visually compare a continuous variable across different levels of a categorical variable.
+
+Coming up next is the calculation of group means and standard deviations.
+
+</div>
+
 ### The Albuquerque dataset
 
 + Housing data dictionary
@@ -406,43 +422,7 @@ CornerLot is an indicator variable for whether the house sat on a corner lot (a 
 
 <div class="notes">
 
-The data shown here seems to indicate the use of a single space as a delimiter.
-
-</div>
-
-```{r read.housing}
-al <- read.table(
-  file="../data/housing.txt",
-  header=TRUE,
-  sep=" ",
-  stringsAsFactors=FALSE)
-head(al)
-tail(al)
-```
-
-### On your own
-
-1. Convert the asterisks in the TAX variable to missing. How many missing values are there for AGE and for TAX?
-
-2. Create factors for NE, CUST, and COR. Draw bar charts for each of these factors.
-
-3. Find the largest house (biggest SQFT) in the data set. Is the largest house also the most expensive house?
-
-4. Calculate frequency counts for FEATS. Are there any houses with the no features? Are there any houses with every possible feature?
-
-5. Evaluate the relationship between PRICE and SQFT using a scatterplot. Include a smooth curve. Do larger houses tend to cost more?
-
-6. Evaluate the relationship between CUST and PRICE using a boxplot. Calculate the mean price and standard deviation by CUST.
-
-7. What is the difference in average prices between northeast houses and other houses? What is the difference in average taxes?
-
-8. Are custombuilt houses more likely to appear on corner lots? Calculate the percentages and compute a relative risk.
-
-9. Place all the key results into a Word document, add a bit of commentary, and turn it in.
-
-<div class="notes">
-
-
+There is only a single blank between each data value. Use a blank as a delimiter.
 
 </div>
 
@@ -456,6 +436,26 @@ tail(al)
 <div class="notes">
 
 Note that the data dictionary describes two different datasets. You will be using the first dataset, the one with a smaller number of variables.
+
+</div>
+
+### The Diamond dataset
+
+![Data dictionary for the Diamond dataset](../images/diamond-data-dictionary.png)
+
+<div class="notes">
+
+This is the data dictionary.
+
+</div>
+
+### The Diamond dataset
+
+![A peek at the raw data for the Diamond dataset](../images/diamond-view.png)
+
+<div class="notes">
+
+This could either be a tab delimited file or a fixed width file. If you scroll through enough of the data, you will see that most of the variables are left justified, but the price is right justified. Tab delimited files almost always have left justification for all data. So try a fixed width format.
 
 </div>
 
