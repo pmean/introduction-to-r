@@ -227,6 +227,15 @@ Here's another interesting data set that you can work with. It comes in a short 
 
 ### Energy dataset
 
+![](../images/energy-data-dictionary.png)
+
+### Energy dataset
+
+![](../images/energy-view.png)
+
+
+### Energy dataset
+
 ```{r read-energy}
 fi <- "http://www.statsci.org/data/general/energy.txt"
 en <- read.table(fi,header=TRUE)
