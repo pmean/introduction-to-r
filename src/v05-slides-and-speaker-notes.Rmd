@@ -149,9 +149,9 @@ Again, these seem to be reasonable values.
 
 ```{r fev_scatterplot}
 library(ggplot2)
-plot1 <- ggplot(fev, aes(x=ht, y=fev)) +
+plot1 <- ggplot(fev, aes(x=age, y=fev)) +
   geom_point()
-ggsave("../images/ht-by-fev.png", plot1, width=4, height=4)
+ggsave("../images/age-by-fev.png", plot1, width=4, height=4)
 ```
 
 <div class="notes">
@@ -162,7 +162,7 @@ Recall that you use a scatterplot to examine the relationship between two contin
 
 ### Scatterplot
 
-![](../images/ht-by-fev.png)
+![](../images/age-by-fev.png)
 
 <div class="notes">
 
@@ -303,7 +303,7 @@ Coming up next is the calculation of group means and standard deviations.
 ### Group means
 
 ```{r fev_means}
-fev_means <- by(fev$fev, fev$smoke, mean, na.rm=TRUE)
+fev_means <- by(fev$fev, fev$smoke_factor, mean, na.rm=TRUE)
 fev_means
 ```
 
@@ -316,7 +316,7 @@ Here are the group means.
 ### Group standard deviations
 
 ```{r fev_sd}
-fev_stdev <- by(fev$fev, fev$smoke, sd, na.rm=TRUE)
+fev_stdev <- by(fev$fev, fev$smoke_factor, sd, na.rm=TRUE)
 fev_stdev
 ```
 

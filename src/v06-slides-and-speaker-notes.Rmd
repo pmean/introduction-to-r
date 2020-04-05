@@ -78,42 +78,469 @@ The short and fat format has one row per patient and each successive patient enc
 
 </div>
 
+### Tall and thin example
+
+![Longitudinal data stores with multiple rows per patient](../images/tall-and-thin.png)
+
+<div class="notes">
+
 The tall and thin format has one row per patient encounter and therefore multiple rows per patient.
 
 Both formats have advantages and disadvantages, and you need to know how to create a longitudinal file in either format and how to transform from one format to another.
 
-Short and fat advantages:
+</div>
 
-1. easy to compute change scores
-2. easy to examine correlations over time
-3. easy to insure consistency of demographic data
+### Which format is better?
 
-Short and fat disadvantages:
++ Short and fat advantages:
+  + easy to compute change scores
+  + easy to examine correlations over time
+  + easy to insure consistency of demographic data
++ Short and fat disadvantages:
+  + hard to read because of the excessive need to scroll left and right
 
-1. hard to read because of the excessive need to scroll left and right
+<div class="notes">
 
-Tall and thin advantages:
 
-1. easy to plot longitudinal trends
-2. less need for missing value codes
-3. easy to read because most scrolling is up and down
 
-Tall and thin disadvantages
+</div>
 
-1. hard to maintain consistency of demographic variables
+### Which format is better?
 
++ Tall and thin advantages:
+  + easy to plot longitudinal trends
+  + less need for missing value codes
+  + easy to read because most scrolling is up and down
+
++ Tall and thin disadvantages
+  + hard to maintain consistency of demographic variables
+
+<div class="notes">
+
+
+
+</div>
+
+### Earthquake dataset
+
++ Earthquake data dictionary
+  + http://www.statsci.org/data/general/lomaprie.html
++ Earthquake dataset
+  + http://www.statsci.org/data/general/lomaprie.txt
+
+<div class="notes">
+
+Here is a dataset stored in the short and fat format.
+
+</div>
+
+### Earthquake dataset
+
+![Screenshot of data dictionary website](../images/earthquake-data-dictionary.png)
+
+<div class="notes">
+
+Here is the data dictionary
+
+</div>
+
+### Earthquake dataset
+
+![View of the earthquake dataset](../images/earthquake-view.png)
+
+<div class="notes">
+
+This is clearly a tab delimited file. All of the fields are left justified.
+
+</div>
+
+### Read in the earthquake data
+
+```{r read-earthquake}
+fn <- "http://www.statsci.org/data/general/lomaprie.txt"
+qu <- read.table(fn,header=TRUE)
+head(qu)
+```
+
+<div class="notes">
+
+There are measurements at weeks 0, 3, 6, 9, and 12.
+
+</div>
+
+### Converting to tall and thin
+
+```{r gather}
+library(tidyr)
+library(stringr)
+qu$id <- 1:25
+qu_tall <- gather(qu, key="time", value="depression", Week0, Week3, Week6, Week9, Week12)
+head(qu_tall)
+```
+
+<div class="notes">
+ 
+Convert this to a tall and thin format. Draw boxplots.
+
+Suggestion: create an id variable with values 1:25 before you convert the format. It is not needed for the boxplots, but if you do anything more complex with this data, you need to know which data in the tall and thin format comes from the first rows of the original data set, from the second row, etc.
+
+</div>
+
+### Boxplot
+
+```{r boxplots}
+library(ggplot2)
+ggplot(qu_tall, aes(x=time, y=depression)) +
+  geom_boxplot()
+```
+
+### Boxplot
+
+```{r modified-boxplot}
+qu_tall$week <- as.numeric(str_remove(qu_tall$time, "Week"))
+ggplot(qu_tall, aes(x=factor(week), y=depression)) +
+  geom_boxplot()
+```
+
+### Boxplot
+
+```{r line-plot}
+qu_tall$week <- as.numeric(str_remove(qu_tall$time, "Week"))
+ggplot(qu_tall, aes(x=factor(week), y=depression, group=id)) +
+  geom_line()
+```
+
+### Energy dataset (short and fat format)
+
++ Energy data dictionary
+  + http://www.statsci.org/data/general/energy.html
++ Energy data
+  + http://www.statsci.org/data/general/energy.txt
+  
+<div class="notes">
+
+Here's another interesting data set that you can work with. It comes in a short and fat format.
+
+--> http://www.statsci.org/data/general/energy.html
+
+</div>
+
+### Energy dataset
+
+```{r read-energy}
+fi <- "http://www.statsci.org/data/general/energy.txt"
+en <- read.table(fi,header=TRUE)
+en
+```
+
+<div class="notes">
+
+This dataset is small enough that you can safely print out the entire thing.
+
+</div>
+
+### Gather
+
+```{r gather-2}
+en_tall <- gather(en, key="key", value="value", Running, Walking, Cycling)
+head(en_tall, 10)
+```
+
+<div class="notes">
+
+
+
+</div>
+
+### Lineplot
+
+```{r lineplot}
+ggplot(en_tall, aes(x=key, y=value, group=Subject)) +
+  geom_line()
+```
+
+### Converting from tall and thin to short and fat
+
+Now let's read in a tall and thin format and convert it to a
+short and wide format.
+
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+This data set is described at 
+
+--> http://www.statsci.org/data/general/cholest.html
+
+```{r chol-read}
+fi <- "http://www.statsci.org/data/general/cholestg.txt"
+ch <- read.table(fi,header=TRUE)
+head(ch)
+tail(ch)
+summary(ch)
+```
+
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+The summary is not too helpful for the first three variables, so 
+try the table command instead.
+
+```{r chol-table}
+table(ch$patient,useNA="always")
+table(ch$group,useNA="always")
+table(ch$day,useNA="always")
+```
+
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+It's still a bit confusing. Why do the first 28 subjects have three
+measurements and the last 30 have only one measurement.
+
+```{r chol-crosstabs}
+table(ch$patient,ch$day,useNA="always")
+table(ch$group,ch$day,useNA="always")
+```
+
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+Okay, now it's a bit more clear. Each subject has measurements on
+three days (2,4,14) for group one, and measurements on an unspecified
+day (NA) for group 2.
+
+Let's look at the tedious and the faster way to convert from the tall
+and thin to the short and fat format.
+
+The missing value for day is going to cause a lot of grief, and it is
+simpler here to change it to a special code, 99.
+
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+```{r chol-reshape-1}
+ch$day[is.na(ch$day)] <- 99
+
+sb02 <- ch[ch$day==2,c(1,4)]
+names(sb02)[2] <- "cholest02"
+head(sb02)
+
+sb04 <- ch[ch$day==4,c(1,4)]
+names(sb04)[2] <- "cholest04"
+head(sb04)
+
+sb14 <- ch[ch$day==14,c(1,4)]
+names(sb14)[2] <- "cholest14"
+head(sb14)
+
+sb99 <- ch[ch$day==99,c(1,4)]
+names(sb99)[2] <- "cholest99"
+head(sb99)
+
+me1 <- merge(sb02,sb04,by="patient")
+head(me1)
+tail(me1)
+
+me2 <- merge(me1,sb14,by="patient")
+head(me2)
+tail(me2)
+
+me3 <- merge(me2,sb99,by="patient")
+head(me3)
+tail(me3)
+```
+
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+Oops! What happened here is that no matches were found and the default
+in the merge function is to only include in the merge those rows that
+are found in both data sets. This is known as an inner join in database
+parlance. You can use the all.x and all.y arguments to use a left join,
+right join, or outer join instead.
+
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+```{r chol-reshape2}
+me3 <- merge(me2,sb99,by="patient",all.x=TRUE,all.y=TRUE)
+head(me3)
+tail(me3)
+```
+
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+```{r chol-reshape-3}
+library("tidyr")
+ch1 <- spread(ch, day, cholest)
+head(ch1)
+tail(ch1)
+cor(ch1[,c("2", "4", "14")])
+```
+
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+Oops! The missing values hurt us here. Review the help file for cor.
+
+```{r cholest-cor}
+cor(ch1[,c("2", "4", "14")],use="complete")
+```
+
+<div class="notes">
+
+
+
+</div>
+
+### A data set on back pain with two matched control groups
+
+This data set is described in
+--> http://www.statsci.org/data/oz/backpain.html
+
+Subjects were matched by age, height, and weight. How well were they matched?
+
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+```{r read-match}
+fn <- "http://www.statsci.org/data/oz/backpain.txt"
+ma <- read.table(fn,header=TRUE)
+ma <- ma[,1:6]
+head(ma)
+tail(ma)
+```
+
+<div class="notes">
+
+
+
+</div>
+
+### On your own
+
+Convert this to a short and fat format. Let age1 represent the age of
+the subject in the pain group, age2 represent the matched subject
+in the nopain group, and age3 represent the matched subject in the
+sedentary group. Redefine height and weight similarly.
+
+Plot age1 versus age2 and age1 versus age3 to evaluate how closely
+the subjects are matched on age. Repeat for height and weight.
+
+<div class="notes">
+
+
+
+</div>
+
+### If there is extra time
+
+Here is a very complex data set on stroke.
+--> http://www.statsci.org/data/oz/stroke.html
+
+```{r read-stroke}
+fi <- "http://www.statsci.org/data/oz/stroke.txt"
+st <- read.table(fi,header=TRUE)
+head(st)
+tail(st)
+```
+
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+```{r save-image, echo=FALSE}
+save.image("../data/slides06.RData")
+```
+
+<div class="notes">
+
+
+
+</div>
+
+### New slide
 
 Here is a data set on termite survival. It is probably a bit of a stretch to call this longitudinal data, but it still is useful for illustrating how to convert longitudinal data.
 
 The data is embedded in the description of the file. So you need to strip away the description from the data. It helps to import the data as entire lines, and you do this by specifying a separator character that is not
 found anywhere in the file.
 
-```{r read-termites-1}
+<div class="notes">
+
+
+
+</div>
+
+```{r read-termites-1, eval=FALSE}
 fi <- "http://lib.stat.cmu.edu/DASL/Datafiles/Termites.html"
 te.tst <- read.table(file=fi,sep="~")
 te.tst[1:40,]
 tail(te.tst)
 ```
+
+<div class="notes">
+
+
+
+</div>
+
+### New slide
 
 If you look at the first 40 lines, it is obvious that the data starts
 somewhere around line 35. and that every previous line (and the very
@@ -128,7 +555,15 @@ prefer, you could just cut-and-paste just the lines that you
 want from the webpage and store the results in a text editor like
 notepad.
 
-```{r read-termites-2}
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+```{r read-termites-2, eval=FALSE}
 te <- read.table(file=fi, header=TRUE, comment="<")
 head(te)
 tail(te)
@@ -137,7 +572,15 @@ summary(te)
 
 We need to re-organize this data before we can plot it.
 
-```{r tedious-reshape}
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+```{r tedious-reshape, eval=FALSE}
 sb01 <- te[,c("dish","dose","day1")]
 names(sb01)[3] <- "count.living"
 sb01$day <- 1
@@ -198,11 +641,21 @@ head(tea)
 tail(tea)
 ```
 
+### New slide
+
 That's a bit tedious, and a clever R programmer could find a way to use looping structures like "for" to shorten the code. But there is a specialized library, tidyr, that makes things even easier.
 
 The tidyr library allows you to switch from short and fat to tall and thin using the gather function.
 
-```{r faster-1}
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+```{r faster-1, eval=FALSE}
 library("tidyr")
 teb <- gather(te, day, count.living, -dish, -dose)
 head(teb)
@@ -211,7 +664,15 @@ tail(teb)
 
 It takes a bit of investigation, but the warning messages refer to the day3 and day9 values which are character strings. You can fix this by droping those columns.
 
-```{r faster-2}
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+```{r faster-2, eval=FALSE}
 tec <- gather(te[,c(-5,-11)], day, count.living, -dish, -dose)
 head(tec)
 tail(tec)
@@ -221,27 +682,59 @@ We're not done quite yet. The day of the week is hidden in the variable
 called "variable" and we need to keep only the fourth (and maybe fifth)
 characters.
 
-```{r substr-1}
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+```{r substr-1, eval=FALSE}
 substr(tec$day,4,5)
 ```
 
 Almost. We need to convert from character to numeric.
 
-```{r substr-2}
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
+```{r substr-2, eval=FALSE}
 tec$day <- as.numeric(substr(tec$day,4,5))
 head(tec)
 tail(tec)
 ```
 
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
 Now to plot the data.
 
-```{r plot-termites}
+```{r plot-termites, eval=FALSE}
 plot(tec$day,tec$count.living)
 ```
 
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
 Let's connect the data for individual subjects.
 
-```{r line-termites}
+```{r line-termites, eval=FALSE}
 plot(tec$day,tec$count.living)
 for (i in 1:8) {
   sb <- tec$dish==i&tec$dose==5
@@ -251,6 +744,14 @@ for (i in 1:8) {
 }
 ```
 
+<div class="notes">
+
+
+
+</div>
+
+### New slide
+
 If you look at the graph, there are a couple of green lines, which
 represent dose=10, but which have many more alive at day 15 than even
 the dose=5 values. If you look at the original data set, these are
@@ -258,178 +759,8 @@ rows 9 and 10, corresponding to the first two dishes in the dose=10
 group. This may be okay, but you should check with the people who 
 collected the data, if you can.
 
-## A data set on depression after an earthquake (short and fat format)
-
-This data set is described in 
---> http://www.statsci.org/data/general/lomaprie.html
-
-
-```{r read-earthquake}
-fn <- "http://www.statsci.org/data/general/lomaprie.txt"
-qu <- read.table(fn,header=TRUE)
-qu
-```
-
-## On your own
-
-Convert this to a tall and thin format. Draw boxplots.
-
-Suggestion: create an id variable with values 1:25 before you convert the format. It is not needed for the boxplots, but if you do anything more complex with this data, you need to know which data in the tall and thin format comes from the first rows of the original data set, from the second row, etc.
-
-## A data set on energy consumption (short and fat format)
-
-Here's another interesting data set that you can work with. It comes in a short and fat format.
-
---> http://www.statsci.org/data/general/energy.html
-
-```{r read-energy}
-fi <- "http://www.statsci.org/data/general/energy.txt"
-en <- read.table(fi,header=TRUE)
-head(en)
-tail(en)
-```
-
-## Converting from tall and thin to short and fat
-
-Now let's read in a tall and thin format and convert it to a
-short and wide format.
-
-This data set is described at 
-
---> http://www.statsci.org/data/general/cholest.html
-
-```{r chol-read}
-fi <- "http://www.statsci.org/data/general/cholestg.txt"
-ch <- read.table(fi,header=TRUE)
-head(ch)
-tail(ch)
-summary(ch)
-```
-
-The summary is not too helpful for the first three variables, so 
-try the table command instead.
-
-```{r chol-table}
-table(ch$patient,useNA="always")
-table(ch$group,useNA="always")
-table(ch$day,useNA="always")
-```
-
-It's still a bit confusing. Why do the first 28 subjects have three
-measurements and the last 30 have only one measurement.
-
-```{r chol-crosstabs}
-table(ch$patient,ch$day,useNA="always")
-table(ch$group,ch$day,useNA="always")
-```
-
-Okay, now it's a bit more clear. Each subject has measurements on
-three days (2,4,14) for group one, and measurements on an unspecified
-day (NA) for group 2.
-
-Let's look at the tedious and the faster way to convert from the tall
-and thin to the short and fat format.
-
-The missing value for day is going to cause a lot of grief, and it is
-simpler here to change it to a special code, 99.
-
-```{r chol-reshape-1}
-ch$day[is.na(ch$day)] <- 99
-
-sb02 <- ch[ch$day==2,c(1,4)]
-names(sb02)[2] <- "cholest02"
-head(sb02)
-
-sb04 <- ch[ch$day==4,c(1,4)]
-names(sb04)[2] <- "cholest04"
-head(sb04)
-
-sb14 <- ch[ch$day==14,c(1,4)]
-names(sb14)[2] <- "cholest14"
-head(sb14)
-
-sb99 <- ch[ch$day==99,c(1,4)]
-names(sb99)[2] <- "cholest99"
-head(sb99)
-
-me1 <- merge(sb02,sb04,by="patient")
-head(me1)
-tail(me1)
-
-me2 <- merge(me1,sb14,by="patient")
-head(me2)
-tail(me2)
-
-me3 <- merge(me2,sb99,by="patient")
-head(me3)
-tail(me3)
-```
-
-Oops! What happened here is that no matches were found and the default
-in the merge function is to only include in the merge those rows that
-are found in both data sets. This is known as an inner join in database
-parlance. You can use the all.x and all.y arguments to use a left join,
-right join, or outer join instead.
-
-```{r chol-reshape2}
-me3 <- merge(me2,sb99,by="patient",all.x=TRUE,all.y=TRUE)
-head(me3)
-tail(me3)
-```
-
-```{r chol-reshape-3}
-library("tidyr")
-ch1 <- spread(ch, day, cholest)
-head(ch1)
-tail(ch1)
-cor(ch1[,c("2", "4", "14")])
-```
-
-Oops! The missing values hurt us here. Review the help file for cor.
-
-```{r cholest-cor}
-cor(ch1[,c("2", "4", "14")],use="complete")
-```
-
-## A data set on back pain with two matched control groups
-
-This data set is described in
---> http://www.statsci.org/data/oz/backpain.html
-
-Subjects were matched by age, height, and weight. How well were they matched?
-
-```{r read-match}
-fn <- "http://www.statsci.org/data/oz/backpain.txt"
-ma <- read.table(fn,header=TRUE)
-ma <- ma[,1:6]
-head(ma)
-tail(ma)
-```
-
-## On your own
-
-Convert this to a short and fat format. Let age1 represent the age of
-the subject in the pain group, age2 represent the matched subject
-in the nopain group, and age3 represent the matched subject in the
-sedentary group. Redefine height and weight similarly.
-
-Plot age1 versus age2 and age1 versus age3 to evaluate how closely
-the subjects are matched on age. Repeat for height and weight.
-
-## If there is extra time
-
-Here is a very complex data set on stroke.
---> http://www.statsci.org/data/oz/stroke.html
-
-```{read-stroke}
-fi <- "http://www.statsci.org/data/oz/stroke.txt"
-st <- read.table(fi,header=TRUE)
-head(st)
-tail(st)
-```
+<div class="notes">
 
 
 
-```{r save-image, echo=FALSE}
-save.image("../data/slides06.RData")
-```
+</div>
