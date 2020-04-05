@@ -1,0 +1,18 @@
+The file backpain.txt was originally from the OzDASL (Australian Data and Story Library) website. The version stored here is greatly simplified from the original version. If you are curious, you can find a full data dictionary and a link to the full dataset at
+
+http://www.statsci.org/data/oz/backpain.html
+
+The study recruited runners with lower back pain and found matching subjects among runners without lower back pain and among a sedentary group of adults. Matches were done on age, height, and weight. The question that I want to address with this data does not involve one of the many outcome measures. Rather, I want to see how closely the subjects were matched to one another.
+
+There was no indication about copyright status on the original website. The use of the data here for educational purposes falls under the fair use provisions of copyright law.
+
+There are 33 subjects total, 11 in each group.
+
+Variable Names:
+
+Subject: The subject's id number
+Group: NoPain, Pain, or Sedentary
+Match: Code for which subjects were matched together
+Age: Measured in years
+Height: Measured in cm
+Weight: Measured in kg
