@@ -364,24 +364,77 @@ summary {
 
 <h1 class="title toc-ignore">M05. Overview of module05</h1>
 <h4 class="author">Steve Simon</h4>
-<h4 class="date">Created 2020-02-13</h4>
+<h4 class="date">Created 2020-04-04</h4>
 
 </div>
 
 
-<p>This document was last modified on 2020-02-13.</p>
-<p>This document is only partially written.</p>
-<p>Forced Expiratory Volume (FEV) Data</p>
+<p>This document was last modified on 2020-04-04.</p>
+<div id="the-fev-dataset" class="section level3">
+<h3>The FEV dataset</h3>
 <ul>
 <li>Data: <a href="http://www.amstat.org/publications/jse/datasets/fev.dat.txt" class="uri">http://www.amstat.org/publications/jse/datasets/fev.dat.txt</a></li>
 <li>Description: <a href="http://www.amstat.org/publications/jse/datasets/fev.txt" class="uri">http://www.amstat.org/publications/jse/datasets/fev.txt</a></li>
 <li>Alternate source: <a href="http://www.pmean.com/15/images/day3fev.txt" class="uri">http://www.pmean.com/15/images/day3fev.txt</a></li>
 </ul>
-<p>Home prices in Albuquerque</p>
+<p>This dataset is used in the videos.</p>
+</div>
+<div id="r-functions-introduced-in-this-module" class="section level3">
+<h3>R functions introduced in this module</h3>
+<p>by, calculates within values of a categorical variable geom_boxplot, adds boxplots to your graph range, displays both the minimum and maximum value</p>
+</div>
+<div id="your-homework" class="section level3">
+<h3>Your homework</h3>
+<p>Having completed all the videos in this module, I would like you to turn in some simple analyses that you run on two fresh data sets. This homework assignment will be graded pass/fail.</p>
+<p>For every question, include the relevant R output and a brief written commentary explaining what the results mean. When you send your answers, please include the original questions (e.g., Q1: What is the 18th letter of the alphabet. A. The letter “R”).</p>
+<p>Questions 1-4 refer to the Albuquerque dataset.</p>
+<ol style="list-style-type: decimal">
+<li><p>Convert the number codes for the categorical variables to factors. Show frequency tables for these variables after conversion. Are any values missing for these categorical variables?</p></li>
+<li><p>Compute means and standard deviations for all the continuous variables. How many missing values are there for age and for tax?</p></li>
+<li><p>Find the largest house (biggest square footage) in the data set. Is the largest house also the most expensive house?</p></li>
+<li><p>Evaluate the relationship between PRICE and SQFT using a scatterplot. Do larger houses tend to cost more?</p></li>
+<li><p>Show how much more expensive custom built homes are compared to standard homes using a boxplot and through calculation of the means and standard deviations.</p></li>
+</ol>
+<p>Questions 6-7 refer to the Diamond dataset.</p>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Show the relationship between carat size and price using a scatterplot.</p></li>
+<li><p>Show the relationship between color and price and the relatonship between clarity and price using boxplots.</p></li>
+</ol>
+</div>
+<div id="the-albuquerque-dataset" class="section level3">
+<h3>The Albuquerque dataset</h3>
 <ul>
-<li>Data and description: <a href="http://lib.stat.cmu.edu/DASL/Datafiles/homedat.html" class="uri">http://lib.stat.cmu.edu/DASL/Datafiles/homedat.html</a></li>
-<li>Alternate source: <a href="http://www.pmean.com/15/images/day3housing.txt" class="uri">http://www.pmean.com/15/images/day3housing.txt</a></li>
+<li>Housing data dictionary
+<ul>
+<li><a href="http://www.pmean.com/introduction-to-r/data/albuquerque-data-dictionary.txt" class="uri">http://www.pmean.com/introduction-to-r/data/albuquerque-data-dictionary.txt</a></li>
+</ul></li>
+<li>Housing dataset
+<ul>
+<li><a href="http://www.pmean.com/introduction-to-r/data/albuquerque-housing.txt" class="uri">http://www.pmean.com/introduction-to-r/data/albuquerque-housing.txt</a></li>
+</ul></li>
 </ul>
+</div>
+<div id="how-should-you-read-in-this-file" class="section level3">
+<h3>How should you read in this file?</h3>
+<p>There is only a single blank between each data value. Use a blank as a delimiter.</p>
+</div>
+<div id="the-diamond-dataset" class="section level3">
+<h3>The Diamond dataset</h3>
+<ul>
+<li>Diamond data dictionary
+<ul>
+<li><a href="http://jse.amstat.org/v9n2/4C.txt" class="uri">http://jse.amstat.org/v9n2/4C.txt</a></li>
+</ul></li>
+<li>Diamond dataset
+<ul>
+<li><a href="http://jse.amstat.org/v9n2/4Cdata.txt" class="uri">http://jse.amstat.org/v9n2/4Cdata.txt</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="how-should-you-read-in-this-file-1" class="section level3">
+<h3>How should you read in this file?</h3>
+<p>This could either be a tab delimited file or a fixed width file. If you scroll through enough of the data, you will see that the price is right justified. Tab delimited files almost always have left justification for all data. So try a fixed width format.</p>
+</div>
 
 
 

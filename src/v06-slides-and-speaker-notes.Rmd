@@ -1,7 +1,7 @@
 ---
-title: "Introduction to R, module05"
+title: "Introduction to R, module06"
 author: "Steve Simon"
-date: "Created 2020-04-02"
+date: "Created 2020-04-04"
 output: powerpoint_presentation
 ---
 
@@ -11,7 +11,6 @@ knitr::opts_chunk$set(echo=TRUE)
 
 ### Introduction
 
-This Powerpoint presentation was created using an R Markdown file. It is always a good idea to print the version of R and the current date as the very first few lines of any R program.
 
 ```{r r-version-and-current-date}
 R.version.string
@@ -20,28 +19,64 @@ Sys.Date()
 
 <div class="notes">
 
-The version of R is stored in an internal constant, R.version.string. You can find the current data with the Sys.Date() function.
+This Powerpoint presentation was created using an R Markdown file. This slide shows the version of R that I used and when it was last modified.
 
 </div>
 
-
-# Part 4a. Defining alternate storage formats
+### What is longitudinal data
++ Definition
+  + Measurements taken at different times
++ Closely related datasets
+  + Crossover
+  + Pre-test/post-test
+  + Repeated measures
+  + Split plot
+  
+<div class="notes">
 
 I'm going to use the term "longitudinal" data to designate data sets where a patient is measured at multiple different time points. This encompasses certain other data sets, such as from a crossover, pre-test/post-test, repeated measures, and split plot.
 
 Don't worry about the technical distinctions among these terms. The important thing to know for now is that longitudinal data represents one of the biggest challenges in data management and we will spend most of this section discussing these challenges.
 
-Longitudinal data usually come in one of two specific formats. The first is the short and fat format and the second is the tall and thin format. Open these two webpages in Internet explorer to see the difference. 
+</div>
 
---> http://www.statsci.org/data/oz/ctsibrm.txt
+### Two formats for longitudinal data
++ Short and fat format
+  + Many columns
+  + Not so many rows
++ Tall and thin format
+  + Not so many columns
+  + Many rows
+  
+<div class="notes">
 
---> http://www.statsci.org/data/oz/ctsibuni.txt
+Longitudinal data usually come in one of two specific formats. The first is the short and fat format and the second is the tall and thin format.
 
-A description of the context for these files is at
+</div>
 
---> http://www.statsci.org/data/oz/ctsib.html
+### Example of both formats
++ Short and fat format
+  + http://www.statsci.org/data/oz/ctsibrm.txt
++ Tall and thin format
+  + http://www.statsci.org/data/oz/ctsibuni.txt
++ Look here for context
+  + http://www.statsci.org/data/oz/ctsib.html
+
+<div class="notes">
+
+Normally, you can only find a dataset stored in one of the two formats, but I did find an example of the same dataset being stored in both formats.
+
+</div>
+
+### Short and fat example
+
+![Longitudinal data stored one row per subject](../images/short-and-fat.png)
+
+<div class="notes">
 
 The short and fat format has one row per patient and each successive patient encounter is strung out horizontally.
+
+</div>
 
 The tall and thin format has one row per patient encounter and therefore multiple rows per patient.
 

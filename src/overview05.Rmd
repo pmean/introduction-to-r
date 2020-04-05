@@ -17,9 +17,9 @@ This dataset is used in the videos.
 
 ### R functions introduced in this module
 
-by, calculates within values of a categorical variable
-geom_boxplot, adds boxplots to your graph
-range, displays both the minimum and maximum value
++ by, calculates within values of a categorical variable
++ geom_boxplot, adds boxplots to your graph
++ range, displays both the minimum and maximum value
 
 ### Your homework
 
@@ -27,7 +27,7 @@ Having completed all the videos in this module, I would like you to turn in some
 
 For every question, include the relevant R output and a brief written commentary explaining what the results mean. When you send your answers, please include the original questions (e.g., Q1: What is the 18th letter of the alphabet. A. The letter "R").
 
-Questions 1-4 refer to the Albuquerque dataset.
+Questions 1-5 refer to the Albuquerque dataset.
 
 1. Convert the number codes for the categorical variables to factors. Show frequency tables for these variables after conversion. Are any values missing for these categorical variables?
 
