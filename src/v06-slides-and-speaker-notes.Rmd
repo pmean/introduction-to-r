@@ -6,7 +6,8 @@ output: powerpoint_presentation
 ---
 
 ```{r setup, echo=FALSE}
-knitr::opts_chunk$set(echo=TRUE)
+knitr::opts_chunk$set(echo=TRUE, error=TRUE)
+load("../data/slides06.RData")
 ``` 
 
 ### Introduction
@@ -149,7 +150,7 @@ Here's another interesting data set that you can work with. It comes in a short 
 
 ```{r read-energy}
 fi <- "http://www.statsci.org/data/general/energy.txt"
-en <- read.table(fi,header=TRUE)
+en <- read.table(fi, header=TRUE)
 en
 ```
 
@@ -179,13 +180,26 @@ Gather creates two new variables. The "key" variable is the name of the column w
 
 ```{r lineplot}
 library(ggplot2)
-ggplot(en_tall, aes(x=activity, y=energy_used, group=Subject)) +
+activity_lineplot <- ggplot(en_tall, aes(x=activity, y=energy_used, group=Subject)) +
   geom_line()
+ggsave(
+  "../images/activity-by-energy.png", 
+  activity_lineplot, width=4, height=4)
 ```
 
 <div class="notes">
 
 One possible graph that could not have done in the short and fat format is a lineplot. The group parameter in the aes function tells R that separate lines are defined for each subject.
+
+</div>
+
+### Lineplot
+
+![Plot showing activity levels by activity](../images/activity-by-energy.png)
+
+<div class="notes">
+
+Here is the graph. Notice the inverted V shape for each line. This shows that running uses the most energy for any individual subject.
 
 </div>
 
@@ -236,6 +250,8 @@ There are measurements at weeks 0, 3, 6, 9, and 12.
 
 </div>
 
+### Gather
+
 ```{r gather}
 qu$id <- 1:25
 qu_tall <- gather(qu, key="time", value="depression", Week0, Week3, Week6, Week9, Week12)
@@ -252,8 +268,11 @@ Suggestion: create an id variable with values 1:25 before you convert the format
 
 ```{r boxplots}
 library(ggplot2)
-ggplot(qu_tall, aes(x=time, y=depression)) +
+depression_boxplot01 <- ggplot(qu_tall, aes(x=time, y=depression)) +
   geom_boxplot()
+ggsave(
+  "../images/time-by-depression01.png", 
+  depression_boxplot01, width=4, height=4)
 ```
 
 <div class="notes">
@@ -264,13 +283,45 @@ Notice how R orders the weeks. From a strict alphabetical perspective, week12 is
 
 ### Boxplot
 
+![Boxplots showing depression levels over time](../images/time-by-depression01.png)
+
+<div class="notes">
+
+Here is the plot. The order of the weeks is not correct, because week12 appears between week0 and week3. 
+
+There are several ways to fix this.
+
+</div>
+
+### Boxplot
+
 ```{r modified-boxplot}
-qu_tall$time[qu_tall$time=="week3"] <- "week03"
-qu_tall$time[qu_tall$time=="week6"] <- "week06"
-qu_tall$time[qu_tall$time=="week9"] <- "week09"
-ggplot(qu_tall, aes(x=time, y=depression)) +
+qu_tall$time[qu_tall$time=="Week0"] <- "Week00"
+qu_tall$time[qu_tall$time=="Week3"] <- "Week03"
+qu_tall$time[qu_tall$time=="Week6"] <- "Week06"
+qu_tall$time[qu_tall$time=="Week9"] <- "Week09"
+depression_boxplot02 <- ggplot(qu_tall, aes(x=time, y=depression)) +
   geom_boxplot()
+ggsave(
+  "../images/time-by-depression02.png", 
+  depression_boxplot02, width=4, height=4)
 ```
+
+<div class="notes">
+
+An easy way to fix this is to use two numeric digits, even for weeks that have only a single digit.
+
+</div>
+
+### Boxplot
+
+![Modified boxplots showing depression levels over time](../images/time-by-depression02.png)
+
+<div class="notes">
+
+Here are the boxplots in the proper order. There are changes in depression levels across time, but these changes are small.
+
+</div>
 
 ### Backpain dataset
 
@@ -334,15 +385,19 @@ head(age_fat)
 
 </div>
 
-### On your own
+### Plots of agreement
 
-Convert this to a short and fat format. Let age1 represent the age of
-the subject in the pain group, age2 represent the matched subject
-in the nopain group, and age3 represent the matched subject in the
-sedentary group. Redefine height and weight similarly.
+```{r agreement12}
+agreement12_plot <- ggplot(
+  age_fat, aes(x=NoPain, y=Pain) +
+    geom_point() +
+    geom_segment(x=17, y=17, xend=65, yend=65)
+ggsave(
+  "../images/agreement12.png"
+  agreement12_plot, width=4, height=4)
+)
+```
 
-Plot age1 versus age2 and age1 versus age3 to evaluate how closely
-the subjects are matched on age. Repeat for height and weight.
 
 <div class="notes">
 
@@ -350,3 +405,43 @@ the subjects are matched on age. Repeat for height and weight.
 
 </div>
 
+### Plots of agreement
+
+```{r agreement32}
+agreement32_plot <- ggplot(
+  age_fat, aes(x=Sedentary, y=Pain) +
+    geom_point() +
+    geom_segment(x=17, y=17, xend=65, yend=65)
+ggsave(
+  "../images/agreement32.png",
+  agreement32_plot, width=4, height=4)
+)
+```
+
+
+<div class="notes">
+
+
+
+</div>
+
+### Plots of agreement
+
+![Plot showing agreement in ages between NoPain and Pain](../images/agreement12.png)
+
+<div class="notes">
+
+
+
+</div>
+
+
+### Plots of agreement
+
+![Plot showing agreement in ages between Sedentary and Pain](../images/agreement32.png)
+
+<div class="notes">
+
+
+
+</div>
