@@ -6,7 +6,7 @@ output: powerpoint_presentation
 ---
 
 ```{r setup, echo=FALSE}
-knitr::opts_chunk$set(echo=TRUE, error=TRUE)
+knitr::opts_chunk$set(echo=TRUE, error=FALSE)
 load("../data/slides06.RData")
 ``` 
 
@@ -119,6 +119,19 @@ Both formats have advantages and disadvantages, and you need to know how to crea
 <div class="notes">
 
 
+
+</div>
+
+### Break #1
+
++ What have you learned
+  + Two formats for longitudinal data
++ What is coming next
+  + Converting to tall and thin format
+  
+<div class="notes">
+
+I want to keep these videos short, so let's stop here.
 
 </div>
 
@@ -323,6 +336,19 @@ Here are the boxplots in the proper order. There are changes in depression level
 
 </div>
 
+### Break #2
+
++ What have you learned
+  + Converting to tall and thin format
++ What is coming next
+  + Converting to short and fat format
+  
+<div class="notes">
+
+I want to keep these videos short, so let's stop here.
+
+</div>
+
 ### Backpain dataset
 
 + Backpain data dictionary
@@ -388,14 +414,13 @@ head(age_fat)
 ### Plots of agreement
 
 ```{r agreement12}
-agreement12_plot <- ggplot(
-  age_fat, aes(x=NoPain, y=Pain) +
+agreement12_plot <- ggplot(age_fat, aes(x=NoPain, y=Pain)) +
     geom_point() +
-    geom_segment(x=17, y=17, xend=65, yend=65)
+    expand_limits(x=c(15, 55), y=c(15, 55)) +
+    geom_segment(x=15, y=15, xend=55, yend=55)
 ggsave(
-  "../images/agreement12.png"
+  "../images/agreement12.png",
   agreement12_plot, width=4, height=4)
-)
 ```
 
 
@@ -409,13 +434,13 @@ ggsave(
 
 ```{r agreement32}
 agreement32_plot <- ggplot(
-  age_fat, aes(x=Sedentary, y=Pain) +
+  age_fat, aes(x=Sedentary, y=Pain)) +
     geom_point() +
-    geom_segment(x=17, y=17, xend=65, yend=65)
+    expand_limits(x=c(15, 55), y=c(15, 55)) +
+    geom_segment(x=15, y=15, xend=55, yend=55)
 ggsave(
   "../images/agreement32.png",
   agreement32_plot, width=4, height=4)
-)
 ```
 
 
@@ -431,7 +456,7 @@ ggsave(
 
 <div class="notes">
 
-
+The agreement is quite good. There is a bit less agreement for older subjects.
 
 </div>
 
@@ -442,6 +467,127 @@ ggsave(
 
 <div class="notes">
 
+We see the same pattern here.
 
+</div>
+
+### Break #2
+
++ What have you learned
+  + Converting to short and fat format
++ What is coming next
+  + Separating into time constant/time varying tables
+  
+<div class="notes">
+
+I want to keep these videos short, so let's stop here.
+
+</div>
+
+### One last recommendation
++ Both formats have problems
+  + Tall and thin: repetition of demographic information
+  + Short and fat: poor handling of missing value
++ Ideal solution: normalization
+  + Put time constant data in first table
+  + Put time varying data in second table
+  
+### Balance dataset
++ Short and fat format
+  + http://www.statsci.org/data/oz/ctsibrm.txt
++ Tall and thin format
+  + http://www.statsci.org/data/oz/ctsibuni.txt
++ Look here for context
+  + http://www.statsci.org/data/oz/ctsib.html
+
+<div class="notes">
+
+You saw this data very early in the video.
+
+</div>
+
+### Balance data set: Short and fat format
+
+![Longitudinal data stored one row per subject](../images/short-and-fat.png)
+
+<div class="notes">
+
+Here is the short and fat format again. It has one row per patient and each successive patient encounter is strung out horizontally.
+
+</div>
+
+### Tall and thin example
+
+![Longitudinal data stores with multiple rows per patient](../images/tall-and-thin.png)
+
+<div class="notes">
+
+Here is the tall and thin format again. It has one row per patient encounter and therefore multiple rows per patient.
+
+</div>
+
+### Time constant table
+
+```{r time-constant}
+fn <- "http://www.statsci.org/data/oz/ctsibrm.txt"
+short_and_fat_data <- read.table(
+  fn, header=TRUE, sep="\t", 
+  stringsAsFactors=FALSE)
+time_constant_list <- 
+  c("Subject", "Sex", "Age", "Height", "Weight")
+time_constant_data <- 
+  short_and_fat_data[ , time_constant_list]
+head(time_constant_data)
+```
+
+<div class="notes">
+
+The time constant variables are sex, age, height, and weight. You must keep the subject id in this dataset as well because you will need it to link with the time variable data.
+
+</div>
+
+### Time variable table
+
+```{r time-variable}
+fn <- "http://www.statsci.org/data/oz/ctsibuni.txt"
+tall_and_thin_data <- read.table(
+  fn, header=TRUE, sep="\t", 
+  stringsAsFactors=FALSE)
+time_variable_list <- 
+  c("Subject", "Surface", "Vision", "CTSIB")
+time_variable_data <- 
+  tall_and_thin_data[ , time_variable_list]
+head(time_variable_data)
+```
+
+<div class="notes">
+
+Pull the time variable data from the tall and thin format.
+
+Update the time constant table only once. Update the time varying table each time you get information at a new patient visit.
+
+Note that this is what you should do before the data is collected. If the data is already collected by someone else, then you have to live with the limitations of whatever format they chose.
+
+</div>
+
+### Summary
++ Two formats
+  + Short and fat
+  + Tall and thin
++ gather
+  + converts to tall and thin
++ spread
+  + converts to short and fat
++ Alternative approach
+  + Time constant table
+  + Time variable table
+  
+<div class="notes">
+
+We've covered a lot in these videos. There are two formats for longitudinal data. The short and fat format has one row per patient and strings out the data far to the right. The tall and thin format has one row per time point and strings out the data far down.
+
+Use the gather function in the tidyr library to convert from a short and fat format into a tall and thin format. Use the spread function to convert from a tall and thin format to a short and fat format.
+
+From a data management approach, you should consider a database term called normalization. In a longitudinal setting, this simply means putting your time constant data (usually the demographic variables) in a table using the short and fat format (one row per patient). Then put your time varying data in a different table using the tall and thin format (one row per time point).
 
 </div>
