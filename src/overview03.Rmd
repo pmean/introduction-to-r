@@ -1,26 +1,27 @@
 ---
 title: "M03. Overview of module03"
 author: "Steve Simon"
-date: "Created 2020-03-02"
 output: html_document
 ---
 
-This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
+## Introduction
 
-This is an overview of module, which discusses how to read and write text files in R. Parts of it are posted in various locations on the Canvas website. If you notice a discrepancy between this overview and the Canvas website, please notify me. The Canvas website always takes precedence.
+This document was created on 2020-03-02 and last modified on `r format(Sys.Date(), "%Y-%m-%d")`. It is written in RMarkdown and run with `r R.version.string`.
 
-## Learning objectives
+This is an overview of module03, which discusses how to read and write text files in R. Parts of it are posted in various locations on the Canvas website. If you notice a discrepancy between this overview and the Canvas website, please notify me. The Canvas website always takes precedence.
 
-In this video, you will learn 
-+ how to read delimited text files
-+ how to read fixed width text files
-+ how to write text files
+## Synopsis
+
+Text data comes in a variety of shapes and forms. This module will show you how to read files with delimiters and fixed width files.
 
 ## Videos
 
 There is one video in this module specific to the R programming language and two general videos about good programming practices. You can find the 
 
 + [Slides and speaker notes for the R videos](v03-slides-and-speaker-notes.pdf)
+
+The slides and speaker notes for this video is not yet available.
+
 + Slides and speaker notes for the general videos are not yet available.
 
 ## Datasets used in this module

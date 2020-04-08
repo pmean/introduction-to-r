@@ -364,42 +364,62 @@ summary {
 
 <h1 class="title toc-ignore">M04. Overview of module04</h1>
 <h4 class="author">Steve Simon</h4>
-<h4 class="date">Created 2020-02-13</h4>
 
 </div>
 
 
-<p>This document was last modified on 2020-04-04.</p>
-<div id="the-titanic-dataset" class="section level3">
-<h3>The Titanic dataset</h3>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>This document was created on 2020-02-13 and last modified on 2020-04-08. It is written in RMarkdown and run with R version 3.6.1 (2019-07-05).</p>
+<p>This is an overview of module04, which discusses how work with categorical variables. Parts of it are posted in various locations on the Canvas website. If you notice a discrepancy between this overview and the Canvas website, please notify me. The Canvas website always takes precedence.</p>
+</div>
+<div id="synopsis" class="section level2">
+<h2>Synopsis</h2>
+<p>Categorical variables are variables with a small number of possible values, usually with a category label attached to each value. This module will introduce you to factors, a special type of data that allows you to specify labels for your categorical data. Frequency tables, proportions, and percentages are the typical univariate summaries of categorical data. If you want to explore the relationship between two categorical variables, you should use a crosstabulation and calculate group means and standard deviations. These videos will show you the R functions to accomplish all of this.</p>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<div id="videos" class="section level3">
+<h3>Videos</h3>
+<p>There are five required videos for this module.</p>
 <ul>
-<li>Data: <a href="http://www.statsci.org/data/general/titanic.txt" class="uri">http://www.statsci.org/data/general/titanic.txt</a></li>
-<li>Description: <a href="http://www.statsci.org/data/general/titanic.html" class="uri">http://www.statsci.org/data/general/titanic.html</a></li>
-<li>Alternate source: <a href="http://www.pmean.com/15/images/day2titanic.txt" class="uri">http://www.pmean.com/15/images/day2titanic.txt</a></li>
+<li>V04-01. The Titanic dataset (6 minutes)</li>
+<li>V04-02. Counts, proportions, and percentages (14 minutes)</li>
+<li>V04-03. Crosstabulations (14 minutes)</li>
+<li>V04-04. Bar charts (9 minutes)</li>
+<li>V04-05. Creating new categorical variables (12 minutes)</li>
 </ul>
-<p>This dataset is used in the videos.</p>
-</div>
-<div id="r-functions-introduced-in-this-module" class="section level3">
-<h3>R functions introduced in this module</h3>
+<p>The slides and speaker notes for these videos are not yet available.</p>
+<p>There is one optional video for this module.</p>
 <ul>
-<li>addmargins, adds totals to frequency counts</li>
-<li>cut, divides a continuous variable into categories</li>
-<li>factor, adds labels to categories represented by numbers</li>
-<li>geom_bar, add bars to a graph</li>
-<li>ggsave, saves a graph to a file</li>
-<li>names, lists names associated with a frequency table</li>
-<li>paste, combines two or more strings into a single string</li>
-<li>prop.table, converts counts into proportions</li>
-<li>range, computes minimum and maximum</li>
-<li>round, rounds a number</li>
-<li>scale_y_continuous, defines features for a plot’s y-axis</li>
-<li>sum, adds up all the values</li>
-<li>table, produces frequency counts and crosstabulations.</li>
-<li>which, selects rows which meet a logical condition</li>
-<li>which.max, seletcs row or rows where a maximum occurs</li>
-<li>which.min, selects row or rows where a minimum occurs</li>
+<li>Good computing practices, part 5</li>
+</ul>
+<p>All videos are available on the Canvas website.</p>
+</div>
+<div id="new-r-functions" class="section level3">
+<h3>New R functions</h3>
+<ul>
+<li><a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/addmargins.html">addmargins, adds totals to frequency counts</a></li>
+<li><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/cut.html">cut, divides a continuous variable into categories</a></li>
+<li><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html">factor, adds labels to categories represented by numbers</a></li>
+<li><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar, add bars to a graph</a></li>
+<li><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave, saves a graph to a file</a></li>
+<li><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/names.html">names, lists names associated with a frequency table</a></li>
+<li><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/paste.html">paste, combines two or more strings into a single string</a></li>
+<li><a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/prop.table.html">prop.table, converts counts into proportions</a></li>
+<li><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/range.html">range, computes minimum and maximum</a></li>
+<li><a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/range.html">round, rounds a number</a></li>
+<li><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous, defines features for a plot’s y-axis</a></li>
+<li><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/sum.html">sum, adds up all the values</a></li>
+<li><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html">table, produces frequency counts and crosstabulations</a></li>
+<li><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/which.html">which, selects rows which meet a logical condition</a></li>
+<li><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/which.min.html">which.max, seletcs row or rows where a maximum occurs</a></li>
+<li><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/which.min.html">which.min, selects row or rows where a minimum occurs</a></li>
 </ul>
 </div>
+</div>
+<div id="your-assignments" class="section level2">
+<h2>Your assignments</h2>
 <div id="your-homework" class="section level3">
 <h3>Your homework</h3>
 <p>Having completed all the videos in this module, I would like you to turn in some simple analyses that you run on two fresh data sets. This homework assignment will be graded pass/fail.</p>
@@ -416,6 +436,18 @@ summary {
 <li><p>Calculate frequency tables for both categorical variables in the dataset. Are there any missing values?</p></li>
 <li><p>Calculate a crosstabulation with nicely rounded percentages. Try to arrange the rows and columns and percentages so that your table best addresses the question, what type of cracker had the most and the least bloating.</p></li>
 </ol>
+</div>
+</div>
+<div id="datasets" class="section level2">
+<h2>Datasets</h2>
+<div id="the-titanic-dataset" class="section level3">
+<h3>The Titanic dataset</h3>
+<ul>
+<li>Data: <a href="http://www.statsci.org/data/general/titanic.txt" class="uri">http://www.statsci.org/data/general/titanic.txt</a></li>
+<li>Description: <a href="http://www.statsci.org/data/general/titanic.html" class="uri">http://www.statsci.org/data/general/titanic.html</a></li>
+<li>Alternate source: <a href="http://www.pmean.com/15/images/day2titanic.txt" class="uri">http://www.pmean.com/15/images/day2titanic.txt</a></li>
+</ul>
+<p>This dataset is used in the videos.</p>
 </div>
 <div id="gardasil-dataset" class="section level3">
 <h3>Gardasil dataset</h3>
@@ -434,10 +466,10 @@ summary {
 </ul></li>
 </ul>
 <p>The Gardasil vaccine requires three shots in order to be effective. A study conducted at Johns Hopkins looked at how often patients failed to get all three shots. They wanted to see if insurance status, age, and other factors could predict who was at greatest risk for failing to get all three shots.</p>
-</div>
-<div id="how-should-you-read-in-this-file" class="section level3">
-<h3>How should you read in this file?</h3>
+<div id="how-should-you-read-in-this-file" class="section level4">
+<h4>How should you read in this file?</h4>
 <p>The data looks a bit unusual, but the relatively even spacing, except for the first line seems to indicate a tab delimited file. The second format is obviously a comma separated value format. You can tell by the file extension (csv) and by peeking at the file in a text editor.</p>
+</div>
 </div>
 <div id="diet-dataset" class="section level3">
 <h3>Diet dataset</h3>
@@ -452,10 +484,11 @@ summary {
 </ul></li>
 </ul>
 <p>This dataset represents an experiment where 13 volunteers ate four different types of crackers intended for dieters. The volunteers recorded the amount of bloating they experienced after eating each type of cracker. The researchers were interested in a new formulation (gum) that they hoped would be well tolerated.</p>
-</div>
-<div id="how-should-you-read-in-this-file-1" class="section level3">
-<h3>How should you read in this file?</h3>
+<div id="how-should-you-read-in-this-file-1" class="section level4">
+<h4>How should you read in this file?</h4>
 <p>The data looks a bit unusual, but the relatively even spacing seems to indicate a tab delimited file. The hint that it is not a fixed width file is in the very first line, where the variable name Cracker does not line up with data directly beneath it.</p>
+</div>
+</div>
 </div>
 
 

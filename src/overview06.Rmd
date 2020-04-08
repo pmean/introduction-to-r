@@ -1,15 +1,58 @@
 ---
 title: "M06. Overview of module06"
 author: "Steve Simon"
-date: "Created 2020-02-13"
 output: html_document
 ---
 
-This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
+## Introduction
 
-This document is only partially written.
+This document was created on 2020-02-13 and last modified on `r format(Sys.Date(), "%Y-%m-%d")`. It is written in RMarkdown and run with `r R.version.string`.
 
-Effect of Surface and Vision on Balance
+This is an overview of module06, which discusses how to manipulate longitudinal datasets in R. Parts of it are posted in various locations on the Canvas website. If you notice a discrepancy between this overview and the Canvas website, please notify me. The Canvas website always takes precedence.
+
+## Synopsis
+
+Longitudinal data is data measured at several different time points. There are two common formats for longitudinal data. The short and fat format has one line per subject and the measurements at multiple time points stretch out to the right. The tall and thin format has multiple lines per subject, each line representing measurements at a different visit. Certain graphs and analyses are done more easily in the short and fat format, but others are done more easily in the tall and thin format. In this module, you will several examples of data sets in both formats and see how to convert from one format to another.
+
+## Resources
+
+### Videos
+
+There are four required videos for this module.
+
++ V06-01. Longitudinal data formats (8 minutes)
++ V06-02. Converting to tall and thin (15 minutes)
++ V06-03. Converting to short and fat (9 minutes)
++ V06-04. Time constant and time varying tables (7 minutes)
+
+Slides and speaker notes for these videos are available [here](http://www.pmean.com/introduction-to-r/results/v06-slides-and-speaker-notes.pdf)
+)
+
+There is one optional video for this module.
+
++ Good computing practices, part 7 (14 minutes)
+
+Slides and speaker notes for this video are not yet available.
+
+All videos are available on the Canvas website.
+
+### New R functions
+
++ expand_limits, Expand the range of the x and/or y axis
++ gather, converts to a tall and thin format
++ geom_line, draws a linegraph
++ geom_segment, adds a line segment to a graph
++ spread, converts to a short and fat format
+
+## Your assignments
+
+There are no assignments in this module. Please use your time to start the final project.
+
+## Datasets
+
+All the datasets listed here were used in the videos.
+
+### Effect of surface and vision on balance
 
 + Description: http://www.statsci.org/data/oz/ctsib.html
 + Short and fat format: http://www.statsci.org/data/oz/ctsibrm.txt
@@ -17,35 +60,25 @@ Effect of Surface and Vision on Balance
 + Also found at: www.pmean.com/15/images/day4balance1.txt, and
 www.pmean.com/15/images/day4balance2.txt
 
-Resins Rid Termites from Trees
+### Energy Requirements Running, Walking and Cycling
 
-+ Description and data: http://lib.stat.cmu.edu/DASL/Datafiles/Termites.html
-+ Also at: www.pmean.com/15/images/day4termites.txt
++ Energy data dictionary
+  + http://www.statsci.org/data/general/energy.html
++ Energy data
+  + http://www.statsci.org/data/general/energy.txt
+  + Also found at: www.pmean.com/15/images/day4energy.txt
 
-Depression Before and After an Earthquake
+### Earthquake dataset
 
-+ Description: http://www.statsci.org/data/general/lomaprie.html
-+ Data: http://www.statsci.org/data/general/lomaprie.txt
-+ Also found at: www.pmean.com/15/images/day4quake.txt
++ Earthquake data dictionary
+  + http://www.statsci.org/data/general/lomaprie.html
++ Earthquake dataset
+  + http://www.statsci.org/data/general/lomaprie.txt
 
-Energy Requirements Running, Walking and Cycling
+### Backpain dataset
 
-+ Description: http://www.statsci.org/data/general/energy.html
-+ Data: http://www.statsci.org/data/general/energy.txt
-+ Also found at: www.pmean.com/15/images/day4energy.txt
-
-Cholesterol Levels after Heart Attack
-
-+ Description: http://www.statsci.org/data/general/cholest.html
-+ Data: http://www.statsci.org/data/general/cholestg.txt
-+ Also found at: www.pmean.com/15/images/day4cholesterol.txt
-
-Runners with Low Back Pain
-
-+ Description: http://www.statsci.org/data/oz/backpain.html
-+ Data: http://www.statsci.org/data/oz/backpain.txt
-+ Also found at: www.pmean.com/15/images/day4backpain.txt
-
-Recovery of Patients from Stroke
-
-+ Description: http://www.statsci.org/data/oz/stroke.html
++ Backpain data dictionary
+  + http://www.pmean.com/introduction-to-r/data/backpain-data-dictionary.txt
++ Backpain data
+  + http://www.pmean.com/introduction-to-r/data/backpain.csv
+  

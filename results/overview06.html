@@ -364,53 +364,104 @@ summary {
 
 <h1 class="title toc-ignore">M06. Overview of module06</h1>
 <h4 class="author">Steve Simon</h4>
-<h4 class="date">Created 2020-02-13</h4>
 
 </div>
 
 
-<p>This document was last modified on 2020-02-13.</p>
-<p>This document is only partially written.</p>
-<p>Effect of Surface and Vision on Balance</p>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>This document was created on 2020-02-13 and last modified on 2020-04-08. It is written in RMarkdown and run with R version 3.6.1 (2019-07-05).</p>
+<p>This is an overview of module06, which discusses how to manipulate longitudinal datasets in R. Parts of it are posted in various locations on the Canvas website. If you notice a discrepancy between this overview and the Canvas website, please notify me. The Canvas website always takes precedence.</p>
+</div>
+<div id="synopsis" class="section level2">
+<h2>Synopsis</h2>
+<p>Longitudinal data is data measured at several different time points. There are two common formats for longitudinal data. The short and fat format has one line per subject and the measurements at multiple time points stretch out to the right. The tall and thin format has multiple lines per subject, each line representing measurements at a different visit. Certain graphs and analyses are done more easily in the short and fat format, but others are done more easily in the tall and thin format. In this module, you will several examples of data sets in both formats and see how to convert from one format to another.</p>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<div id="videos" class="section level3">
+<h3>Videos</h3>
+<p>There are four required videos for this module.</p>
+<ul>
+<li>V06-01. Longitudinal data formats (8 minutes)</li>
+<li>V06-02. Converting to tall and thin (15 minutes)</li>
+<li>V06-03. Converting to short and fat (9 minutes)</li>
+<li>V06-04. Time constant and time varying tables (7 minutes)</li>
+</ul>
+<p>There is one optional video for this module.</p>
+<ul>
+<li>Good computing practices, part 7 (14 minutes)</li>
+</ul>
+<p>All videos are available on the Canvas website.</p>
+</div>
+<div id="new-r-functions" class="section level3">
+<h3>New R functions</h3>
+<ul>
+<li>expand_limits, Expand the range of the x and/or y axis</li>
+<li>gather, converts to a tall and thin format</li>
+<li>geom_line, draws a linegraph</li>
+<li>geom_segment, adds a line segment to a graph</li>
+<li>spread, converts to a short and fat format</li>
+</ul>
+</div>
+</div>
+<div id="your-assignments" class="section level2">
+<h2>Your assignments</h2>
+<p>There are no assignments in this module. Please use your time to start the final project.</p>
+</div>
+<div id="datasets" class="section level2">
+<h2>Datasets</h2>
+<p>All the datasets listed here were used in the videos.</p>
+<div id="effect-of-surface-and-vision-on-balance" class="section level3">
+<h3>Effect of surface and vision on balance</h3>
 <ul>
 <li>Description: <a href="http://www.statsci.org/data/oz/ctsib.html" class="uri">http://www.statsci.org/data/oz/ctsib.html</a></li>
 <li>Short and fat format: <a href="http://www.statsci.org/data/oz/ctsibrm.txt" class="uri">http://www.statsci.org/data/oz/ctsibrm.txt</a></li>
 <li>Tall and thin format: <a href="http://www.statsci.org/data/oz/ctsibuni.txt" class="uri">http://www.statsci.org/data/oz/ctsibuni.txt</a></li>
 <li>Also found at: www.pmean.com/15/images/day4balance1.txt, and www.pmean.com/15/images/day4balance2.txt</li>
 </ul>
-<p>Resins Rid Termites from Trees</p>
+</div>
+<div id="energy-requirements-running-walking-and-cycling" class="section level3">
+<h3>Energy Requirements Running, Walking and Cycling</h3>
 <ul>
-<li>Description and data: <a href="http://lib.stat.cmu.edu/DASL/Datafiles/Termites.html" class="uri">http://lib.stat.cmu.edu/DASL/Datafiles/Termites.html</a></li>
-<li>Also at: www.pmean.com/15/images/day4termites.txt</li>
-</ul>
-<p>Depression Before and After an Earthquake</p>
+<li>Energy data dictionary
 <ul>
-<li>Description: <a href="http://www.statsci.org/data/general/lomaprie.html" class="uri">http://www.statsci.org/data/general/lomaprie.html</a></li>
-<li>Data: <a href="http://www.statsci.org/data/general/lomaprie.txt" class="uri">http://www.statsci.org/data/general/lomaprie.txt</a></li>
-<li>Also found at: www.pmean.com/15/images/day4quake.txt</li>
-</ul>
-<p>Energy Requirements Running, Walking and Cycling</p>
+<li><a href="http://www.statsci.org/data/general/energy.html" class="uri">http://www.statsci.org/data/general/energy.html</a></li>
+</ul></li>
+<li>Energy data
 <ul>
-<li>Description: <a href="http://www.statsci.org/data/general/energy.html" class="uri">http://www.statsci.org/data/general/energy.html</a></li>
-<li>Data: <a href="http://www.statsci.org/data/general/energy.txt" class="uri">http://www.statsci.org/data/general/energy.txt</a></li>
+<li><a href="http://www.statsci.org/data/general/energy.txt" class="uri">http://www.statsci.org/data/general/energy.txt</a></li>
 <li>Also found at: www.pmean.com/15/images/day4energy.txt</li>
+</ul></li>
 </ul>
-<p>Cholesterol Levels after Heart Attack</p>
+</div>
+<div id="earthquake-dataset" class="section level3">
+<h3>Earthquake dataset</h3>
 <ul>
-<li>Description: <a href="http://www.statsci.org/data/general/cholest.html" class="uri">http://www.statsci.org/data/general/cholest.html</a></li>
-<li>Data: <a href="http://www.statsci.org/data/general/cholestg.txt" class="uri">http://www.statsci.org/data/general/cholestg.txt</a></li>
-<li>Also found at: www.pmean.com/15/images/day4cholesterol.txt</li>
-</ul>
-<p>Runners with Low Back Pain</p>
+<li>Earthquake data dictionary
 <ul>
-<li>Description: <a href="http://www.statsci.org/data/oz/backpain.html" class="uri">http://www.statsci.org/data/oz/backpain.html</a></li>
-<li>Data: <a href="http://www.statsci.org/data/oz/backpain.txt" class="uri">http://www.statsci.org/data/oz/backpain.txt</a></li>
-<li>Also found at: www.pmean.com/15/images/day4backpain.txt</li>
-</ul>
-<p>Recovery of Patients from Stroke</p>
+<li><a href="http://www.statsci.org/data/general/lomaprie.html" class="uri">http://www.statsci.org/data/general/lomaprie.html</a></li>
+</ul></li>
+<li>Earthquake dataset
 <ul>
-<li>Description: <a href="http://www.statsci.org/data/oz/stroke.html" class="uri">http://www.statsci.org/data/oz/stroke.html</a></li>
+<li><a href="http://www.statsci.org/data/general/lomaprie.txt" class="uri">http://www.statsci.org/data/general/lomaprie.txt</a></li>
+</ul></li>
 </ul>
+</div>
+<div id="backpain-dataset" class="section level3">
+<h3>Backpain dataset</h3>
+<ul>
+<li>Backpain data dictionary
+<ul>
+<li><a href="http://www.pmean.com/introduction-to-r/data/backpain-data-dictionary.txt" class="uri">http://www.pmean.com/introduction-to-r/data/backpain-data-dictionary.txt</a></li>
+</ul></li>
+<li>Backpain data
+<ul>
+<li><a href="http://www.pmean.com/introduction-to-r/data/backpain.csv" class="uri">http://www.pmean.com/introduction-to-r/data/backpain.csv</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
 
 
 

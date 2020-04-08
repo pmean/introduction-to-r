@@ -1,11 +1,10 @@
 ---
 title: "M02. Overview of module02"
 author: "Steve Simon"
-date: "Created 2020-02-13"
 output: html_document
 ---
 
-This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
+This document was created on 2020-02-13 and last modified on `r format(Sys.Date(), "%Y-%m-%d")`. It is written in RMarkdown and run with `r R.version.string`.
 
 This module discusses how to handle datasets that have mostly continuous variables. These are the simplest datasets and represent a reasonable starting point. 
 

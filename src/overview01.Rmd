@@ -1,21 +1,20 @@
 ---
 title: "M01. Overview of module01"
 author: "Steve Simon"
-date: "Created 2020-03-30"
 output: html_document
 ---
 
-This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
+## Introduction
 
-This module discusses how to handle datasets that have mostly continuous variables. These are the simplest datasets and represent a reasonable starting point. 
+This document created on 2020-03-30 and was last modified on `r format(Sys.Date(), "%Y-%m-%d")`. It is written in RMarkdown and run with `r R.version.string`.
 
-## Learning objectives
+This is an overview of module06, which discusses how to get started with R. Parts of it are posted in various locations on the Canvas website. If you notice a discrepancy between this overview and the Canvas website, please notify me. The Canvas website always takes precedence.
 
-In these videos you will learn how to
+This module discusses how to handle datasets that have mostly continuous variables. These are the simplest datasets and represent a reasonable starting point.
 
-+ install R and RStudio
-+ organize a directory structure
-+ write and run a small R program
+## Synopsis
+
+R is a programming language with lots of features useful for managing and analyzing data. It is freely available. You will learn how to download and install R as well as RStudio, an integrated development environment for R. In this class, all the work will be done using RMarkdown, a language that combines R programming statements with free-form commentary. You will see how to organize a directory structure for the files used in this class and understand the general structure of an RMarkdown file.
 
 ## Videos
 

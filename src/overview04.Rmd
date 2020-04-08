@@ -1,38 +1,59 @@
 ---
 title: "M04. Overview of module04"
 author: "Steve Simon"
-date: "Created 2020-02-13"
 output: html_document
 ---
 
-This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
+## Introduction
 
-### The Titanic dataset
+This document was created on 2020-02-13 and last modified on `r format(Sys.Date(), "%Y-%m-%d")`. It is written in RMarkdown and run with `r R.version.string`.
 
-+ Data: http://www.statsci.org/data/general/titanic.txt
-+ Description: http://www.statsci.org/data/general/titanic.html
-+ Alternate source: http://www.pmean.com/15/images/day2titanic.txt
+This is an overview of module04, which discusses how work with categorical variables. Parts of it are posted in various locations on the Canvas website. If you notice a discrepancy between this overview and the Canvas website, please notify me. The Canvas website always takes precedence.
 
-This dataset is used in the videos.
+## Synopsis
 
-### R functions introduced in this module
+Categorical variables are variables with a small number of possible values, usually with a category label attached to each value. This module will introduce you to factors, a special type of data that allows you to specify labels for your categorical data. Frequency tables, proportions, and percentages are the typical univariate summaries of categorical data. If you want to explore the relationship between two categorical variables, you should use a crosstabulation and calculate group means and standard deviations. These videos will show you the R functions to accomplish all of this.
 
-+ addmargins, adds totals to frequency counts
-+ cut, divides a continuous variable into categories
-+ factor, adds labels to categories represented by numbers
-+ geom_bar, add bars to a graph
-+ ggsave, saves a graph to a file
-+ names, lists names associated with a frequency table
-+ paste, combines two or more strings into a single string
-+ prop.table, converts counts into proportions
-+ range, computes minimum and maximum
-+ round, rounds a number
-+ scale_y_continuous, defines features for a plot's y-axis
-+ sum, adds up all the values
-+ table, produces frequency counts and crosstabulations.
-+ which, selects rows which meet a logical condition
-+ which.max, seletcs row or rows where a maximum occurs
-+ which.min, selects row or rows where a minimum occurs
+## Resources
+
+### Videos
+
+There are five required videos for this module.
+
++ V04-01. The Titanic dataset (6 minutes)
++ V04-02. Counts, proportions, and percentages (14 minutes)
++ V04-03. Crosstabulations (14 minutes)
++ V04-04. Bar charts (9 minutes)
++ V04-05. Creating new categorical variables (12 minutes)
+
+The slides and speaker notes for these videos are not yet available.
+
+There is one optional video for this module.
+
++ Good computing practices, part 5
+
+All videos are available on the Canvas website.
+
+### New R functions
+
++ [addmargins, adds totals to frequency counts](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/addmargins.html)
++ [cut, divides a continuous variable into categories](https://stat.ethz.ch/R-manual/R-devel/library/base/html/cut.html)
++ [factor, adds labels to categories represented by numbers](https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html)
++ [geom_bar, add bars to a graph](https://ggplot2.tidyverse.org/reference/geom_bar.html)
++ [ggsave, saves a graph to a file](https://ggplot2.tidyverse.org/reference/ggsave.html)
++ [names, lists names associated with a frequency table](https://stat.ethz.ch/R-manual/R-devel/library/base/html/names.html)
++ [paste, combines two or more strings into a single string](https://stat.ethz.ch/R-manual/R-devel/library/base/html/paste.html)
++ [prop.table, converts counts into proportions](https://stat.ethz.ch/R-manual/R-patched/library/base/html/prop.table.html)
++ [range, computes minimum and maximum](https://stat.ethz.ch/R-manual/R-devel/library/base/html/range.html)
++ [round, rounds a number](https://stat.ethz.ch/R-manual/R-patched/library/base/html/range.html)
++ [scale_y_continuous, defines features for a plot's y-axis](https://ggplot2.tidyverse.org/reference/scale_continuous.html)
++ [sum, adds up all the values](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sum.html)
++ [table, produces frequency counts and crosstabulations](https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html)
++ [which, selects rows which meet a logical condition](https://stat.ethz.ch/R-manual/R-devel/library/base/html/which.html)
++ [which.max, seletcs row or rows where a maximum occurs](https://stat.ethz.ch/R-manual/R-devel/library/base/html/which.min.html)
++ [which.min, selects row or rows where a minimum occurs](https://stat.ethz.ch/R-manual/R-devel/library/base/html/which.min.html)
+
+## Your assignments
 
 ### Your homework
 
@@ -56,6 +77,16 @@ The next two questions relate to the diet dataset that compares four different t
 
 6. Calculate a crosstabulation with nicely rounded percentages. Try to arrange the rows and columns and percentages so that your table best addresses the question, what type of cracker had the most and the least bloating.
 
+## Datasets
+
+### The Titanic dataset
+
++ Data: http://www.statsci.org/data/general/titanic.txt
++ Description: http://www.statsci.org/data/general/titanic.html
++ Alternate source: http://www.pmean.com/15/images/day2titanic.txt
+
+This dataset is used in the videos.
+
 ### Gardasil dataset
 
 + Gardasil dataset (Text file)
@@ -67,7 +98,7 @@ The next two questions relate to the diet dataset that compares four different t
 
 The Gardasil vaccine requires three shots in order to be effective. A study conducted at Johns Hopkins looked at how often patients failed to get all three shots. They wanted to see if insurance status, age, and other factors could predict who was at greatest risk for failing to get all three shots.
 
-### How should you read in this file?
+#### How should you read in this file?
 
 The data looks a bit unusual, but the relatively even spacing, except for the first line seems to indicate a tab delimited file. The second format is obviously a comma separated value format. You can tell by the file extension (csv) and by peeking at the file in a text editor.
 
@@ -80,7 +111,7 @@ The data looks a bit unusual, but the relatively even spacing, except for the fi
   
 This dataset represents an experiment where 13 volunteers ate four different types of crackers intended for dieters. The volunteers recorded the amount of bloating they experienced after eating each type of cracker. The researchers were interested in a new formulation (gum) that they hoped would be well tolerated.
 
-### How should you read in this file?
+#### How should you read in this file?
 
 The data looks a bit unusual, but the relatively even spacing seems to indicate a tab delimited file. The hint that it is not a fixed width file is in the very first line, where the variable name Cracker does not line up with data directly beneath it.
 

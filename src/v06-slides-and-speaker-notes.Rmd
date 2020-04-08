@@ -56,12 +56,17 @@ Longitudinal data usually come in one of two specific formats. The first is the 
 </div>
 
 ### Example of both formats
++ Effect of surface and vision on balance
 + Short and fat format
-  + http://www.statsci.org/data/oz/ctsibrm.txt
+  + www.statsci.org/data/oz/ctsibrm.txt
+  + Also found at: www.pmean.com/15/images/day4balance1.txt
 + Tall and thin format
-  + http://www.statsci.org/data/oz/ctsibuni.txt
+  + www.statsci.org/data/oz/ctsibuni.txt
+  + Also found at www.pmean.com/15/images/day4balance2.txt
 + Look here for context
-  + http://www.statsci.org/data/oz/ctsib.html
+  + www.statsci.org/data/oz/ctsib.html
+
+
 
 <div class="notes">
 
@@ -87,8 +92,6 @@ The short and fat format has one row per patient and each successive patient enc
 
 The tall and thin format has one row per patient encounter and therefore multiple rows per patient.
 
-Both formats have advantages and disadvantages, and you need to know how to create a longitudinal file in either format and how to transform from one format to another.
-
 </div>
 
 ### Which format is better?
@@ -102,7 +105,11 @@ Both formats have advantages and disadvantages, and you need to know how to crea
 
 <div class="notes">
 
+Both formats have advantages and disadvantages, and you need to know how to create a longitudinal file in either format and how to transform from one format to another.
 
+The short and fat format makes it easy to compute change scores, the difference between a later measurementn and an earlier one. Correlations are also easier.
+
+Because the short and fat format stretches each visits data out to the right, you end up doing a lot of left/right scrolling with this type of file. 
 
 </div>
 
@@ -118,7 +125,11 @@ Both formats have advantages and disadvantages, and you need to know how to crea
 
 <div class="notes">
 
+While some statistical tasks are easier with the short and fat format, the one that is usually easier with the tall and thin format is plotting.
 
+If a subject misses a visit, the short and fat visit format makes you put in missing value codes for all the data that was not collected at that time. A tall and thin format is easier because you just leave out the row that corresponds to the missing visit.
+
+The problem with this format is in the repetition that occurs. If you have demographic variables like gender and race, those are listed on each row. This allows an opportunity for mischief, where a patient can have a different gender on different rows.
 
 </div>
 
@@ -138,15 +149,16 @@ I want to keep these videos short, so let's stop here.
 ### Energy dataset (short and fat format)
 
 + Energy data dictionary
-  + http://www.statsci.org/data/general/energy.html
+  + www.statsci.org/data/general/energy.html
 + Energy data
-  + http://www.statsci.org/data/general/energy.txt
+  + www.statsci.org/data/general/energy.txt
+  + Also found at: www.pmean.com/15/images/day4energy.txt
   
 <div class="notes">
 
 Here's another interesting data set that you can work with. It comes in a short and fat format.
 
---> http://www.statsci.org/data/general/energy.html
+--> www.statsci.org/data/general/energy.html
 
 </div>
 
@@ -154,10 +166,9 @@ Here's another interesting data set that you can work with. It comes in a short 
 
 ![](../images/energy-data-dictionary.png)
 
-### Energy dataset
+### Energy dataset (short and fat format)
 
 ![](../images/energy-view.png)
-
 
 ### Energy dataset (short and fat format)
 
@@ -219,9 +230,9 @@ Here is the graph. Notice the inverted V shape for each line. This shows that ru
 ### Earthquake dataset
 
 + Earthquake data dictionary
-  + http://www.statsci.org/data/general/lomaprie.html
+  + www.statsci.org/data/general/lomaprie.html
 + Earthquake dataset
-  + http://www.statsci.org/data/general/lomaprie.txt
+  + www.statsci.org/data/general/lomaprie.txt
 
 <div class="notes">
 
@@ -352,9 +363,9 @@ I want to keep these videos short, so let's stop here.
 ### Backpain dataset
 
 + Backpain data dictionary
-  + http://www.pmean.com/introduction-to-r/data/backpain-data-dictionary.txt
+  + www.pmean.com/introduction-to-r/data/backpain-data-dictionary.txt
 + Backpain data
-  + http://www.pmean.com/introduction-to-r/data/backpain.csv
+  + www.pmean.com/introduction-to-r/data/backpain.csv
   
 <div class="notes">
 
@@ -401,13 +412,16 @@ head(pain)
 
 ```{r spread-pain}
 age_subset <- pain[ , c("Match", "Group", "Age")]
-age_fat <- spread(age_subset, Group, Age)
+age_fat <- spread(
+  data=age_subset, 
+  key=Group, 
+  value=Age)
 head(age_fat)
 ```
 
 <div class="notes">
 
-
+The spread function takes a single column of data and spreads it across multiple columns. The first argument is the dataframe that you want to transform. The second argument gives the categorical variable that identifies which new column a particular value goes into. The third argument provides the values that in the original data set sit in a single column and that we now want to spread across multiple columns.
 
 </div>
 
@@ -426,7 +440,7 @@ ggsave(
 
 <div class="notes">
 
-
+This code shows the agreement between the ages of the patients in the NoPain group and the patients in the Pain group.
 
 </div>
 
@@ -446,7 +460,7 @@ ggsave(
 
 <div class="notes">
 
-
+This code shows a similar plot, the agreement between the ages of the patients in the Sedentary group and the patients in the Pain group.
 
 </div>
 
@@ -494,11 +508,11 @@ I want to keep these videos short, so let's stop here.
   
 ### Balance dataset
 + Short and fat format
-  + http://www.statsci.org/data/oz/ctsibrm.txt
+  + www.statsci.org/data/oz/ctsibrm.txt
 + Tall and thin format
-  + http://www.statsci.org/data/oz/ctsibuni.txt
+  + www.statsci.org/data/oz/ctsibuni.txt
 + Look here for context
-  + http://www.statsci.org/data/oz/ctsib.html
+  + www.statsci.org/data/oz/ctsib.html
 
 <div class="notes">
 

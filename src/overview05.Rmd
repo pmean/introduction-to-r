@@ -1,11 +1,14 @@
 ---
 title: "M05. Overview of module05"
 author: "Steve Simon"
-date: "Created 2020-04-04"
 output: html_document
 ---
 
-This document was last modified on `r format(Sys.Date(), "%Y-%m-%d")`.
+## Introduction
+
+This document was created on 2020-04-04 and last modified on `r format(Sys.Date(), "%Y-%m-%d")`. It is written in RMarkdown and run with `r R.version.string`.
+
+This is an overview of module05, which discusses how to analyze relationships between a categorical variable and a continuous variable in R. Parts of it are posted in various locations on the Canvas website. If you notice a discrepancy between this overview and the Canvas website, please notify me. The Canvas website always takes precedence.
 
 ### The FEV dataset
 
