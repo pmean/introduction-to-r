@@ -10,6 +10,20 @@ This document was created on 2020-04-04 and last modified on `r format(Sys.Date(
 
 This is an overview of module05, which discusses how to analyze relationships between a categorical variable and a continuous variable in R. Parts of it are posted in various locations on the Canvas website. If you notice a discrepancy between this overview and the Canvas website, please notify me. The Canvas website always takes precedence.
 
+### Videos
+
+There are four videos in this module specific to the R programming language and one recommended video about good programming practices. 
+
++ V05-01. Review
++ V05-02. Boxplots
++ V05-03. Group means and standard deviations
++ V05-04. Datasets needed for your homework
+  + The slides and speaker notes for these five videos can be found [here](http://www.pmean.com/introduction-to-r/results/v05-slides-and-speaker-notes.pdf).
++ Good computing practices, part 6
+  + The slides and speaker notes for this video is not yet available.
+
+You can find links to the videos on the Canvas website.
+
 ### The FEV dataset
 
 + Data: http://www.amstat.org/publications/jse/datasets/fev.dat.txt

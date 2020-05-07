@@ -16,13 +16,14 @@ Text data comes in a variety of shapes and forms. This module will show you how 
 
 ## Videos
 
-There is one video in this module specific to the R programming language and two general videos about good programming practices. You can find the 
+There is one video in this module specific to the R programming language and two general videos about good programming practices. You can find links to the videos on the Canvas website.
 
-+ [Slides and speaker notes for the R videos](v03-slides-and-speaker-notes.pdf)
++ V03-01. Reading and writing text files
+  + The slides and speaker notes for this video can be found [here](http://www.pmean.com/introduction-to-r/results/v03-slides-and-speaker-notes.pdf).+ + Good computing practices, part 2
++ Good computing practices, part 3
+  + The slides and speaker notes for these videos are not yet available.
 
-The slides and speaker notes for this video is not yet available.
-
-+ Slides and speaker notes for the general videos are not yet available.
+You can find links to the videos on the Canvas website.
 
 ## Datasets used in this module
 

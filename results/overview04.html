@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -331,6 +330,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -370,31 +370,30 @@ summary {
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>This document was created on 2020-02-13 and last modified on 2020-04-08. It is written in RMarkdown and run with R version 3.6.1 (2019-07-05).</p>
+<p>This document was created on 2020-02-13 and last modified on 2020-05-07. It is written in RMarkdown and run with R version 4.0.0 (2020-04-24).</p>
 <p>This is an overview of module04, which discusses how work with categorical variables. Parts of it are posted in various locations on the Canvas website. If you notice a discrepancy between this overview and the Canvas website, please notify me. The Canvas website always takes precedence.</p>
 </div>
 <div id="synopsis" class="section level2">
 <h2>Synopsis</h2>
 <p>Categorical variables are variables with a small number of possible values, usually with a category label attached to each value. This module will introduce you to factors, a special type of data that allows you to specify labels for your categorical data. Frequency tables, proportions, and percentages are the typical univariate summaries of categorical data. If you want to explore the relationship between two categorical variables, you should use a crosstabulation and calculate group means and standard deviations. These videos will show you the R functions to accomplish all of this.</p>
-</div>
-<div id="resources" class="section level2">
-<h2>Resources</h2>
 <div id="videos" class="section level3">
 <h3>Videos</h3>
-<p>There are five required videos for this module.</p>
+<p>There are five videos in this module specific to the R programming language and one recommended video about good programming practices.</p>
 <ul>
-<li>V04-01. The Titanic dataset (6 minutes)</li>
-<li>V04-02. Counts, proportions, and percentages (14 minutes)</li>
-<li>V04-03. Crosstabulations (14 minutes)</li>
-<li>V04-04. Bar charts (9 minutes)</li>
-<li>V04-05. Creating new categorical variables (12 minutes)</li>
-</ul>
-<p>The slides and speaker notes for these videos are not yet available.</p>
-<p>There is one optional video for this module.</p>
+<li>V04-01. The Titanic dataset</li>
+<li>V04-02. Counts, proportions, and percentages</li>
+<li>V04-03. Crosstabulations</li>
+<li>V04-04. Bar charts</li>
+<li>V04-05. Creating new categorical variables
 <ul>
-<li>Good computing practices, part 5</li>
+<li>The slides and speaker notes for these five videos can be found <a href="http://www.pmean.com/introduction-to-r/results/v04-slides-and-speaker-notes.pdf">here</a>.</li>
+</ul></li>
+<li>Good computing practices, part 5
+<ul>
+<li>The slides and speaker notes for this video is not yet available.</li>
+</ul></li>
 </ul>
-<p>All videos are available on the Canvas website.</p>
+<p>You can find links to the videos on the Canvas website.</p>
 </div>
 <div id="new-r-functions" class="section level3">
 <h3>New R functions</h3>

@@ -19,10 +19,19 @@ In these videos you will learn
 
 ## Videos
 
-There are five videos in this module specific to the R programming language and two general videos about good programming practices. You can find the 
+There are five videos in this module specific to the R programming language and two general videos about good programming practices.
 
-+ [Slides and speaker notes for the R videos](v02-slides-and-speaker-notes.pdf)
-+ Slides and speaker notes for the general videos are not yet available.
++ V02-01. Rmarkdown structure
++ V02-02. Outliers and missing values
++ V02-03. Histograms
++ V02-04. Correlations and scatterplots
++ V02-05. Description of sleep data
+  + The slides and speaker notes for these five videos can be found [here](http://www.pmean.com/introduction-to-r/results/v02-slides-and-speaker-notes.pdf).
++ General video. Data dictionary
++ General video. Good computing practices, part 1
+  + The slides and speaker notes for these videos are not yet available.
+
+You can find links to the videos on the Canvas website.
 
 ## Datasets used in this module
 

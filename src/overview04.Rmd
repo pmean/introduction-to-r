@@ -14,25 +14,20 @@ This is an overview of module04, which discusses how work with categorical varia
 
 Categorical variables are variables with a small number of possible values, usually with a category label attached to each value. This module will introduce you to factors, a special type of data that allows you to specify labels for your categorical data. Frequency tables, proportions, and percentages are the typical univariate summaries of categorical data. If you want to explore the relationship between two categorical variables, you should use a crosstabulation and calculate group means and standard deviations. These videos will show you the R functions to accomplish all of this.
 
-## Resources
-
 ### Videos
 
-There are five required videos for this module.
+There are five videos in this module specific to the R programming language and one recommended video about good programming practices. 
 
-+ V04-01. The Titanic dataset (6 minutes)
-+ V04-02. Counts, proportions, and percentages (14 minutes)
-+ V04-03. Crosstabulations (14 minutes)
-+ V04-04. Bar charts (9 minutes)
-+ V04-05. Creating new categorical variables (12 minutes)
-
-The slides and speaker notes for these videos are not yet available.
-
-There is one optional video for this module.
-
++ V04-01. The Titanic dataset
++ V04-02. Counts, proportions, and percentages
++ V04-03. Crosstabulations
++ V04-04. Bar charts
++ V04-05. Creating new categorical variables
+  + The slides and speaker notes for these five videos can be found [here](http://www.pmean.com/introduction-to-r/results/v04-slides-and-speaker-notes.pdf).
 + Good computing practices, part 5
+  + The slides and speaker notes for this video is not yet available.
 
-All videos are available on the Canvas website.
+You can find links to the videos on the Canvas website.
 
 ### New R functions
 

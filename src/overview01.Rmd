@@ -18,14 +18,14 @@ R is a programming language with lots of features useful for managing and analyz
 
 ## Videos
 
-There are two required videos for this module.
+There are two videos for this module. The first one is about the R programming language and the second is a general video on good programming practices.
 
-+ V01-01. A simple program (20 minutes)
++ V01-01. A simple program
   + The slides and speaker notes for this video can be found [here](http://www.pmean.com/introduction-to-r/results/v01-slides-and-speaker-notes.pdf).
-+ General video. Good documentation (25 minutes)
++ General video. Good documentation
   + The slides and speaker notes for this video are not yet available.
 
-Go to the Canvas website to view these videos.
+You can find links to the videos on the Canvas website.
 
 ## Datasets used in this module
 

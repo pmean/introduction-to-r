@@ -20,21 +20,15 @@ Longitudinal data is data measured at several different time points. There are t
 
 There are four required videos for this module.
 
-+ V06-01. Longitudinal data formats (8 minutes)
-+ V06-02. Converting to tall and thin (15 minutes)
-+ V06-03. Converting to short and fat (9 minutes)
-+ V06-04. Time constant and time varying tables (7 minutes)
++ V06-01. Longitudinal data formats
++ V06-02. Converting to tall and thin
++ V06-03. Converting to short and fat
++ V06-04. Time constant and time varying tables
+  + Slides and speaker notes for these videos are available [here](http://www.pmean.com/introduction-to-r/results/v06-slides-and-speaker-notes.pdf)
++ Good computing practices, part 7
+  + Slides and speaker notes for this video are not yet available.
 
-Slides and speaker notes for these videos are available [here](http://www.pmean.com/introduction-to-r/results/v06-slides-and-speaker-notes.pdf)
-)
-
-There is one optional video for this module.
-
-+ Good computing practices, part 7 (14 minutes)
-
-Slides and speaker notes for this video are not yet available.
-
-All videos are available on the Canvas website.
+You can find links to the videos on the Canvas website.
 
 ### New R functions
 
