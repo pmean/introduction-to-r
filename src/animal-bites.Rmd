@@ -1,0 +1,31 @@
+---
+title: "Test code for animal bites"
+author: "Steve Simon"
+date: "Created: 2020-05-12"
+output: html_document
+---
+
+You need to put the name of your file in quotes. I stored your file on my data folder, so that also requires that I put some directory information in.
+
+This code should work on your system, presuming that you placed the file in a data subdirectoty and the program in a src subdirectory.
+
+```{r}
+fn <-"../data/Health_AnimalBites.csv"
+mydata <-read.csv(fn, stringsAsFactors = FALSE)
+head(mydata)
+```
+ 
+Kaggle does not allow direct downloads of their data, because this would allow people to download data before they signed an agreement on the terms of use of their data. So there is no weblink that works directly. 
+
+For the record, you should place any web url, just like any filename inside of quotes. But that still doesn't work. What gets read in is a web page that has a download button on it, rather than the file itself, as you can see. The first six lines of "data" are actually lines of code written in html, the language of web pages.
+
+Your solution in this case is to download the file and store it in your data subdirectory. You've already done this, so try the code listed above (not the code listed below) to read in the file.
+
+You asked about dates, and these are a bit unusual in that they include both a date and a time (though the time is always midnight or 0:00:00). R can handle this type of date, but you don't need to do an analysis using date in any of your work on the final project.
+ 
+```{r}
+fn <- "https://www.kaggle.com/rtatman/animal-bites/data"
+mydata <-read.csv(fn, stringsAsFactors = FALSE)
+head(mydata)
+```
+ 
