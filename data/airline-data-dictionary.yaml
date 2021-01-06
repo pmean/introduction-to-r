@@ -1,0 +1,50 @@
+---
+data-dictionary: airline-bumping-2017.txt
+
+source: 
+  DASL: Data and Story Library. DASL is a repository of small but
+  interesting datasets. It is maintained by Data Description, a
+  company that sells a statistical analysis program, Data Desk.
+  
+
+description:
+  This dataset shows the number of times passengers were "bumped"
+  from an airline flight. Bumping occurs when an airline overbooks
+  reservations for a flight. Normally, the airline will ask for
+  volunteers who will agree to take a later flight in exchange for
+  cash or travel vouchers. But if no one volunteers, airlines will
+  involuntarily bump passengers from the flight.
+  
+download: 
+  text-format: https://dasl.datadescription.com/download/data/3048
+  additional-information: https://dasl.datadescription.com/datafile/airline-bumping-2017/
+
+copyright:
+  Unknown. You should be able to use this data for
+  individual educational purposes under the Fair Use
+  guidelines of U.S. copyright law.
+
+format: 
+  delimiter: tab
+  varnames: first row of data
+  missing-value-code: Not needed
+  rows: 12
+  columns: 5
+
+vars:
+  airline:
+    label: name of airline company
+
+  b2017:
+    label: number of passengers bumped in 2017
+    
+  b2016:
+    label: number of passengers bumped in 2016
+    
+  r2017:
+    label: rate of bumping in 2017
+    unit: per 10,000 passengers
+    
+  r2016:
+    label: rate of bumping in 2016
+    unit: per 10,000 passengers
